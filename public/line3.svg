@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<svg width="800" height="350" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.1">
+ <defs>
+  <linearGradient id="SvgjsLinearGradient1003">
+   <stop offset="0" stop-color="#39ff14"/>
+   <stop offset="1" stop-color="hsl(0, 0%, 100%)"/>
+  </linearGradient>
+ </defs>
+ <g class="layer">
+  <title>Layer 1</title>
+  <path d="m39.14,183.54c3.81,19.89 -27.46,124.16 18.02,93.93c45.48,-30.23 156.55,-224.22 196.85,-236.74c40.31,-12.53 -36.93,177.83 -6.42,177.56c30.5,-0.28 115.94,-190.56 150.54,-178.85c34.58,11.71 -20.91,208.02 12.86,234.17c33.78,26.14 71.24,-119.1 146.68,-110.66c75.44,8.44 165.33,118.67 209.72,150.54" fill="none" id="svg_1" stroke="url(&quot;#SvgjsLinearGradient1003&quot;)" stroke-dasharray="0 0" stroke-linecap="round" stroke-width="47"/>
+ </g>
+</svg>

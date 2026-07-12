@@ -1,0 +1,20 @@
+export default interface FavoriteProps {
+   fav_id: number,
+   id: number,
+   fav_time: string,
+   prod_id: number,
+   user_id: string,
+   price: number,
+   prod_name?: string,
+   brand?: string,
+   description?: string,
+   dimensions?: { height: number, width: number, depth: number },
+   weight?: number,
+   screen?: number,
+   soc?: string,
+   fingerprint?: boolean,
+   charging_wireless?: number,
+   charging?: number,
+   battery?: number,
+   img?: string
+}

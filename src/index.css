@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+   font-family: Playfair;
+   src: url("/Playfair.ttf")
+}
+
+@font-face {
+   font-family: Archivo;
+   src: url("/Archivo.ttf")
+}
+
+@font-face {
+   font-family: Geist;
+   src: url("/Geist.ttf")
+}
+
+:root {
+   font-family: Archivo, Avenir, Helvetica, Arial, sans-serif;
+   font-size: 15pt;
+   font-weight: 500;
+   line-height: 1.5;
+   text-align: center;
+   font-synthesis: none;
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+
+   -webkit-user-select: none; /* Safari */
+   -moz-user-select: none;    /* Firefox */
+   -ms-user-select: none;     /* Internet Explorer/Edge */
+   user-select: none;         /* Standard */
+   margin: auto;
+   max-width: 1600px;
+
+   --font-gray-900: #111827;
+}
+
+@layer base {
+
+   *{
+      @apply transition-colors;
+      
+   }
+
+   html,
+   body {
+      @apply bg-background text-gray-900;
+   }
+
+   #root{
+      @apply m-auto 2xl:w-[1550px] pt-2 sm:pt-5;
+   }
+
+
+   input{
+      @apply px-4 h-9 rounded-full bg-white drop-shadow;
+   }
+
+   input:focus{
+      @apply p-4 rounded-full outline-gray-900 drop-shadow-none;
+   }
+
+   button{
+      @apply rounded-lg p-2 px-5 text-gray-900
+   }
+
+   img{
+      @apply mix-blend-darken
+   }
+
+   td{
+      @apply  border border-gray-900 px-2 py-0 transition-all
+   }
+
+   .big-button{
+     @apply mt-2 m-auto text-xs w-48 h-12 sm:w-64 sm:text-lg sm:h-16 border-gray-900 border cursor-pointer;
+   }
+}
+
+
+
+/*
+font-family: Playfair, Avenir, Helvetica, Arial, sans-serif;
+*/
+
+ul {
+   list-style-type: none;
+   padding-left: 0px;
+   font-size: 10pt;
+   text-align: left;
+}
+
+.phone-detail, .order-grouped{
+   border:solid 1px var(--font-gray-900);
+}
+
+span {
+   padding: 4px;
+}
+
+p{
+   font-weight: 500;
+   padding:1rem 0;
+}
+
+html, body {
+   -ms-overflow-style: none; 
+   scrollbar-width: none;     
+   overflow-y: scroll;        
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+   display: none;
+   width: 0px; 
+   background: transparent;
+}
+
+
+
+.selectable{
+   -webkit-user-select: text;
+   -moz-user-select: text; 
+   -ms-user-select: text;
+   user-select: text;   
+}
+
+.price{
+   font-family: Geist, Archivo, Avenir, Helvetica, Arial, sans-serif;
+   letter-spacing: -0.04em;
+}
+
+@keyframes fillCart {
+   0% {
+      background-color: transparent;
+      scale: 1;
+   }
+   50% {
+      background-color: #39ff14;
+      scale: 0.95;
+   }
+   100% {
+      background-color: transparent;
+      scale: 1;
+   }
+}
+
+.animate-fill-cart {
+   transform-origin: top;
+   animation: fillCart 0.5s ease-in-out forwards;
+}
+
+.gradient {
+   background: linear-gradient(to bottom, #000000, var(--font-gray-900)); 
+   -webkit-background-clip: text;
+   background-clip: text;
+   -webkit-text-fill-color: transparent;
+ }
+
+ .content {
+   min-height: 96vh;
+}
+
+.stretch{
+   width: 100vh;
+   width: -webkit-fill-available;
+   width: stretch;
+}
+
+table > tbody > tr > td:nth-child(1){
+   font-weight: 700;
+}
+
+.length{
+   -webkit-text-stroke: 3px #f0f0f0;
+}
+
+@media (max-width: 520px) {
+
+.table-container{
+   margin-left:0;
+   margin-right:0;
+}
+
+.table-custom td:nth-child(1){
+   border-left:0px ;
+}
+
+.table-custom td:nth-child(2){
+   border-right:0px ;
+}
+
+}
+
