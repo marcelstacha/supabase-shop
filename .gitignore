@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 dist
+old_images
 dist-ssr
 *.local
 
