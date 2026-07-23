@@ -58,9 +58,9 @@ export default function BestPhoneItem({ category, item }: BestPhoneItemProps) {
    return <>
       <NavLink to={`/phonedetail/${item.id}`}>
          <div className="group relative py-2 sm:py-4 lg:py-5 xl:py-6 overflow-hidden md:hover:bg-accent/5 border border-gray-900 rounded-lg transition cursor-pointer">
-            <div className="flex lg:flex-row flex-col justify-center items-center m-auto lg:mb-6 p-6 py-0 sm:py-2 sm:pt-2 lg:w-[19rem] xl:w-[21rem] sm:size-fit lg:text-white lg:bg-black rounded-full">
-               <div className="flex lg:flex-row flex-col items-center lg:gap-1 text-center">
-                  <span className="lg:p-0 w-auto font-bold text-xs sm:text-sm lg:text-base xl:text-lg leading-1">
+            <div className="flex lg:flex-row flex-col justify-center items-center m-auto lg:mb-6 p-6 py-1 lg:w-[19.5rem] xl:w-[23rem] sm:size-fit lg:text-white lg:bg-black rounded-full">
+               <div className="flex lg:flex-row flex-col items-center lg:gap-1 text-center gap">
+                  <span className="p-0 w-auto font-bold text-xs sm:text-sm lg:text-base xl:text-lg leading-1">
                      {text[0]}
                   </span>
                   <span className="p-0 lg:p-0 w-auto font-bold text-xs sm:text-sm lg:text-base xl:text-lg leading-none">
@@ -70,7 +70,7 @@ export default function BestPhoneItem({ category, item }: BestPhoneItemProps) {
                      :
                   </span>
                </div>
-               <span className="flex flex-row mt-0 lg:mt-[1px] p-0 py-1 sm:py-0 lg:pl-2 font-normal text-accent text-md sm:text-lg xl:text-xl price">
+               <span className="flex flex-row lg:m-0 my-1 lg:mt-[1px] px-3 sm:px-4 py-0 sm:py-0 lg:pl-2 font-normal text-accent text-md sm:text-base lg:text-lg xl:text-xl bg-black lg:bg-transparent rounded-full price">
                   {val}
                   <div className="pl-[0.125rem] tracking-wider">{unit}</div>
                </span>
@@ -78,7 +78,7 @@ export default function BestPhoneItem({ category, item }: BestPhoneItemProps) {
             <img src={`${item.img}-1.jpg`}
                className="hidden sm:block m-auto my-4 xl:my-5 max-h-20 lg:max-h-40 xl:max-h-52 object-contain"
             />
-            <hr className="sm:hidden block my-1 h-[2px] bg-gray-900" />
+            <hr className="sm:hidden block m-1 mb-2 h-[2px] bg-gray-900" />
             <span className="flex flex-col justify-center p-0">
                <h1 className="font-bold text-sm sm:text-base md:text-lg xl:text-xl transition-all">{item.brand}</h1>
                <h1 className="font-medium md:text-md text-sm sm:text-base xl:text-lg transition-all">{item.name}</h1>
