@@ -7,11 +7,13 @@ export default defineConfig(() => {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
+      timeZone: 'Europe/Berlin'
    });
    const formattedTime = buildDate.toLocaleTimeString('de-DE', { // Deutsche Uhrzeitformat
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
+      timeZone: 'Europe/Berlin'
    });
    const buildDateTime = `${formattedDate} ${formattedTime}`; // Kombiniertes Datum und Uhrzeit
 

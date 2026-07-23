@@ -35,7 +35,7 @@ export default function Phone({ id, img, name, brand, price }: PhoneProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="group flex flex-col px-1 sm:px-2 pt-3 sm:pt-4 pb-1 sm:pb-2 bg-white/[60%] hover:bg-white opacity-100 starting:opacity-0 group-hover:shadow-[0_0px_12px_rgba(0,0,0,0.3)] border border-gray-900 rounded-md sm:rounded-xl transition-all duration-500"
+            className="group flex flex-col px-1 sm:px-2 pt-3 sm:pt-4 pb-1 sm:pb-2 bg-white/[60%] hover:bg-white opacity-100 group-hover:shadow-[0_0px_12px_rgba(0,0,0,0.3)] border border-gray-900 rounded-md sm:rounded-xl transition-all duration-500"
             onHoverStart={() => setImageToggle(true)}
             onHoverEnd={() => setImageToggle(false)}
          >

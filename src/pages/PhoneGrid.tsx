@@ -1,4 +1,4 @@
-import { AnimatePresence } from "motion/react"
+import { AnimatePresence, motion } from "motion/react"
 import { useState, ChangeEvent, MouseEvent, useMemo, useEffect } from "react";
 import { DevicePhoneMobileIcon, BookOpenIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
@@ -8,7 +8,6 @@ import PhoneProps from "../interfaces/PhoneProps"
 import Phone from "../components/Phone"
 import PageHeading from "../components/PageHeading";
 import FilterButton from "../components/FilterButton";
-import React from "react";
 import { useProductsStore } from "../store/useProductsStore";
 import { useFavoritesStore } from "../store/useFavoritesStore";
 
@@ -179,20 +178,22 @@ export default function PhoneGrid() {
                </div>
             </div>
             <div className="min-h-40">
-               <ul className="inline-grid gap-1 sm:gap-2 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 w-full lg:w-auto transition-all">
-                  <AnimatePresence>
-                     {filteredSorted.map((phone, index) => {
-                        return (
-                           <React.Fragment key={index}>
-                              <li className="group lg:w-64 xl:w-72 cursor-pointer">
-                                 <NavLink to={`/phonedetail/${phone.id}`}>
-                                    <Phone key={phone.id} {...phone} />
-                                 </NavLink>
-                              </li>
-                           </React.Fragment>
-                        )
-
-                     })}
+               <ul className="inline-grid gap-1 sm:gap-2 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 w-full sm:w-auto transition-all">
+                  <AnimatePresence mode="popLayout">
+                     {filteredSorted.map((phone) => (
+                        <motion.li
+                           key={phone.id}
+                           initial={{ opacity: 0, scale: 0.95 }}
+                           animate={{ opacity: 1, scale: 1 }}
+                           exit={{ opacity: 0, scale: 0.95 }}
+                           transition={{ duration: 0.3 }}
+                           className="group lg:w-64 xl:w-72 cursor-pointer"
+                        >
+                           <NavLink to={`/phonedetail/${phone.id}`}>
+                              <Phone {...phone} />
+                           </NavLink>
+                        </motion.li>
+                     ))}
                   </AnimatePresence>
                </ul>
             </div>
