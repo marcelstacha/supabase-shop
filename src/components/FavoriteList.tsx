@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "motion/react"
 import FavoriteRow from "./FavoriteRow";
-import FavoriteProps from "../interfaces/FavoriteProps";
+import FavoritesProps from "../interfaces/FavoritesProps";
 
-export default function FavoriteList({ filtered, optimisticUpdate }: { filtered: FavoriteProps[], optimisticUpdate: (id: number) => void }) {
+export default function FavoriteList({ filtered, optimisticUpdate }: { filtered: FavoritesProps[], optimisticUpdate: (id: number) => void }) {
 
    return (<>
       <AnimatePresence>
@@ -27,7 +27,7 @@ export default function FavoriteList({ filtered, optimisticUpdate }: { filtered:
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4 }}
                >
-                  {filtered.map((item: FavoriteProps) => (
+                  {filtered.map((item: FavoritesProps) => (
                      <FavoriteRow
                         key={item.prod_id}
                         item={item}

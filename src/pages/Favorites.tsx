@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext"
-import { useFavorites } from "../context/FavoriteContext";
 import FavoriteList from "../components/FavoriteList";
 import PageHeading from "../components/PageHeading";
 import QuantityDisplay from "../components/QuantityDisplay";
+import { useFavoritesStore } from "../store/useFavoritesStore";
+import { useAuthStore } from "../store/useAuthStore";
 
 export default function Favorites() {
 
-   const { user } = useAuth();
-   const { favorites, fetchFavorites, isLoading } = useFavorites();
+   const user = useAuthStore((state) => state.user)
+
+   const favorites = useFavoritesStore((state) => state.favorites)
+   const fetchFavorites = useFavoritesStore((state) => state.fetchFavorites)
+   const isLoading = useFavoritesStore((state) => state.isLoading)
 
    const [filtered, setFiltered] = useState(favorites || [])
 

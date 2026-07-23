@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCart } from "../context/CartContext";
+import { useCartStore } from "../store/useCartStore";
 
 interface CartButtonProps {
    id: number;
@@ -10,7 +10,7 @@ interface CartButtonProps {
 
 export default function CartButton({ handleAdd, id, big = false }: CartButtonProps) {
 
-   const { fetchCart } = useCart()
+   const fetchCart = useCartStore((state) => state.fetchCart)
 
    const [isAnimating, setIsAnimating] = useState(false)
 

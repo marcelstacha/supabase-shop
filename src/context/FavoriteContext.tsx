@@ -2,10 +2,10 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { supabase } from "../supabaseClient";
 import { useAuth } from "./AuthContext";
-import FavoriteProps from "../interfaces/FavoriteProps";
+import FavoritesProps from "../interfaces/FavoritesProps";
 
 interface FavoriteContextType {
-   favorites: FavoriteProps[];
+   favorites: FavoritesProps[];
    isLoading: boolean;
    error: string;
    fetchFavorites: () => Promise<void>;
@@ -21,7 +21,7 @@ const FavoriteContext = createContext<FavoriteContextType | undefined>(undefined
 
 export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
 
-   const [favorites, setFavorites] = useState<FavoriteProps[]>([]);
+   const [favorites, setFavorites] = useState<FavoritesProps[]>([]);
    const [error, setError] = useState("")
    const [isLoading, setIsLoading] = useState(true);
 

@@ -6,10 +6,10 @@ import PhoneProps from "../interfaces/PhoneProps"
 
 import PageHeading from "../components/PageHeading";
 
-import { useProducts } from "../context/ProductsContext";
 import FilterButton from "../components/FilterButton";
-import { useFavorites } from "../context/FavoriteContext";
 import Row from "../components/Row";
+import { useFavoritesStore } from "../store/useFavoritesStore";
+import { useProductsStore } from "../store/useProductsStore";
 
 export default function PhoneList() {
 
@@ -18,8 +18,11 @@ export default function PhoneList() {
    const [sortBy, setSortBy] = useState(defaultSort)
    const [filterBy, setFilterBy] = useState("all")
 
-   const { phones, error, isLoading: loadingProducts } = useProducts()
-   const { fetchFavorites } = useFavorites()
+   const phones = useProductsStore((state) => state.phones)
+   const error = useProductsStore((state) => state.error)
+   const loadingProducts = useProductsStore((state) => state.isLoading)
+
+   const fetchFavorites = useFavoritesStore((state) => state.fetchFavorites)
 
    const { filteredSorted, sortText, filterText } = useMemo(() => {
       let sortText = ""
@@ -175,7 +178,7 @@ export default function PhoneList() {
                </div>
             </div>
             <AnimatePresence>
-               <div className="pb-4 w-full max-h-[61vh] md:max-h-[65vh] overflow-x-scroll shadow-sm">
+               <div className="pb-4 w-full max-h-[61vh] md:max-h-[65vh] overflow-x-auto shadow-sm">
                   <table className="w-max max-w-none text-xs sm:text-sm md:text-lg text-left bg-white">
                      <thead className="text-xs sm:text-sm">
                         <tr>

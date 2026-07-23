@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useParams, NavLink } from "react-router-dom"
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "motion/react"
-import { useAuth } from "../context/AuthContext";
-import { useCart } from "../context/CartContext";
 import { formatDate, formatPrice } from "../utils/utils";
 import useCurrentPhone from "../hooks/useCurrentPhone";
 import CartButton from "../components/CartButton";
 import Heart from "../components/Heart";
 import PhoneDetailTable from "../components/PhoneDetailTable";
+import { useCartStore } from "../store/useCartStore";
+import { useAuthStore } from "../store/useAuthStore";
 
 export default function PhoneDetail() {
 
@@ -16,9 +16,10 @@ export default function PhoneDetail() {
    const [imageToggle, setImageToggle] = useState(false)
 
    const { id } = useParams()
-   const { user } = useAuth()
    const { phone, isLoading } = useCurrentPhone(Number(id))
-   const { addToCart } = useCart()
+
+   const user = useAuthStore((state) => state.user)
+   const addToCart = useCartStore((state) => state.addToCart)
 
    function handleAdd(id: number) {
       if (!isAnimating) {

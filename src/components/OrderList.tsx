@@ -1,8 +1,10 @@
-import { useOrders } from "../context/OrdersContext";
+
+import { useOrdersStore } from "../store/useOrdersStore";
 import OrderSingle from "./OrderSingle";
 
 export default function OrderList() {
-   const { orders } = useOrders();
+
+   const orders = useOrdersStore((state) => state.orders)
 
    if (!Array.isArray(orders)) {
       return <p className="text-red-500 text-center">Fehler: Bestellungen konnten nicht geladen werden.</p>;

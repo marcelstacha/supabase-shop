@@ -1,9 +1,9 @@
 import { User } from "@supabase/supabase-js";
 import CartProps from "../interfaces/CartProps";
-import FavoriteProps from "../interfaces/FavoriteProps";
+import FavoritesProps from "../interfaces/FavoritesProps";
 
 interface QuantityDisplayProps {
-   filtered: CartProps[] | FavoriteProps[];
+   filtered: CartProps[] | FavoritesProps[];
    user: User | null;
    isCart: boolean;
 }

@@ -1,10 +1,10 @@
 import { ChangeEvent, useEffect, useState } from "react"
-import { useProducts } from "../context/ProductsContext"
 import useDebounce from "../hooks/useDebounce"
 import PhoneProps from "../interfaces/PhoneProps"
 import { NavLink } from "react-router-dom"
 import { motion } from "motion/react"
 import { XCircleIcon } from "@heroicons/react/24/outline"
+import { useProductsStore } from "../store/useProductsStore"
 
 export default function SearchBar() {
 
@@ -13,7 +13,8 @@ export default function SearchBar() {
    const [results, setResults] = useState<PhoneProps[]>([])
    const [canOpen, setCanOpen] = useState(false)
 
-   const { phones } = useProducts()
+   const phones = useProductsStore((state) => state.phones)
+
    const debouncedQuery = useDebounce(query)
    const isSearching = debouncedQuery.length >= 2
    const filterAttributes = ["name", "brand"]

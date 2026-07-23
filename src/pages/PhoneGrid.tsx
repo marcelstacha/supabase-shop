@@ -7,11 +7,10 @@ import PhoneProps from "../interfaces/PhoneProps"
 
 import Phone from "../components/Phone"
 import PageHeading from "../components/PageHeading";
-
-import { useProducts } from "../context/ProductsContext";
 import FilterButton from "../components/FilterButton";
 import React from "react";
-import { useFavorites } from "../context/FavoriteContext";
+import { useProductsStore } from "../store/useProductsStore";
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
 export default function PhoneGrid() {
 
@@ -20,8 +19,11 @@ export default function PhoneGrid() {
    const [sortBy, setSortBy] = useState(defaultSort)
    const [filterBy, setFilterBy] = useState("all")
 
-   const { phones, error, isLoading: loadingProducts } = useProducts()
-   const { fetchFavorites } = useFavorites()
+   const fetchFavorites = useFavoritesStore((state) => state.fetchFavorites)
+   const phones = useProductsStore((state) => state.phones)
+   const error = useProductsStore((state) => state.error)
+   const loadingProducts = useProductsStore((state) => state.isLoading)
+
 
    const { filteredSorted, sortText, filterText } = useMemo(() => {
       let sortText = ""

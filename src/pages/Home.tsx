@@ -1,14 +1,23 @@
-import { AnimatePresence, motion } from "motion/react"
+import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import PageHeading from "../components/PageHeading";
 import ShuffledGrid from "../components/ShuffledGrid";
 import BestPhones from "../components/BestPhones";
-import { useProducts } from "../context/ProductsContext";
-import { NavLink } from "react-router-dom";
 import Splash from "../components/Splash";
+import { useProductsStore } from "../store/useProductsStore";
+import { AnimatePresence, motion } from "motion/react"
 
 export default function Home() {
 
-   const { phones } = useProducts()
+   const phones = useProductsStore((state) => state.phones)
+   const fetchProducts = useProductsStore((state) => state.fetchProducts);
+
+   useEffect(() => {
+      if (phones.length == 0) {
+         fetchProducts()
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [])
 
    return (<>
       <PageHeading>Willkommen</PageHeading>

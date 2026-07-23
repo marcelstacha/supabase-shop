@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 import PhoneProps from "../interfaces/PhoneProps";
-import { useFavorites } from "../context/FavoriteContext";
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
 interface UseCurrentPhoneResult {
    phone: PhoneProps | null
@@ -14,7 +14,7 @@ export default function useCurrentPhone(id: number): UseCurrentPhoneResult {
    const [phone, setPhone] = useState<PhoneProps | null>(null)
    const [isLoading, setIsLoading] = useState(true);
 
-   const { fetchFavorites } = useFavorites()
+   const fetchFavorites = useFavoritesStore((state) => state.fetchFavorites)
 
    useEffect(() => {
       async function fetchPhone() {

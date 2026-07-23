@@ -1,15 +1,15 @@
 import { NavLink } from "react-router-dom";
-import FavoriteProps from "../interfaces/FavoriteProps";
-import { useFavorites } from "../context/FavoriteContext";
-import { useCart } from "../context/CartContext";
+import FavoritesProps from "../interfaces/FavoritesProps";
 import { clean } from "../utils/utils"
 import DeleteIcon from "./DeleteIcon";
 import CartIcon from "./CartIcon";
+import { useCartStore } from "../store/useCartStore";
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
-export default function FavoriteRow({ item, update }: { item: FavoriteProps, update: (id: number) => void }) {
+export default function FavoriteRow({ item, update }: { item: FavoritesProps, update: (id: number) => void }) {
 
-   const { addToCart } = useCart()
-   const { deleteFavorite } = useFavorites();
+   const addToCart = useCartStore((state) => state.addToCart)
+   const deleteFavorite = useFavoritesStore((state) => state.deleteFavorite)
 
    function handleDelete(id: number) {
       deleteFavorite(id)

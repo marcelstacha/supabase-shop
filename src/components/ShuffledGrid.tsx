@@ -1,16 +1,16 @@
 import { motion } from "motion/react"
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useProducts } from "../context/ProductsContext";
 import PhoneProps from "../interfaces/PhoneProps";
 
 import placeholder from "/placeholder.svg";
+import { useProductsStore } from "../store/useProductsStore";
 
 export default function ShuffledGrid() {
 
-   const [shuffled, setShuffled] = useState<PhoneProps[]>([])
+   const [shuffled, setShuffled] = useState<(PhoneProps & { isFront: boolean })[]>([])
 
-   const { phones } = useProducts()
+   const phones = useProductsStore((state) => state.phones)
 
    const phoneCountStartpage = 16
 
@@ -18,12 +18,17 @@ export default function ShuffledGrid() {
    const placeholderIndices = Array.from({ length: phoneCountStartpage }, (_, i) => i);
 
    useEffect(() => {
-      const arr: PhoneProps[] = []
+      const arr: (PhoneProps & {
+         isFront: boolean
+      })[] = []
 
       if (phones && phones.length > 0) {
          for (let i = 0; i < phoneCountStartpage; i++) {
             const index = Math.floor(Math.random() * indices.length)
-            arr.push(phones[indices[index]])
+            arr.push({
+               ...phones[indices[index]],
+               isFront: Math.random() > 0.5
+            })
             indices.splice(index, 1)
          }
       }
@@ -43,7 +48,7 @@ export default function ShuffledGrid() {
                      initial={{ opacity: 0 }}
                      animate={{ opacity: 1 }}
                      exit={{ opacity: 0 }}
-                     transition={{ duration: 1 }}
+                     transition={{ duration: 0.5 }}
                   >
                      <img
                         className="sm:m-3 max-w-fit h-14 sm:h-16 md:h-20 lg:h-20 xl:h-28 object-contain"
@@ -57,15 +62,15 @@ export default function ShuffledGrid() {
                      initial={{ opacity: 0 }}
                      animate={{ opacity: 1 }}
                      exit={{ opacity: 0 }}
-                     transition={{ duration: 0.75 }}
+                     transition={{ duration: 0.5 }}
                   >
                      <img
                         className="sm:m-3 max-w-fit h-14 sm:h-16 md:h-20 lg:h-20 xl:h-28 object-contain"
-                        src={`${phone.img}-${Math.round(Math.random() + 1)}.jpg`}>
+                        src={`${phone.img}-${phone.isFront ? 2 : 1}.jpg`}>
                      </img>
                   </motion.div>
                ))}
          </div>
-      </NavLink>
+      </NavLink >
    </>)
 }

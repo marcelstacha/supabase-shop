@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useFavorites } from "../context/FavoriteContext";
-import { useAuth } from "../context/AuthContext";
 import { HeartIcon } from "@heroicons/react/24/outline";
+import { useAuthStore } from "../store/useAuthStore";
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
 interface HeartProps {
    id: number;
@@ -11,8 +11,11 @@ interface HeartProps {
 export default function Heart({ id, isPreview = true }: HeartProps) {
    const [canToggle, setCanToggle] = useState(true)
 
-   const { favorites, toggleFavorite, isLoading } = useFavorites()
-   const { user } = useAuth()
+   const favorites = useFavoritesStore((state) => state.favorites)
+   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite)
+   const isLoading = useFavoritesStore((state) => state.isLoading)
+
+   const user = useAuthStore((state) => state.user)
 
    const isFav = useMemo(() => {
       if (!user || !favorites || isLoading) {

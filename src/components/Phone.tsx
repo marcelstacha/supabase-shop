@@ -1,19 +1,19 @@
 import { formatPrice } from "../utils/utils";
 import PhoneProps from "../interfaces/PhoneProps";
-import { useAuth } from "../context/AuthContext";
-import { useCart } from "../context/CartContext";
 import Heart from "./Heart";
 import CartButton from "./CartButton";
 import { useState } from "react";
 import { motion } from "motion/react"
+import { useAuthStore } from "../store/useAuthStore";
+import { useCartStore } from "../store/useCartStore";
 
 export default function Phone({ id, img, name, brand, price }: PhoneProps) {
 
    const [isAnimating, setIsAnimating] = useState(false)
    const [imageToggle, setImageToggle] = useState(false)
 
-   const { user } = useAuth();
-   const { addToCart } = useCart()
+   const user = useAuthStore((state) => state.user)
+   const addToCart = useCartStore((state) => state.addToCart)
 
    function handleAdd(id: number, e: React.MouseEvent<HTMLButtonElement>) {
       e.preventDefault()

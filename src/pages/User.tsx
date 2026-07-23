@@ -1,18 +1,36 @@
 import { useEffect } from "react";
 import PageHeading from "../components/PageHeading";
 import OrderList from "../components/OrderList";
-import { useOrders } from "../context/OrdersContext";
-import { useAuth } from "../context/AuthContext";
+import { useAuthStore } from "../store/useAuthStore";
+import { useOrdersStore } from "../store/useOrdersStore";
+import { syncDBCart } from "../utils/localStorageHelper";
+import { useCartStore } from "../store/useCartStore";
 
 export default function User() {
 
-   const { orders, fetchOrders } = useOrders()
-   const { login, logout, error, user } = useAuth()
+   const orders = useOrdersStore((state) => state.orders)
+   const fetchOrders = useOrdersStore((state) => state.fetchOrders)
+
+   const fetchCart = useCartStore((state) => state.fetchCart)
+
+   const login = useAuthStore((state) => state.login)
+   const logout = useAuthStore((state) => state.logout)
+   const error = useAuthStore((state) => state.error)
+   const user = useAuthStore((state) => state.user)
 
    useEffect(() => {
       fetchOrders()
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, []);
+
+   useEffect(() => {
+      fetchCart()
+
+      if (user) {
+         syncDBCart(user)
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [user])
 
    let orderNumberText = ""
 

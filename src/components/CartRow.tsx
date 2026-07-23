@@ -1,15 +1,16 @@
 import { NavLink } from "react-router-dom";
-import { useCart } from "../context/CartContext";
 import CartProps from "../interfaces/CartProps";
 import { clean } from "../utils/utils";
 import DeleteIcon from "./DeleteIcon";
-import { useAuth } from "../context/AuthContext";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { useAuthStore } from "../store/useAuthStore";
+import { useCartStore } from "../store/useCartStore";
 
 export default function CartRow({ item, update }: { item: CartProps, update: (id: number) => void }) {
 
-   const { removeFromCart } = useCart()
-   const { user } = useAuth()
+   const user = useAuthStore((state) => state.user)
+   const removeFromCart = useCartStore((state) => state.removeFromCart)
+
    const { removeFromLocal } = useLocalStorage()
 
    function handleDelete(id: number) {

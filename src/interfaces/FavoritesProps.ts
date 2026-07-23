@@ -1,4 +1,4 @@
-export default interface FavoriteProps {
+export default interface FavoritesProps {
    fav_id: number,
    id: number,
    fav_time: string,

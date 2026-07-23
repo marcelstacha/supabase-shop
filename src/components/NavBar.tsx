@@ -1,12 +1,21 @@
 import { UserCircleIcon, HeartIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import SearchMobile from "./SearchMobile";
-import { useCart } from "../context/CartContext";
 import ShoppingCart from "./ShoppingCart";
+import { useCartStore } from "../store/useCartStore";
+import { useEffect } from "react";
+import { useAuthStore } from "../store/useAuthStore";
 
 export default function NavBar() {
 
-   const { length } = useCart()
+   const user = useAuthStore((state) => state.user)
+   //  const logout = useAuthStore((state) => state.logout)
+   const fetchCart = useCartStore((state) => state.fetchCart)
+   const filtered = useCartStore((state) => state.filtered)
+
+   useEffect(() => {
+      fetchCart()
+   }, [user, fetchCart])
 
    return (<>
 
@@ -34,7 +43,7 @@ export default function NavBar() {
             className="group relative" to={"/cart"}
          >
             <ShoppingCart
-               length={length}
+               length={filtered.length}
             />
          </NavLink>
 

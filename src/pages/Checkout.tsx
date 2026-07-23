@@ -2,16 +2,22 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react"
 import CartProps from "../interfaces/CartProps";
-import { useCart } from "../context/CartContext";
 import PageHeading from "../components/PageHeading";
 import CheckoutRow from "../components/CheckoutRow";
-import { useOrders } from "../context/OrdersContext";
 import { formatPrice } from "../utils/utils";
+import { useCartStore } from "../store/useCartStore";
+import { useOrdersStore } from "../store/useOrdersStore";
 
 export default function Checkout() {
 
-   const { cart, isLoading, fetchCart, clearCart } = useCart()
-   const { confirmOrder } = useOrders()
+
+   const cart = useCartStore((state) => state.cart)
+   const isLoading = useCartStore((state) => state.isLoading)
+   const fetchCart = useCartStore((state) => state.fetchCart)
+   const clearCart = useCartStore((state) => state.clearCart)
+
+   const confirmOrder = useOrdersStore((state) => state.confirmOrder)
+
    const navigate = useNavigate()
 
    const total = cart.reduce((sum, item) => sum + item.price, 4.99)

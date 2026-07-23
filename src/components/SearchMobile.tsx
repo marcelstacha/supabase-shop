@@ -1,10 +1,10 @@
 import { MagnifyingGlassIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect, ChangeEvent, useRef } from "react";
-import { useProducts } from "../context/ProductsContext";
 import useDebounce from "../hooks/useDebounce";
 import PhoneProps from "../interfaces/PhoneProps";
 import { motion } from "motion/react"
 import { NavLink, useLocation } from "react-router-dom";
+import { useProductsStore } from "../store/useProductsStore";
 
 export default function SearchMobile() {
 
@@ -13,7 +13,8 @@ export default function SearchMobile() {
    const [canOpen, setCanOpen] = useState(false)
    const [animateHide, setAnimateHide] = useState(false)
 
-   const { phones } = useProducts()
+   const phones = useProductsStore((state) => state.phones)
+
    const debouncedQuery = useDebounce(query)
    const location = useLocation()
    const isSearching = debouncedQuery.length >= 2

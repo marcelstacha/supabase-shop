@@ -1,24 +1,46 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useCart } from "../context/CartContext";
-
 import PageHeading from "../components/PageHeading";
 import CartList from "../components/CartList";
 import { formatPrice } from "../utils/utils";
-import { useAuth } from "../context/AuthContext";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { supabase } from "../supabaseClient";
 import CartProps from "../interfaces/CartProps";
 import QuantityDisplay from "../components/QuantityDisplay";
+import { useAuthStore } from "../store/useAuthStore";
+import { useCartStore } from "../store/useCartStore";
 
 export default function Cart() {
 
-   const { cart, isLoading, fetchCart, filtered, setFiltered } = useCart()
-   const { user } = useAuth()
+   const cart = useCartStore((state) => state.cart)
+   const isLoading = useCartStore((state) => state.isLoading)
+   const fetchCart = useCartStore((state) => state.fetchCart)
+   const filtered = useCartStore((state) => state.filtered)
+   const setFiltered = useCartStore((state) => state.setFiltered)
+
+   const user = useAuthStore((state) => state.user)
+
    const { getLocalArray } = useLocalStorage()
    const navigate = useNavigate()
    const localArray = getLocalArray()
+
+   useEffect(() => {
+      if (user) {
+         fetchCart()
+      } else {
+         getLocalCart()
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [user])
+
+   useEffect(() => {
+      if (user) {
+         setFiltered(cart)
+      }
+      cartSum()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [cart]);
 
    async function getLocalCart() {
       const temp: CartProps[] = []
@@ -38,32 +60,18 @@ export default function Cart() {
    }
 
    function optimisticUpdate(id: number) {
-      setFiltered((prev) => prev.filter((item) => {
+      const newFiltered = filtered.filter((item) => {
          const x = item.prod_id != undefined ? item.prod_id : item.id
          return x != id
-      }))
+      })
+
+      setFiltered(newFiltered)
    }
 
    function cartSum() {
       return filtered.reduce((acc, row) => acc + row.price, 0)
    }
 
-   useEffect(() => {
-      if (user) {
-         fetchCart()
-      } else {
-         getLocalCart()
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [user])
-
-   useEffect(() => {
-      if (user) {
-         setFiltered(cart)
-      }
-      cartSum()
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [cart]);
 
    function handleClick() {
       if (user) {

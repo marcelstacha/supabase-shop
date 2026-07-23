@@ -1,9 +1,9 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
-import FavoriteProps from "../interfaces/FavoriteProps";
+import FavoritesProps from "../interfaces/FavoritesProps";
 import CartProps from "../interfaces/CartProps";
 
 interface DeleteIconProps {
-   item: CartProps | FavoriteProps;
+   item: CartProps | FavoritesProps;
    style?: string;
    handleDelete?: (itemId: number) => void;
 }

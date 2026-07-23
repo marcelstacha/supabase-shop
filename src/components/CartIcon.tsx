@@ -1,11 +1,11 @@
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import CartProps from "../interfaces/CartProps";
-import FavoriteProps from "../interfaces/FavoriteProps";
+import FavoritesProps from "../interfaces/FavoritesProps";
 import { motion } from "motion/react"
 import { useState } from "react";
 
 interface CartIconProps {
-   item: CartProps | FavoriteProps;
+   item: CartProps | FavoritesProps;
    style: string;
    addToCart: (itemId: number) => void;
 }
