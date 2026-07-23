@@ -183,9 +183,9 @@ export default function PhoneGrid() {
                      {filteredSorted.map((phone) => (
                         <motion.li
                            key={phone.id}
-                           initial={{ opacity: 0, scale: 0.95 }}
-                           animate={{ opacity: 1, scale: 1 }}
-                           exit={{ opacity: 0, scale: 0.95 }}
+                           initial={{ opacity: 0 }}
+                           animate={{ opacity: 1 }}
+                           exit={{ opacity: 0 }}
                            transition={{ duration: 0.3 }}
                            className="group lg:w-64 xl:w-72 cursor-pointer"
                         >
