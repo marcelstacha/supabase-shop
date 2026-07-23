@@ -3,7 +3,6 @@ import PhoneProps from "../interfaces/PhoneProps";
 import Heart from "./Heart";
 import CartButton from "./CartButton";
 import { useState } from "react";
-import { motion } from "motion/react"
 import { useAuthStore } from "../store/useAuthStore";
 import { useCartStore } from "../store/useCartStore";
 
@@ -29,28 +28,18 @@ export default function Phone({ id, img, name, brand, price }: PhoneProps) {
 
    return (
       <>
-         <motion.div
-            key={id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="group flex flex-col px-1 sm:px-2 pt-3 sm:pt-4 pb-1 sm:pb-2 bg-white/[60%] hover:bg-white opacity-100 group-hover:shadow-[0_0px_12px_rgba(0,0,0,0.3)] border border-gray-900 rounded-md sm:rounded-xl transition-all duration-500"
-            onHoverStart={() => setImageToggle(true)}
-            onHoverEnd={() => setImageToggle(false)}
+         <div
+            className="group flex flex-col px-1 sm:px-2 pt-3 sm:pt-4 pb-1 sm:pb-2 bg-white/[60%] hover:bg-white group-hover:shadow-[0_0px_12px_rgba(0,0,0,0.3)] border border-gray-900 rounded-md sm:rounded-xl transition-all duration-500"
+            onMouseEnter={() => setImageToggle(true)}
+            onMouseLeave={() => setImageToggle(false)}
          >
             <span className="flex flex-row-reverse p-0">
                {user &&
                   <Heart id={id} />
                }
             </span>
-            <motion.img
+            <img
                src={`${img}-${imageToggle ? "2" : "1"}.jpg`} alt={`${brand} ${name}`}
-               key={id}
-               initial={{ opacity: 0, mixBlendMode: 'darken' }}
-               animate={{ opacity: 1, mixBlendMode: 'darken' }}
-               exit={{ opacity: 0, mixBlendMode: 'darken' }}
-               transition={{ duration: 1 }}
                className="m-auto sm:mt-2 mb-3 sm:mb-2 px-1 h-32 sm:h-56 object-contain transition mix-blend-darken" /* group-hover:brightness-110 */
             />
             <span className="md:my-2 mb-1 p-0">
@@ -65,7 +54,7 @@ export default function Phone({ id, img, name, brand, price }: PhoneProps) {
                handleAdd={handleAdd}
                id={id}
             />
-         </motion.div>
+         </div>
       </>
    );
 }
