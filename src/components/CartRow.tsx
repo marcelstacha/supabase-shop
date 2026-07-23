@@ -47,10 +47,10 @@ export default function CartRow({ item, update }: { item: CartProps, update: (id
                </div>
             </NavLink>
          </td>
-         <td className="p-0 w-[4.5rem] h-[1px] text-xs sm:text-base md:text-lg xl:text-xl xl:group-hover:bg-gray-100 price">
+         <td className="px-1 sm:px-8 w-[4.5rem] text-[0.7rem] sm:text-base md:text-lg price">
             <NavLink
                to={`/phonedetail/${id}`}
-               className="flex justify-end items-center pr-1 sm:pr-5 w-full h-full whitespace-nowrap"
+               className=""
             >
                {clean(item.price)} €
             </NavLink>
@@ -58,7 +58,7 @@ export default function CartRow({ item, update }: { item: CartProps, update: (id
          <td className="pr-0 pl-0 h-[1px] size-10 sm:size-16 md:size-20 xl:size-20 xl:group-hover:bg-red-100/30" onClick={() => handleDelete(id)}>
             <div className="flex justify-center items-center w-full h-full">
                <DeleteIcon
-                  style={"md:w-7 md:h-7"}
+                  style={"md:w-7 md:h-7 w-4 h-4 sm:w-6 sm:h-6 p-0 lg:w-10 lg:h-10 "}
                   item={item}
                />
             </div>

@@ -29,7 +29,7 @@ export default function CartIcon({ addToCart, item, style }: CartIconProps) {
       >
          <ShoppingCartIcon
             onClick={() => clickHandler(item.prod_id)}
-            className={`w-4 h-4 sm:w-6 sm:h-6 p-0 lg:pt-2 lg:pb-1 lg:w-10 lg:h-10 stroke-gray-900 hover:stroke-gray-600 cursor-pointer transition stroke-2 ${style}`}
+            className={`lg:pt-2 lg:pb-1  stroke-gray-900 hover:stroke-gray-600 cursor-pointer transition stroke-2 ${style}`}
          />
       </motion.div>
    </>)

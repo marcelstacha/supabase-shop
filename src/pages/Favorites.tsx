@@ -22,7 +22,7 @@ export default function Favorites() {
    useEffect(() => {
       fetchFavorites()
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [])
+   }, [user])
 
    useEffect(() => {
       setFiltered(favorites)

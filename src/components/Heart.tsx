@@ -68,8 +68,8 @@ export default function Heart({ id, isPreview = true }: HeartProps) {
          <div className="group z-10 relative">
             <HeartIcon
                onClick={(e) => handleHeart(e)}
-               className={`h-6 w-6 -top-1 right-1 sm:top-0 sm:right-2 absolute cursor-pointer fill-white transition md:hover:!fill-background
-                           ${optimisticFav ? "!fill-accent md:hover:!fill-accent/50" : "fill-transparent"}
+               className={`h-6 w-6 -top-1 right-1 sm:top-0 sm:right-2 absolute cursor-pointer fill-white transition md:hover:fill-red-300
+                           ${optimisticFav ? "!fill-red-500 md:hover:!fill-red-700" : "fill-transparent"}
                            ${style}`
                }
             />

@@ -15,7 +15,7 @@ export default function DeleteIcon({ handleDelete, item, style }: DeleteIconProp
    return (<>
       <TrashIcon
          onClick={() => handleDelete?.(id)}
-         className={`p-0 w-4 h-4 sm:w-6 sm:h-6 lg:w-10 lg:h-10 lg:pb-2 lg:pt-1 stroke-red-600 hover:stroke-red-900 cursor-pointer transition  ${style}`}
+         className={`p-0 lg:pb-2 lg:pt-1 stroke-red-600 hover:stroke-red-900 cursor-pointer transition  ${style}`}
       />
    </>)
 }

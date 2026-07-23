@@ -183,10 +183,10 @@ export default function PhoneGrid() {
                      {filteredSorted.map((phone) => (
                         <motion.li
                            key={phone.id}
+                           layout
                            initial={{ opacity: 0 }}
                            animate={{ opacity: 1 }}
-                           exit={{ opacity: 0, scale: 0.99 }}
-                           transition={{ duration: 0.3 }}
+                           transition={{ type: "tween", duration: 0.17, ease: "easeInOut" }}
                            className="group lg:w-64 xl:w-72 cursor-pointer"
                         >
                            <NavLink to={`/phonedetail/${phone.id}`}>
