@@ -55,7 +55,7 @@ export default function BestPhones({ phones }: { phones: PhoneProps[] }) {
    return (<>
       {phones && phones.length > 0 && <>
 
-         <hr className="block mt-8 h-[2px] md:h-[3px] bg-gray-900" />
+         <hr className="md:h-[3px] bg-gray-900 blockh-[2px]" />
 
          <div className="py-6 lg:py-12 font-bold text-base sm:text-lg lg:text-2xl">Empfehlungen</div>
 

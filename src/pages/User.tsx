@@ -21,7 +21,7 @@ export default function User() {
    useEffect(() => {
       fetchOrders()
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, []);
+   }, [user]);
 
    useEffect(() => {
       fetchCart()
@@ -52,7 +52,7 @@ export default function User() {
 
    return (<>
       <PageHeading>Profil</PageHeading>
-      <div className="flex flex-col justify-center m-auto p-6 sm:p-8 lg:p-10 max-w-[46rem] text-sm sm:text-base lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
+      <div className="flex flex-col justify-center m-auto p-6 sm:p-8 lg:p-10 text-sm sm:text-base lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
          {!user && error && <div>Fehler</div>}
          {user ?
             <>

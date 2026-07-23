@@ -31,8 +31,8 @@ export default function Favorites() {
    return (<>
       <PageHeading>Favoriten</PageHeading>
 
-      <div className="flex flex-col justify-center items-center p-0 py-1 md:py-10 min-h-20 text-sm lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
-         {user && isLoading ? <span className="flex justify-center text-wrap">Laden...</span>
+      <div className="flex flex-col justify-center items-center p-0 py-1 md:py-8 min-h-20 text-sm lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
+         {user && isLoading && filtered.length == 0 ? <span className="flex justify-center text-wrap">Laden...</span>
             : (
                user && filtered.length > 0 ? (
                   <>

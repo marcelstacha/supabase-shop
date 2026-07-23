@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import CartProps from "../interfaces/CartProps";
 import { supabase } from "../supabaseClient";
-import { getLocalArray, setLocalStorage, removeFromLocal } from "../utils/localStorageHelper";
+import { getLocalArray, setLocalStorage, removeFromLocal, syncDBCart } from "../utils/localStorageHelper";
 
 import { useAuthStore } from "./useAuthStore";
 
@@ -62,6 +62,10 @@ export const useCartStore = create<CartState>()(function (set, get) {
          }
 
          if (user) {
+
+            if (local.length > 0) {
+               await syncDBCart(user);
+            }
             const { data, error } = await supabase
                .from("cart_view")
                .select("*")
@@ -81,10 +85,24 @@ export const useCartStore = create<CartState>()(function (set, get) {
 
 
       async addToCart(id: number) {
-         const user = useAuthStore.getState().user
-         const isInFiltered = get().filtered.some((item) => item.prod_id == id);
 
-         if (!isInFiltered) {
+         if (get().isLoading) {
+            return
+         }
+
+         const user = useAuthStore.getState().user
+         const cart = get().cart
+         const isInCart = cart.some((item) => item.prod_id == id);
+         const filtered = get().filtered
+         const isInFiltered = filtered.some((item) => item.prod_id == id);
+
+         if (isInCart || isInFiltered) {
+            return
+         }
+
+         set({ isLoading: true })
+
+         try {
             if (user) {
                const { error } = await supabase
                   .from('cart')
@@ -95,26 +113,14 @@ export const useCartStore = create<CartState>()(function (set, get) {
                if (error && error.code != "23505") {
                   console.error(error.message)
                } else {
-                  get().fetchCart();
+                  await get().fetchCart();
                }
             } else {
                setLocalStorage(id)
-               const { data, error } = await supabase
-                  .from("product")
-                  .select("*")
-                  .eq("id", id)
-                  .single(); // .single() gibt ein einzelnes Objekt statt eines Arrays zurück
-
-               if (data && !error) {
-                  const currentFiltered = get().filtered;
-
-                  const newItem = {
-                     ...data,
-                     prod_id: id
-                  } as CartProps;
-                  set({ filtered: [...currentFiltered, newItem] });
-               }
+               await get().fetchCart(); // <- Macht exakt das gleiche wie beim User!
             }
+         } finally {
+            set({ isLoading: false })
          }
       },
 

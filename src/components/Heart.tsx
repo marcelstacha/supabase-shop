@@ -13,16 +13,15 @@ export default function Heart({ id, isPreview = true }: HeartProps) {
 
    const favorites = useFavoritesStore((state) => state.favorites)
    const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite)
-   const isLoading = useFavoritesStore((state) => state.isLoading)
 
    const user = useAuthStore((state) => state.user)
 
    const isFav = useMemo(() => {
-      if (!user || !favorites || isLoading) {
+      if (!user || !favorites) {
          return false;
       }
       return favorites.some((fav) => fav.prod_id === Number(id));
-   }, [favorites, id, user, isLoading]);
+   }, [favorites, id, user]);
 
    //optimisticFav für direkte aenderung ohne fetchFavorites, verhindert flackern
    const [optimisticFav, setOptimisticFav] = useState(isFav)

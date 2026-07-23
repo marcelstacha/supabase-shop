@@ -1,7 +1,7 @@
 export default function Splash() {
    return (
       <>
-         <div className="relative flex justify-center h-32 sm:h-52 md:h-60 lg:h-[19rem] 2xl:h-[28rem] xl:h-[24rem] align-middle">
+         <div className="relative flex justify-center h-32 sm:h-44 md:h-52 lg:h-[16rem] 2xl:h-[25.5rem] xl:h-[22rem] align-middle">
             <img
                className="top-9 xl:top-16 left-4 sm:left-16 xl:left-36 absolute w-6 sm:w-8 xl:w-12 animate-spin"
                style={{ animationDuration: '7s' }}
