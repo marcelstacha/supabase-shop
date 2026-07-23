@@ -179,13 +179,13 @@ export default function PhoneGrid() {
             </div>
             <div className="min-h-40">
                <ul className="inline-grid gap-1 sm:gap-2 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 w-full sm:w-auto transition-all">
-                  <AnimatePresence mode="popLayout">
+                  <AnimatePresence >
                      {filteredSorted.map((phone) => (
                         <motion.li
                            key={phone.id}
                            initial={{ opacity: 0 }}
                            animate={{ opacity: 1 }}
-                           exit={{ opacity: 0 }}
+                           exit={{ opacity: 0, scale: 0.99 }}
                            transition={{ duration: 0.3 }}
                            className="group lg:w-64 xl:w-72 cursor-pointer"
                         >
