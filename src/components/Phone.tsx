@@ -44,8 +44,8 @@ export default function Phone({ id, img, name, brand, price }: PhoneProps) {
             />
             <span className="md:my-2 mb-1 p-0">
                <span className="flex sm:flex-row flex-col justify-center items-center gap-0 sm:gap-1 p-0">
-                  <h1 className="font-bold text-base lg:text-lg xl:text-xl leading-1 transition-all">{brand}</h1>
-                  <h1 className="-mt-1 sm:mt-0 overflow-hidden font-medium text-[0.85rem] sm:text-sm md:text-base lg:text-lg xl:text-xl leading-1 whitespace-nowrap transition-all">{name}</h1>
+                  <h1 className="font-bold lg:text-[1.05rem] xl:text-[1.21rem] text-base leading-1 transition-all">{brand}</h1>
+                  <h1 className="-mt-1 sm:mt-0 overflow-hidden font-medium text-[0.85rem] lg:text-[1.05rem] xl:text-[1.21rem] sm:text-sm md:text-base truncate leading-1 whitespace-nowrap transition-all">{name}</h1>
                </span>
                <h2 className="mt-1 text-sm md:text-base xl:text-lg text-center transition-all price">{formatPrice(price)}</h2>
             </span>

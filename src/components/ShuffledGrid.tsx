@@ -22,7 +22,7 @@ export default function ShuffledGrid() {
          isFront: boolean
       })[] = []
 
-      if (phones && phones.length > 0) {
+      if (phones && phones.length > 0 && shuffled.length === 0) {
          for (let i = 0; i < phoneCountStartpage; i++) {
             const index = Math.floor(Math.random() * indices.length)
             arr.push({
@@ -31,8 +31,8 @@ export default function ShuffledGrid() {
             })
             indices.splice(index, 1)
          }
+         setShuffled(arr)
       }
-      setShuffled(arr)
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [phones])
 

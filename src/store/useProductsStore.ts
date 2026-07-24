@@ -27,10 +27,10 @@ export const useProductsStore = create<ProductsState>()(
                   .select("*")
 
                if (data) {
-                  set({ phones: data })
+                  set({ phones: data, isLoading: false })
                }
                if (error) {
-                  set({ error: error.message })
+                  set({ error: error.message, isLoading: false })
                }
 
                set({ isLoading: false })

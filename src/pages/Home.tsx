@@ -13,9 +13,9 @@ export default function Home() {
    const fetchProducts = useProductsStore((state) => state.fetchProducts);
 
    useEffect(() => {
-      if (phones.length == 0) {
-         fetchProducts()
-      }
+
+      fetchProducts()
+
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [])
 
