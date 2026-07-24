@@ -45,7 +45,7 @@ export default function ShuffledGrid() {
                placeholderIndices.map((index) =>
                   <motion.div
                      key={index}
-                     initial={{ opacity: 0 }}
+                     initial={{ opacity: 1 }}
                      animate={{ opacity: 1 }}
                      exit={{ opacity: 0 }}
                      transition={{ duration: 0.5 }}
