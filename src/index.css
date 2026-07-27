@@ -194,6 +194,12 @@ table > tbody > tr > td:nth-child(1){
 
 }
 
+@media(max-width:400px){
+   #root > div > main > div > div.flex.justify-self-center.mt-8.xl\:mt-16 > img{
+      padding-top:1.2rem;
+   }
+}
+
 @media (min-width: 400px) {
 
 .table-custom{

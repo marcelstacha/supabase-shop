@@ -98,7 +98,7 @@ export default function Cart() {
                      optimisticUpdate={optimisticUpdate}
                   />
 
-                  <div className="flex flex-row justify-center gap-2 mt-6 w-full text-base sm:text-base lg:text-xl">
+                  <div className="flex flex-row justify-center gap-2 mt-4 md:mt-6 w-full text-base sm:text-base md:text-xl">
                      <span>Summe:</span>
                      <span className="font-bold underline price">{formatPrice(cartSum())}</span>
                   </div>
