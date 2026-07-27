@@ -4,7 +4,7 @@ import { clean, formatDate } from "../utils/utils";
 export default function PhoneDetailTable({ phone }: { phone: PhoneProps }) {
 
    return (<>
-      <table className="table-custom text-[0.7rem] sm:text-base lg:text-lg border border-collapse table-auto price">
+      <table className="table-custom text-[0.5rem] sm:text-base xl:text-lg border border-collapse table-auto price">
          <tbody className="">
             <tr>
                <td>Bildschirm</td>
@@ -44,7 +44,7 @@ export default function PhoneDetailTable({ phone }: { phone: PhoneProps }) {
             </tr>
             <tr className="font-light text-white bg-gray-900">
                <td>
-                  Veröffentlicht
+                  Vorgestellt
                </td>
                <td className="text">
                   {formatDate(phone.release)}

@@ -63,45 +63,47 @@ export default function PhoneDetail() {
                            {phone.name}
                         </div>
                      </div>
-                     <hr className="m-auto mx-6 sm:mx-8 md:mx-28 lg:mx-52 xl:mx-64 md:mb-4 h-[2px] bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
-                     <div>
-                        <h2 className="my-1 sm:my-2 md:my-4 font-sans font-semibold text-lg md:text-xl lg:text-2xl text-center transition-all price">
-                           {formatPrice(phone.price)}
-                        </h2>
-                        <hr className="m-auto mx-6 sm:mx-8 md:mx-28 lg:mx-52 xl:mx-64 mb-4 h-[2px] bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
+                     <div className="mx-6 sm:mx-8 md:mx-20 lg:mx-28 2xl:mx-60 pt-2 pb-6 sm:pb-8">
+                        <div>
+                           <hr className="m-auto h-[2px] bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
+                           <h2 className="my-1 sm:my-2 md:my-4 font-sans font-semibold text-lg md:text-xl lg:text-2xl text-center transition-all price">
+                              {formatPrice(phone.price)}
+                           </h2>
+                           <hr className="m-auto mb-4 h-[2px] bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
+                        </div>
+                        {user &&
+                           <div className="group top-4 right-4 absolute">
+                              <Heart
+                                 isPreview={false}
+                                 id={Number(id)}
+                              />
+                           </div>
+                        }
+                        <div className="group top-4 left-14 absolute">
+                           <NavLink to="/phonegrid">
+                              <ArrowUturnLeftIcon
+                                 className="sm:top-2 md:top-2 lg:top-3 right-4 sm:right-1 md:right-0 lg:-right-2 absolute w-6 sm:w-7 md:w-8 lg:w-9 h-6 sm:h-7 md:h-8 lg:h-9 text-gray-900 group-hover:text-gray-600 transition cursor-pointer"
+                              />
+                           </NavLink>
+                        </div>
+                        <p className="p-0 text-[0.82rem] sm:text-base xl:text-xl text-justify">
+                           Das <b>{phone.brand} {phone.name}</b> ist ein {phone.foldable ? "faltbares" : ""} Smartphone mit einem {phone.screen}" großem Display. Es wird von dem {phone.soc} angetrieben
+                           und verfügt über einen {phone.battery} mAh Akku. Das Gerät lässt sich kabelgebunden mit {phone.charging} W{phone.charging_wireless > 0 ?
+                              " und kabellos mit " + phone.charging_wireless + " W" : ", aber nicht kabellos"} aufladen. {phone.fingerprint ? "Ein Fingerabdrucksensor ist integriert."
+                                 : "Ein Fingerabdrucksensor ist nicht vorhanden."} Die Abmessungen des Geräts
+                           betragen {phone.dimensions.height} x {phone.dimensions.width} x {phone.dimensions.depth} mm - bei einem Gewicht
+                           von {phone.weight} g. Das <b>{phone.brand} {phone.name}</b> wurde
+                           am {formatDate(phone.release)} vorgestellt.
+                        </p>
                         <CartButton
                            isAnimating={isAnimating}
                            handleAdd={handleAdd}
                            id={phone.id}
                            big={true}
                         />
-                     </div>
-                     {user &&
-                        <div className="group top-4 right-4 absolute">
-                           <Heart
-                              isPreview={false}
-                              id={Number(id)}
-                           />
+                        <div className="table-container flex flex-col m-auto">
+                           <PhoneDetailTable phone={phone} />
                         </div>
-                     }
-                     <div className="group top-4 left-14 absolute">
-                        <NavLink to="/phonegrid">
-                           <ArrowUturnLeftIcon
-                              className="sm:top-2 md:top-2 lg:top-3 right-4 sm:right-1 md:right-0 lg:-right-2 absolute w-6 sm:w-7 md:w-8 lg:w-9 h-6 sm:h-7 md:h-8 lg:h-9 text-gray-900 group-hover:text-gray-600 transition cursor-pointer"
-                           />
-                        </NavLink>
-                     </div>
-                     <p className="mx-4 sm:mx-8 md:mx-28 lg:mx-52 xl:mx-64 xl:py-6 text-[0.82rem] sm:text-base xl:text-xl text-justify">
-                        Das <b>{phone.brand} {phone.name}</b> ist ein {phone.foldable ? "faltbares" : ""} Smartphone mit einem {phone.screen}-Zoll großem Display. Es wird von dem {phone.soc} angetrieben
-                        und verfügt über einen {phone.battery} mAh Akku. Das Gerät lässt sich kabelgebunden mit {phone.charging} W{phone.charging_wireless > 0 ?
-                           " und kabellos mit " + phone.charging_wireless + " W" : ", aber nicht kabellos"} aufladen. {phone.fingerprint ? "Ein Fingerabdrucksensor ist integriert."
-                              : "Ein Fingerabdrucksensor ist nicht vorhanden."} Die Abmessungen des Geräts
-                        betragen {phone.dimensions.height} x {phone.dimensions.width} x {phone.dimensions.depth} mm - bei einem Gewicht
-                        von {phone.weight} g. Das <b>{phone.brand} {phone.name}</b> erschien
-                        am {formatDate(phone.release)}.
-                     </p>
-                     <div className="table-container flex flex-col m-auto mx-6 sm:mx-8 md:mx-28 lg:mx-52 xl:mx-64 pt-0 md:pt-4 pb-4 sm:pb-12">
-                        <PhoneDetailTable phone={phone} />
                      </div>
                   </motion.div>
                </>

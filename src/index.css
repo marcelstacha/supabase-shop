@@ -194,3 +194,19 @@ table > tbody > tr > td:nth-child(1){
 
 }
 
+@media (min-width: 400px) {
+
+.table-custom{
+   font-size:0.7rem;
+}
+
+}
+
+
+@media (min-width: 520px) {
+
+.table-custom{
+   font-size:0.9rem;
+}
+
+}
