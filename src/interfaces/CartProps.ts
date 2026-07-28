@@ -1,20 +1,7 @@
-export default interface CartProps {
-   id: number,
-   fav_id: number,
-   prod_id: number,
-   user_id: string,
-   prod_name: string,
-   name: string,
-   brand: string,
-   description: string,
-   dimensions: { height: number, width: number, depth: number },
-   weight: number,
-   screen: number,
-   soc: string,
-   fingerprint: boolean,
-   charging_wireless: number,
-   charging: number,
-   battery: number,
-   price: number,
-   img: string,
+import PhoneProps from "./PhoneProps";
+
+export default interface CartProps extends Omit<PhoneProps, "id" | "created_at" | "release" | "foldable" | "dimensions"> {
+   id?: number;
+   prod_id: number;
+   user_id?: string;
 }

@@ -23,10 +23,10 @@ export default function CartRow({ item, update }: { item: CartProps, update: (id
       }
    }
 
-   const id = item.prod_id != undefined ? item.prod_id : item.id
+   const id = item.prod_id
 
    return (<>
-      <tr key={item.id} className="group text-xs lg:text-base xl:hover:cursor-pointer">
+      <tr key={id} className="group text-xs lg:text-base xl:hover:cursor-pointer">
          <td className="pr-0 pl-0 size-10 sm:size-16 md:size-20 xl:size-20 xl:group-hover:bg-gray-100">
             <NavLink to={`/phonedetail/${id}`} className="">
                <img

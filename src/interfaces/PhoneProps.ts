@@ -6,9 +6,6 @@ export default interface PhoneProps {
    brand: string;
    price: number;
    img: string;
-   height: number;
-   width: number;
-   depth: number;
    weight: number;
    foldable: boolean;
    fingerprint: boolean;
@@ -23,6 +20,4 @@ export default interface PhoneProps {
       width: number,
       depth: number
    },
-   isFav: boolean,
-   currentFav: boolean
 }

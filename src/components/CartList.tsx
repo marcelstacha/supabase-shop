@@ -25,7 +25,7 @@ export default function CartList({ filtered, optimisticUpdate }: { filtered: Car
                >
                   {filtered.slice().sort((a, b) => a.brand == b.brand ? a.name.localeCompare(b.name) : a.brand.localeCompare(b.brand)).map((item: CartProps) => (
                      <CartRow
-                        key={item.prod_id != undefined ? item.prod_id : item.id}
+                        key={item.prod_id}
                         item={item}
                         update={optimisticUpdate}
                      />

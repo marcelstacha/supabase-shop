@@ -46,26 +46,26 @@ export default function PhoneGrid() {
 
       //sortieren
       if (sortBy === "oldest") {
-         filtered = filtered.slice().sort((a: { release: string }, b: { release: string }) => a.release.localeCompare(b.release))
+         filtered = filtered.slice().sort((a, b) => a.release.localeCompare(b.release))
          sortText = "Älteste zuerst"
       } else if (sortBy === "newest") {
-         filtered = filtered.slice().sort((a: { release: string }, b: { release: string }) => b.release.localeCompare(a.release))
+         filtered = filtered.slice().sort((a, b) => b.release.localeCompare(a.release))
          sortText = "Neueste zuerst"
       }
       else if (sortBy === "name1") {
-         filtered = filtered.slice().sort((a: { brand: string; name: string }, b: { brand: string; name: string }) => { return a.brand.localeCompare(b.brand) || a.name.localeCompare(b.name) });
+         filtered = filtered.slice().sort((a, b) => { return a.brand.localeCompare(b.brand) || a.name.localeCompare(b.name) });
          sortText = "Name aufsteigend"
       }
       else if (sortBy === "name2") {
-         filtered = filtered.slice().sort((a: { brand: string; name: string }, b: { brand: string; name: string }) => { return b.brand.localeCompare(a.brand) || b.name.localeCompare(a.name) });
+         filtered = filtered.slice().sort((a, b) => { return b.brand.localeCompare(a.brand) || b.name.localeCompare(a.name) });
          sortText = "Name absteigend"
       }
       else if (sortBy === "price1") {
-         filtered = filtered.slice().sort((a: { price: number }, b: { price: number }) => a.price - b.price)
+         filtered = filtered.slice().sort((a, b) => a.price - b.price)
          sortText = "Preis absteigend"
       }
       else if (sortBy === "price2") {
-         filtered = filtered.slice().sort((a: { price: number }, b: { price: number }) => b.price - a.price)
+         filtered = filtered.slice().sort((a, b) => b.price - a.price)
          sortText = "Preis aufsteigend"
       }
 

@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../supabaseClient";
 
 import PageHeading from "../components/PageHeading";
 import CartList from "../components/CartList";
+import QuantityDisplay from "../components/QuantityDisplay";
 import { formatPrice } from "../utils/utils";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { supabase } from "../supabaseClient";
 import CartProps from "../interfaces/CartProps";
-import QuantityDisplay from "../components/QuantityDisplay";
 import { useAuthStore } from "../store/useAuthStore";
 import { useCartStore } from "../store/useCartStore";
 

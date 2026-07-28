@@ -1,12 +1,10 @@
-export default interface OrdersProps {
-   id: number,
-   prod_id: number,
-   user_id: string,
-   prod_name: string,
-   name: string,
-   brand: string,
-   price: number,
-   img: string,
-   order_id: number,
-   created_at: string
+import PhoneProps from "./PhoneProps";
+
+export default interface OrdersProps extends Pick<PhoneProps, "brand" | "name" | "price" | "img"> {
+   id: number;
+   order_id: number;
+   prod_id: number;
+   user_id: string;
+   created_at: string;
+   prod_name?: string;
 }

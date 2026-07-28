@@ -1106,7 +1106,7 @@ export default function CartList({ filtered, optimisticUpdate }: { filtered: Car
                >
                   {filtered.slice().sort((a, b) => a.brand == b.brand ? a.name.localeCompare(b.name) : a.brand.localeCompare(b.brand)).map((item: CartProps) => (
                      <CartRow
-                        key={item.prod_id != undefined ? item.prod_id : item.id}
+                        key={item.prod_id}
                         item={item}
                         update={optimisticUpdate}
                      />
@@ -1147,10 +1147,10 @@ export default function CartRow({ item, update }: { item: CartProps, update: (id
       }
    }
 
-   const id = item.prod_id != undefined ? item.prod_id : item.id
+   const id = item.prod_id
 
    return (<>
-      <tr key={item.id} className="group text-xs lg:text-base xl:hover:cursor-pointer">
+      <tr key={id} className="group text-xs lg:text-base xl:hover:cursor-pointer">
          <td className="pr-0 pl-0 size-10 sm:size-16 md:size-20 xl:size-20 xl:group-hover:bg-gray-100">
             <NavLink to={`/phonedetail/${id}`} className="">
                <img
@@ -1446,7 +1446,7 @@ export default function Header() {
 
          <NavLink to="/" className="z-[100] flex flex-row md:mr-7 w-80">
             <div className="flex flex-row">
-               <img src="logo.svg" className="mr-2 w-5 md:w-7 lg:w-8 2xl:w-10 xl:w-9" />
+               <img src="/logo.svg" className="mr-2 w-5 md:w-7 lg:w-8 2xl:w-10 xl:w-9" />
                <span className="flex items-center p-0 h-10 font-semibold md:text-[1.1rem] lg:text-[1.2rem] xl:text-[1.3rem] text-xs sm:text-sm 2xl:text-2xl gradient">
                   SupabaseShop
                </span>
@@ -2437,25 +2437,25 @@ export default function Splash() {
             <img
                className="top-9 xl:top-16 left-4 sm:left-16 xl:left-36 absolute w-6 sm:w-8 xl:w-12 animate-spin"
                style={{ animationDuration: '7s' }}
-               src="./star.svg">
+               src="/star.svg">
             </img>
             <div className="z-20 relative m-auto w-[60%] sm:w-1/2 min-[480px]:w-[44%] font-semibold text-[#111827] text-lg sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl text-left text-wrap leading-none">
                <h2>Online-Shop für Smartphones & Foldables
                   <img
                      className="inline ml-1 xl:ml-5 p-0 sm:p-1 w-3 sm:w-6 md:w-8 lg:w-9 2xl:w-12 xl:w-11 drop-shadow-[0_0px_12px_rgba(255,255,255,0.75)] rotate-45"
-                     src="./star.svg">
+                     src="/star.svg">
                   </img>
                </h2>
                <h6 className="pt-1 text-[0.7rem] sm:text-sm md:text-base leading-3">von Asus bis Xiaomi</h6>
             </div>
             <img
                className="top-4 absolute w-64 sm:w-96 md:w-[30rem] lg:w-[38rem] 2xl:w-[64rem] xl:w-[50rem] opacity-75"
-               src="./line4.svg">
+               src="/line4.svg">
             </img>
             <img
                className="top-6 sm:top-12 md:top-12 lg:top-6 2xl:top-16 xl:top-10 right-7 sm:right-12 md:right-14 lg:right-12 2xl:right-20 xl:right-16 absolute w-8 sm:w-10 md:w-12 lg:w-16 2xl:w-28 xl:w-24 animate-spin"
                style={{ animationDuration: '13s' }}
-               src="./star.svg">
+               src="/star.svg">
             </img>
 
             {/*
@@ -2865,67 +2865,42 @@ table > tbody > tr > td:nth-child(1){
 ### portfolio-project-2025\src\interfaces\CartProps.ts
 
 ```ts
-export default interface CartProps {
-   id: number,
-   fav_id: number,
-   prod_id: number,
-   user_id: string,
-   prod_name: string,
-   name: string,
-   brand: string,
-   description: string,
-   dimensions: { height: number, width: number, depth: number },
-   weight: number,
-   screen: number,
-   soc: string,
-   fingerprint: boolean,
-   charging_wireless: number,
-   charging: number,
-   battery: number,
-   price: number,
-   img: string,
+import PhoneProps from "./PhoneProps";
+
+export default interface CartProps extends Omit<PhoneProps, "id" | "created_at" | "release" | "foldable" | "dimensions"> {
+   id?: number;
+   prod_id: number;
+   user_id?: string;
 }
 ```
 
 ### portfolio-project-2025\src\interfaces\FavoritesProps.ts
 
 ```ts
-export default interface FavoritesProps {
-   fav_id: number,
-   id: number,
-   fav_time: string,
-   prod_id: number,
-   user_id: string,
-   price: number,
-   prod_name?: string,
-   brand?: string,
-   description?: string,
-   dimensions?: { height: number, width: number, depth: number },
-   weight?: number,
-   screen?: number,
-   soc?: string,
-   fingerprint?: boolean,
-   charging_wireless?: number,
-   charging?: number,
-   battery?: number,
-   img?: string
+import PhoneProps from "./PhoneProps";
+
+export default interface FavoritesProps extends Omit<PhoneProps, "id" | "created_at" | "release" | "foldable" | "dimensions" | "weight" | "description"> {
+   id?: number;
+   fav_id: number;
+   fav_time: string;
+   prod_id: number;
+   user_id: string;
+   prod_name?: string;
 }
 ```
 
 ### portfolio-project-2025\src\interfaces\OrdersProps.ts
 
 ```ts
-export default interface OrdersProps {
-   id: number,
-   prod_id: number,
-   user_id: string,
-   prod_name: string,
-   name: string,
-   brand: string,
-   price: number,
-   img: string,
-   order_id: number,
-   created_at: string
+import PhoneProps from "./PhoneProps";
+
+export default interface OrdersProps extends Pick<PhoneProps, "brand" | "name" | "price" | "img"> {
+   id: number;
+   order_id: number;
+   prod_id: number;
+   user_id: string;
+   created_at: string;
+   prod_name?: string;
 }
 ```
 
@@ -2940,9 +2915,6 @@ export default interface PhoneProps {
    brand: string;
    price: number;
    img: string;
-   height: number;
-   width: number;
-   depth: number;
    weight: number;
    foldable: boolean;
    fingerprint: boolean;
@@ -2957,8 +2929,6 @@ export default interface PhoneProps {
       width: number,
       depth: number
    },
-   isFav: boolean,
-   currentFav: boolean
 }
 ```
 
@@ -3004,14 +2974,14 @@ createRoot(document.getElementById('root')!).render(
 ```tsx
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../supabaseClient";
 
 import PageHeading from "../components/PageHeading";
 import CartList from "../components/CartList";
+import QuantityDisplay from "../components/QuantityDisplay";
 import { formatPrice } from "../utils/utils";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { supabase } from "../supabaseClient";
 import CartProps from "../interfaces/CartProps";
-import QuantityDisplay from "../components/QuantityDisplay";
 import { useAuthStore } from "../store/useAuthStore";
 import { useCartStore } from "../store/useCartStore";
 
@@ -3557,26 +3527,26 @@ export default function PhoneGrid() {
 
       //sortieren
       if (sortBy === "oldest") {
-         filtered = filtered.slice().sort((a: { release: string }, b: { release: string }) => a.release.localeCompare(b.release))
+         filtered = filtered.slice().sort((a, b) => a.release.localeCompare(b.release))
          sortText = "Älteste zuerst"
       } else if (sortBy === "newest") {
-         filtered = filtered.slice().sort((a: { release: string }, b: { release: string }) => b.release.localeCompare(a.release))
+         filtered = filtered.slice().sort((a, b) => b.release.localeCompare(a.release))
          sortText = "Neueste zuerst"
       }
       else if (sortBy === "name1") {
-         filtered = filtered.slice().sort((a: { brand: string; name: string }, b: { brand: string; name: string }) => { return a.brand.localeCompare(b.brand) || a.name.localeCompare(b.name) });
+         filtered = filtered.slice().sort((a, b) => { return a.brand.localeCompare(b.brand) || a.name.localeCompare(b.name) });
          sortText = "Name aufsteigend"
       }
       else if (sortBy === "name2") {
-         filtered = filtered.slice().sort((a: { brand: string; name: string }, b: { brand: string; name: string }) => { return b.brand.localeCompare(a.brand) || b.name.localeCompare(a.name) });
+         filtered = filtered.slice().sort((a, b) => { return b.brand.localeCompare(a.brand) || b.name.localeCompare(a.name) });
          sortText = "Name absteigend"
       }
       else if (sortBy === "price1") {
-         filtered = filtered.slice().sort((a: { price: number }, b: { price: number }) => a.price - b.price)
+         filtered = filtered.slice().sort((a, b) => a.price - b.price)
          sortText = "Preis absteigend"
       }
       else if (sortBy === "price2") {
-         filtered = filtered.slice().sort((a: { price: number }, b: { price: number }) => b.price - a.price)
+         filtered = filtered.slice().sort((a, b) => b.price - a.price)
          sortText = "Preis aufsteigend"
       }
 
