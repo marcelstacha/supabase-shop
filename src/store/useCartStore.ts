@@ -47,14 +47,17 @@ export const useCartStore = create<CartState>()(function (set, get) {
                set({ cart: [], filtered: [], isLoading: false })
                return;
             } else {
+
                const { data, error } = await supabase
                   .from("product")
                   .select("*")
                   .in("id", local)
-               if (error) set({ error: error.message })
-               if (data && !error) {
+               if (data) {
                   const guestCart = data.map(item => ({ ...item, prod_id: item.id } as CartProps));
                   set({ filtered: guestCart, cart: guestCart })
+               }
+               if (error) {
+                  set({ error: error.message })
                }
             }
             set({ isLoading: false })
@@ -132,22 +135,24 @@ export const useCartStore = create<CartState>()(function (set, get) {
          const isInCart = get().isItemInCart(id)
 
          if (!isInCart) {
-            return;
+            return
          }
 
          if (!user) {
             removeFromLocal(id)
-            const newFiltered = get().filtered.filter((item) => item.prod_id != id);
-            set({ cart: newFiltered, filtered: newFiltered });
+            const newFiltered = get().filtered.filter((item) => item.prod_id != id)
+            set({ cart: newFiltered, filtered: newFiltered })
          } else {
-
+            const newCart = get().filtered.filter((item) => item.prod_id != id)
+            set({ cart: newCart, filtered: newCart })
             const { error } = await supabase
                .from('cart')
                .delete()
                .eq("prod_id", id)
-               .eq('user_id', user.id);
+               .eq('user_id', user.id)
             if (error) {
-               console.error(error.message);
+               console.error(error.message)
+               await get().fetchCart()
             }
          }
 
