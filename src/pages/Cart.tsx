@@ -32,9 +32,11 @@ export default function Cart() {
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [cart]);
 
+
    function optimisticUpdate(id: number) {
       setFiltered(filtered.filter((item) => item.prod_id != id))
    }
+
 
    function cartSum() {
       return filtered.reduce((acc, row) => acc + row.price, 0)

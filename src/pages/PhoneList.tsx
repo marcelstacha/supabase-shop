@@ -73,9 +73,9 @@ export default function PhoneList() {
    }, [phones, filterBy, sortBy])
 
    useEffect(() => {
-      fetchFavorites();
+      fetchFavorites()
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, []);
+   }, [])
 
 
    function sortHandler(e: ChangeEvent<HTMLSelectElement>) {
@@ -83,7 +83,7 @@ export default function PhoneList() {
    }
 
    function filterHandler(e: MouseEvent<HTMLButtonElement>) {
-      setFilterBy((e.target as HTMLButtonElement).value);
+      setFilterBy((e.target as HTMLButtonElement).value)
    }
 
    return (

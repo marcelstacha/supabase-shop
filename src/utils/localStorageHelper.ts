@@ -3,6 +3,7 @@ import { supabase } from "../supabaseClient";
 
 const name = "local-cart";
 
+
 export function getLocalArray(): number[] {
    const local = localStorage.getItem(name);
    if (local && local !== undefined) {
@@ -17,9 +18,11 @@ export function getLocalArray(): number[] {
    }
 }
 
+
 export function clearLocalIDs() {
    localStorage.setItem(name, "[]");
 }
+
 
 export function setLocalStorage(id: number) {
    const currentArray = getLocalArray();
@@ -30,6 +33,7 @@ export function setLocalStorage(id: number) {
    }
 }
 
+
 export function removeFromLocal(id: number) {
    const currentArray = getLocalArray();
    if (currentArray.includes(id)) {
@@ -37,6 +41,7 @@ export function removeFromLocal(id: number) {
       localStorage.setItem(name, JSON.stringify(newArray));
    }
 }
+
 
 export async function checkIsInCart(id: number, user: User) {
    const { data, error } = await supabase
@@ -54,6 +59,7 @@ export async function checkIsInCart(id: number, user: User) {
       return false;
    }
 }
+
 
 export async function syncDBCart(user: User) {
    const local = localStorage.getItem(name);

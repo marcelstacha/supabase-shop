@@ -26,7 +26,7 @@ export default function CartButton({ handleAdd, id, big = false }: CartButtonPro
             setIsAnimating(true)
             setTimeout(() => {
                setIsAnimating(false)
-            }, 1200);
+            }, 1200)
          }
       }
 

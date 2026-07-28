@@ -10,7 +10,6 @@ import { useOrdersStore } from "../store/useOrdersStore";
 
 export default function Checkout() {
 
-
    const cart = useCartStore((state) => state.cart)
    const isLoading = useCartStore((state) => state.isLoading)
    const fetchCart = useCartStore((state) => state.fetchCart)
@@ -22,17 +21,18 @@ export default function Checkout() {
 
    const total = cart.reduce((sum, item) => sum + item.price, 4.99)
 
+   useEffect(() => {
+      fetchCart()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [])
+
+
    async function handleConfirm() {
       await confirmOrder()
 
       clearCart()
       navigate("/confirmation")
    }
-
-   useEffect(() => {
-      fetchCart()
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [])
 
    return (<>
       <PageHeading>Kauf bestätigen</PageHeading>
@@ -85,6 +85,7 @@ export default function Checkout() {
                         >
                            Kaufen
                         </button>
+
                      </div>
                   </>
                   :

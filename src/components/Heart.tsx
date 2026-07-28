@@ -18,21 +18,21 @@ export default function Heart({ id, isPreview = true }: HeartProps) {
 
    const isFav = useMemo(() => {
       if (!user || !favorites) {
-         return false;
+         return false
       }
       return favorites.some((fav) => fav.prod_id === Number(id));
-   }, [favorites, id, user]);
+   }, [favorites, id, user])
 
    //optimisticFav für direkte aenderung ohne fetchFavorites, verhindert flackern
    const [optimisticFav, setOptimisticFav] = useState(isFav)
 
    useEffect(() => {
       setOptimisticFav(isFav);
-   }, [isFav]);
+   }, [isFav])
 
    function handleHeart(e: React.MouseEvent<SVGSVGElement, MouseEvent>) {
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault()
+      e.stopPropagation()
 
       if (!user) {
          return
@@ -46,20 +46,20 @@ export default function Heart({ id, isPreview = true }: HeartProps) {
 
          toggleFavorite(id)
             .catch((err) => {
-               console.error(err);
+               console.error(err)
                setOptimisticFav(prevOptimisticFav)
             })
             .finally(() => {
                setCanToggle(true)
-            });
+            })
       }
    }
 
-   let style = "";
+   let style = ""
    if (isPreview) {
-      style = "";
+      style = ""
    } else {
-      style = "top-0 right-0 sm:h-7 sm:w-7 sm:right-2 sm:top-2 md:h-8 md:w-8 lg:h-9 lg:w-9 lg:right-4 lg:top-3";
+      style = "top-0 right-0 sm:h-7 sm:w-7 sm:right-2 sm:top-2 md:h-8 md:w-8 lg:h-9 lg:w-9 lg:right-4 lg:top-3"
    }
 
    return (

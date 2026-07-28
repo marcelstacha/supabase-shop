@@ -2,7 +2,6 @@ import { create } from "zustand";
 import CartProps from "../interfaces/CartProps";
 import { supabase } from "../supabaseClient";
 import { getLocalArray, setLocalStorage, removeFromLocal, syncDBCart } from "../utils/localStorageHelper";
-
 import { useAuthStore } from "./useAuthStore";
 
 interface CartState {
@@ -24,7 +23,6 @@ interface CartState {
 export const useCartStore = create<CartState>()(function (set, get) {
 
    return {
-
       cart: [] as CartProps[],
       filtered: [] as CartProps[],
       isLoading: false,
@@ -53,7 +51,7 @@ export const useCartStore = create<CartState>()(function (set, get) {
                   .select("*")
                   .in("id", local)
                if (data) {
-                  const guestCart = data.map(item => ({ ...item, prod_id: item.id } as CartProps));
+                  const guestCart = data.map(item => ({ ...item, prod_id: item.id } as CartProps))
                   set({ filtered: guestCart, cart: guestCart })
                }
                if (error) {
@@ -65,7 +63,6 @@ export const useCartStore = create<CartState>()(function (set, get) {
          }
 
          if (user) {
-
             if (local.length > 0) {
                await syncDBCart(user);
             }
@@ -86,7 +83,6 @@ export const useCartStore = create<CartState>()(function (set, get) {
       },
 
 
-
       async addToCart(id: number) {
 
          if (get().isLoading) {
@@ -95,9 +91,9 @@ export const useCartStore = create<CartState>()(function (set, get) {
 
          const user = useAuthStore.getState().user
          const cart = get().cart
-         const isInCart = cart.some((item) => item.prod_id == id);
+         const isInCart = cart.some((item) => item.prod_id == id)
          const filtered = get().filtered
-         const isInFiltered = filtered.some((item) => item.prod_id == id);
+         const isInFiltered = filtered.some((item) => item.prod_id == id)
 
          if (isInCart || isInFiltered) {
             return
@@ -116,17 +112,16 @@ export const useCartStore = create<CartState>()(function (set, get) {
                if (error && error.code != "23505") {
                   console.error(error.message)
                } else {
-                  await get().fetchCart();
+                  await get().fetchCart()
                }
             } else {
                setLocalStorage(id)
-               await get().fetchCart(); // <- Macht exakt das gleiche wie beim User!
+               await get().fetchCart()
             }
          } finally {
             set({ isLoading: false })
          }
       },
-
 
 
       async removeFromCart(id: number) {
@@ -158,6 +153,7 @@ export const useCartStore = create<CartState>()(function (set, get) {
 
       },
 
+
       async clearCart() {
          const user = useAuthStore.getState().user
 
@@ -174,10 +170,10 @@ export const useCartStore = create<CartState>()(function (set, get) {
          }
       },
 
+
       isItemInCart(id: number) {
-         return get().filtered.some((item) => item.prod_id == id);
-      },
+         return get().filtered.some((item) => item.prod_id == id)
+      }
 
    }
-}
-)
+})
