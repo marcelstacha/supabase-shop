@@ -11,6 +11,7 @@ node_modules
 dist
 old_images
 dist-ssr
+28jul.md
 *.local
 
 # Editor directories and files
