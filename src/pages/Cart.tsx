@@ -1,13 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../supabaseClient";
 
 import PageHeading from "../components/PageHeading";
 import CartList from "../components/CartList";
 import QuantityDisplay from "../components/QuantityDisplay";
 import { formatPrice } from "../utils/utils";
-import useLocalStorage from "../hooks/useLocalStorage";
-import CartProps from "../interfaces/CartProps";
 import { useAuthStore } from "../store/useAuthStore";
 import { useCartStore } from "../store/useCartStore";
 
@@ -21,16 +18,10 @@ export default function Cart() {
 
    const user = useAuthStore((state) => state.user)
 
-   const { getLocalArray } = useLocalStorage()
    const navigate = useNavigate()
-   const localArray = getLocalArray()
 
    useEffect(() => {
-      if (user) {
-         fetchCart()
-      } else {
-         getLocalCart()
-      }
+      fetchCart()
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [user])
 
@@ -38,34 +29,11 @@ export default function Cart() {
       if (user) {
          setFiltered(cart)
       }
-      cartSum()
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [cart]);
 
-   async function getLocalCart() {
-      const temp: CartProps[] = []
-      await Promise.all(localArray.map(async (id) => {
-         const { data, error } = await supabase
-            .from("product")
-            .select("*")
-            .eq("id", id)
-         if (data) {
-            temp.push(...data as CartProps[])
-         }
-         if (error) {
-            console.error(error.message)
-         }
-      }))
-      setFiltered(temp.flat())
-   }
-
    function optimisticUpdate(id: number) {
-      const newFiltered = filtered.filter((item) => {
-         const x = item.prod_id != undefined ? item.prod_id : item.id
-         return x != id
-      })
-
-      setFiltered(newFiltered)
+      setFiltered(filtered.filter((item) => item.prod_id != id))
    }
 
    function cartSum() {

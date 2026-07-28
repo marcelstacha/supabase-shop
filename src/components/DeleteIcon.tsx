@@ -10,7 +10,7 @@ interface DeleteIconProps {
 
 export default function DeleteIcon({ handleDelete, item, style }: DeleteIconProps) {
 
-   const id = item.prod_id != undefined ? item.prod_id : item.id
+   const id = item.prod_id
 
    return (<>
       <TrashIcon

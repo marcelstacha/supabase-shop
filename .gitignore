@@ -12,6 +12,7 @@ dist
 old_images
 dist-ssr
 28jul.md
+PhoneList.tsx
 *.local
 
 # Editor directories and files
