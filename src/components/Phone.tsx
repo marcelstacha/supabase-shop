@@ -29,7 +29,7 @@ export default function Phone({ id, img, name, brand, price }: PhoneProps) {
    return (
       <>
          <div
-            className="group flex flex-col px-1 sm:px-2 pt-3 sm:pt-4 pb-1 sm:pb-2 bg-white/[60%] hover:bg-white group-hover:shadow-[0_0px_12px_rgba(0,0,0,0.3)] border border-gray-900 rounded-md sm:rounded-xl transition-all duration-500"
+            className="group flex flex-col px-1 sm:px-2 pt-3 sm:pt-4 pb-1 sm:pb-2 bg-white group-hover:shadow-[0_0px_14px_rgba(0,0,0,0.3)] hover:brightness-105 border border-gray-900 rounded-md sm:rounded-xl transition-all duration-300"
             onMouseEnter={() => setImageToggle(true)}
             onMouseLeave={() => setImageToggle(false)}
          >
@@ -40,7 +40,7 @@ export default function Phone({ id, img, name, brand, price }: PhoneProps) {
             </span>
             <img
                src={`${img}-${imageToggle ? "2" : "1"}.jpg`} alt={`${brand} ${name}`}
-               className="m-auto sm:mt-2 mb-3 sm:mb-2 px-1 h-32 sm:h-56 object-contain transition mix-blend-darken" /* group-hover:brightness-110 */
+               className="m-auto sm:mt-2 mb-3 sm:mb-2 px-1 h-[7.5rem] sm:h-56 object-contain transition mix-blend-darken" /* group-hover:brightness-110 */
             />
             <span className="md:my-2 mb-1 p-0">
                <span className="flex sm:flex-row flex-col justify-center items-center gap-0 sm:gap-1 p-0">

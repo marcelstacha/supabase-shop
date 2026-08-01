@@ -54,7 +54,7 @@ export default function PhoneDetail() {
                         onHoverStart={() => setImageToggle(true)}
                         onHoverEnd={() => setImageToggle(false)}
                      >
-                        <img src={`${phone.img}-${imageToggle ? "2" : "1"}.jpg`} className="m-auto h-[13rem] sm:h-[20rem] md:h-[25rem] 2xl:h-[32rem] object-contain aspect-square transition-all"></img>
+                        <img src={`${phone.img}-${imageToggle ? "2" : "1"}.jpg`} className="m-auto h-[13rem] sm:h-[20rem] md:h-[25rem] 2xl:h-[32rem] object-contain aspect-square"></img>
                      </motion.div>
                      <div className="p-4">
                         <div className="font-bold text-3xl md:text-5xl">
