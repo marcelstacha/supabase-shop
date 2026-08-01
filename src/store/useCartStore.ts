@@ -157,16 +157,15 @@ export const useCartStore = create<CartState>()(function (set, get) {
       async clearCart() {
          const user = useAuthStore.getState().user
 
-         if (!user) {
-            return
-         }
+         if (user) {
 
-         const { error } = await supabase
-            .from('cart')
-            .delete()
-            .eq('user_id', user.id);
-         if (error) {
-            console.error(error.message);
+            const { error } = await supabase
+               .from('cart')
+               .delete()
+               .eq('user_id', user.id);
+            if (error) {
+               console.error(error.message);
+            }
          }
       },
 

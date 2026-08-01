@@ -1017,7 +1017,7 @@ export default function CartButton({ handleAdd, id, big = false }: CartButtonPro
             setIsAnimating(true)
             setTimeout(() => {
                setIsAnimating(false)
-            }, 1200);
+            }, 1200)
          }
       }
 
@@ -1485,21 +1485,21 @@ export default function Heart({ id, isPreview = true }: HeartProps) {
 
    const isFav = useMemo(() => {
       if (!user || !favorites) {
-         return false;
+         return false
       }
       return favorites.some((fav) => fav.prod_id === Number(id));
-   }, [favorites, id, user]);
+   }, [favorites, id, user])
 
    //optimisticFav für direkte aenderung ohne fetchFavorites, verhindert flackern
    const [optimisticFav, setOptimisticFav] = useState(isFav)
 
    useEffect(() => {
       setOptimisticFav(isFav);
-   }, [isFav]);
+   }, [isFav])
 
    function handleHeart(e: React.MouseEvent<SVGSVGElement, MouseEvent>) {
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault()
+      e.stopPropagation()
 
       if (!user) {
          return
@@ -1513,20 +1513,20 @@ export default function Heart({ id, isPreview = true }: HeartProps) {
 
          toggleFavorite(id)
             .catch((err) => {
-               console.error(err);
+               console.error(err)
                setOptimisticFav(prevOptimisticFav)
             })
             .finally(() => {
                setCanToggle(true)
-            });
+            })
       }
    }
 
-   let style = "";
+   let style = ""
    if (isPreview) {
-      style = "";
+      style = ""
    } else {
-      style = "top-0 right-0 sm:h-7 sm:w-7 sm:right-2 sm:top-2 md:h-8 md:w-8 lg:h-9 lg:w-9 lg:right-4 lg:top-3";
+      style = "top-0 right-0 sm:h-7 sm:w-7 sm:right-2 sm:top-2 md:h-8 md:w-8 lg:h-9 lg:w-9 lg:right-4 lg:top-3"
    }
 
    return (
@@ -3003,13 +3003,14 @@ export default function Cart() {
       if (user) {
          setFiltered(cart)
       }
-      cartSum()
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [cart]);
+
 
    function optimisticUpdate(id: number) {
       setFiltered(filtered.filter((item) => item.prod_id != id))
    }
+
 
    function cartSum() {
       return filtered.reduce((acc, row) => acc + row.price, 0)
@@ -3078,7 +3079,6 @@ import { useOrdersStore } from "../store/useOrdersStore";
 
 export default function Checkout() {
 
-
    const cart = useCartStore((state) => state.cart)
    const isLoading = useCartStore((state) => state.isLoading)
    const fetchCart = useCartStore((state) => state.fetchCart)
@@ -3090,17 +3090,18 @@ export default function Checkout() {
 
    const total = cart.reduce((sum, item) => sum + item.price, 4.99)
 
+   useEffect(() => {
+      fetchCart()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [])
+
+
    async function handleConfirm() {
       await confirmOrder()
 
       clearCart()
       navigate("/confirmation")
    }
-
-   useEffect(() => {
-      fetchCart()
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [])
 
    return (<>
       <PageHeading>Kauf bestätigen</PageHeading>
@@ -3153,6 +3154,7 @@ export default function Checkout() {
                         >
                            Kaufen
                         </button>
+
                      </div>
                   </>
                   :
@@ -3732,9 +3734,9 @@ export default function PhoneList() {
    }, [phones, filterBy, sortBy])
 
    useEffect(() => {
-      fetchFavorites();
+      fetchFavorites()
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, []);
+   }, [])
 
 
    function sortHandler(e: ChangeEvent<HTMLSelectElement>) {
@@ -3742,7 +3744,7 @@ export default function PhoneList() {
    }
 
    function filterHandler(e: MouseEvent<HTMLButtonElement>) {
-      setFilterBy((e.target as HTMLButtonElement).value);
+      setFilterBy((e.target as HTMLButtonElement).value)
    }
 
    return (
@@ -4253,7 +4255,6 @@ import { create } from "zustand";
 import CartProps from "../interfaces/CartProps";
 import { supabase } from "../supabaseClient";
 import { getLocalArray, setLocalStorage, removeFromLocal, syncDBCart } from "../utils/localStorageHelper";
-
 import { useAuthStore } from "./useAuthStore";
 
 interface CartState {
@@ -4275,7 +4276,6 @@ interface CartState {
 export const useCartStore = create<CartState>()(function (set, get) {
 
    return {
-
       cart: [] as CartProps[],
       filtered: [] as CartProps[],
       isLoading: false,
@@ -4298,14 +4298,17 @@ export const useCartStore = create<CartState>()(function (set, get) {
                set({ cart: [], filtered: [], isLoading: false })
                return;
             } else {
+
                const { data, error } = await supabase
                   .from("product")
                   .select("*")
                   .in("id", local)
-               if (error) set({ error: error.message })
-               if (data && !error) {
-                  const guestCart = data.map(item => ({ ...item, prod_id: item.id } as CartProps));
+               if (data) {
+                  const guestCart = data.map(item => ({ ...item, prod_id: item.id } as CartProps))
                   set({ filtered: guestCart, cart: guestCart })
+               }
+               if (error) {
+                  set({ error: error.message })
                }
             }
             set({ isLoading: false })
@@ -4313,7 +4316,6 @@ export const useCartStore = create<CartState>()(function (set, get) {
          }
 
          if (user) {
-
             if (local.length > 0) {
                await syncDBCart(user);
             }
@@ -4334,7 +4336,6 @@ export const useCartStore = create<CartState>()(function (set, get) {
       },
 
 
-
       async addToCart(id: number) {
 
          if (get().isLoading) {
@@ -4343,9 +4344,9 @@ export const useCartStore = create<CartState>()(function (set, get) {
 
          const user = useAuthStore.getState().user
          const cart = get().cart
-         const isInCart = cart.some((item) => item.prod_id == id);
+         const isInCart = cart.some((item) => item.prod_id == id)
          const filtered = get().filtered
-         const isInFiltered = filtered.some((item) => item.prod_id == id);
+         const isInFiltered = filtered.some((item) => item.prod_id == id)
 
          if (isInCart || isInFiltered) {
             return
@@ -4364,17 +4365,16 @@ export const useCartStore = create<CartState>()(function (set, get) {
                if (error && error.code != "23505") {
                   console.error(error.message)
                } else {
-                  await get().fetchCart();
+                  await get().fetchCart()
                }
             } else {
                setLocalStorage(id)
-               await get().fetchCart(); // <- Macht exakt das gleiche wie beim User!
+               await get().fetchCart()
             }
          } finally {
             set({ isLoading: false })
          }
       },
-
 
 
       async removeFromCart(id: number) {
@@ -4383,26 +4383,29 @@ export const useCartStore = create<CartState>()(function (set, get) {
          const isInCart = get().isItemInCart(id)
 
          if (!isInCart) {
-            return;
+            return
          }
 
          if (!user) {
             removeFromLocal(id)
-            const newFiltered = get().filtered.filter((item) => item.prod_id != id);
-            set({ cart: newFiltered, filtered: newFiltered });
+            const newFiltered = get().filtered.filter((item) => item.prod_id != id)
+            set({ cart: newFiltered, filtered: newFiltered })
          } else {
-
+            const newCart = get().filtered.filter((item) => item.prod_id != id)
+            set({ cart: newCart, filtered: newCart })
             const { error } = await supabase
                .from('cart')
                .delete()
                .eq("prod_id", id)
-               .eq('user_id', user.id);
+               .eq('user_id', user.id)
             if (error) {
-               console.error(error.message);
+               console.error(error.message)
+               await get().fetchCart()
             }
          }
 
       },
+
 
       async clearCart() {
          const user = useAuthStore.getState().user
@@ -4420,13 +4423,13 @@ export const useCartStore = create<CartState>()(function (set, get) {
          }
       },
 
+
       isItemInCart(id: number) {
-         return get().filtered.some((item) => item.prod_id == id);
-      },
+         return get().filtered.some((item) => item.prod_id == id)
+      }
 
    }
-}
-)
+})
 ```
 
 ### portfolio-project-2025\src\store\useFavoritesStore.ts
@@ -4675,6 +4678,7 @@ import { supabase } from "../supabaseClient";
 
 const name = "local-cart";
 
+
 export function getLocalArray(): number[] {
    const local = localStorage.getItem(name);
    if (local && local !== undefined) {
@@ -4689,9 +4693,11 @@ export function getLocalArray(): number[] {
    }
 }
 
+
 export function clearLocalIDs() {
    localStorage.setItem(name, "[]");
 }
+
 
 export function setLocalStorage(id: number) {
    const currentArray = getLocalArray();
@@ -4702,6 +4708,7 @@ export function setLocalStorage(id: number) {
    }
 }
 
+
 export function removeFromLocal(id: number) {
    const currentArray = getLocalArray();
    if (currentArray.includes(id)) {
@@ -4709,6 +4716,7 @@ export function removeFromLocal(id: number) {
       localStorage.setItem(name, JSON.stringify(newArray));
    }
 }
+
 
 export async function checkIsInCart(id: number, user: User) {
    const { data, error } = await supabase
@@ -4726,6 +4734,7 @@ export async function checkIsInCart(id: number, user: User) {
       return false;
    }
 }
+
 
 export async function syncDBCart(user: User) {
    const local = localStorage.getItem(name);

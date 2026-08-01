@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, NavLink } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "motion/react"
 import { formatDate, formatPrice } from "../utils/utils";
@@ -15,6 +15,7 @@ export default function PhoneDetail() {
    const [isAnimating, setIsAnimating] = useState(false)
    const [imageToggle, setImageToggle] = useState(false)
 
+   const navigate = useNavigate();
    const { id } = useParams()
    const { phone, isLoading } = useCurrentPhone(Number(id))
 
@@ -79,12 +80,10 @@ export default function PhoneDetail() {
                               />
                            </div>
                         }
-                        <div className="group top-4 left-14 absolute">
-                           <NavLink to="/phonegrid">
-                              <ArrowUturnLeftIcon
-                                 className="sm:top-2 md:top-2 lg:top-3 right-4 sm:right-1 md:right-0 lg:-right-2 absolute w-6 sm:w-7 md:w-8 lg:w-9 h-6 sm:h-7 md:h-8 lg:h-9 text-gray-900 group-hover:text-gray-600 transition cursor-pointer"
-                              />
-                           </NavLink>
+                        <div className="group top-4 left-14 absolute" onClick={() => navigate(-1)}>
+                           <ArrowUturnLeftIcon
+                              className="sm:top-2 md:top-2 lg:top-3 right-4 sm:right-1 md:right-0 lg:-right-2 absolute w-6 sm:w-7 md:w-8 lg:w-9 h-6 sm:h-7 md:h-8 lg:h-9 text-gray-900 group-hover:text-gray-600 transition cursor-pointer"
+                           />
                         </div>
                         <p className="p-0 text-[0.82rem] sm:text-base xl:text-xl text-justify">
                            Das <b>{phone.brand} {phone.name}</b> ist ein {phone.foldable ? "faltbares" : ""} Smartphone mit einem {phone.screen}" großem Display. Es wird von dem {phone.soc} angetrieben

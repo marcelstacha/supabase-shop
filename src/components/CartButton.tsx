@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useCartStore } from "../store/useCartStore";
 
 interface CartButtonProps {
    id: number;
@@ -10,24 +9,18 @@ interface CartButtonProps {
 
 export default function CartButton({ handleAdd, id, big = false }: CartButtonProps) {
 
-   const fetchCart = useCartStore((state) => state.fetchCart)
-
    const [isAnimating, setIsAnimating] = useState(false)
 
    async function handleAddAndFetchCart(id: number, e: React.MouseEvent<HTMLButtonElement>) {
       e.stopPropagation()
       e.preventDefault()
-      try {
-         await fetchCart()
-      }
-      finally {
-         if (!isAnimating) {
-            handleAdd(id, e)
-            setIsAnimating(true)
-            setTimeout(() => {
-               setIsAnimating(false)
-            }, 1200)
-         }
+
+      if (!isAnimating) {
+         handleAdd(id, e)
+         setIsAnimating(true)
+         setTimeout(() => {
+            setIsAnimating(false)
+         }, 1200)
       }
 
    }

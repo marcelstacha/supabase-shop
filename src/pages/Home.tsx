@@ -6,6 +6,7 @@ import BestPhones from "../components/BestPhones";
 import Splash from "../components/Splash";
 import { useProductsStore } from "../store/useProductsStore";
 import { AnimatePresence, motion } from "motion/react"
+import AllProductsButton from "../components/AllProductsButton";
 
 export default function Home() {
 
@@ -20,7 +21,7 @@ export default function Home() {
    }, [])
 
    return (<>
-      <PageHeading>Willkommen</PageHeading>
+      <PageHeading>Willkommen!</PageHeading>
       <AnimatePresence>
          <motion.div
             initial={{ opacity: 0 }}
@@ -29,20 +30,14 @@ export default function Home() {
             transition={{ duration: 0.2 }}
             className="flex flex-col justify-center p-2 lg:p-10 text-sm lg:text-lg text-nowrap bg-white border border-gray-900 rounded-xl"
          >
+
             <NavLink to="/phonegrid">
                <Splash />
             </NavLink>
             <ShuffledGrid />
-            <div className="flex md:flex-row flex-col justify-center gap-0 md:gap-16">
-               <NavLink to="/phonegrid">
-                  <button className="md:my-6 lg:my-4 md:mt-4 md:px-12 xl:px-12 xl:py-7 w-full md:w-auto h-16 xl:h-auto text-sm md:text-base xl:text-xl bg-accent lg:hover:bg-gray-100 big-button">
-                     Alle Produkte anzeigen
-                  </button>
-               </NavLink>
-            </div>
-            <BestPhones
-               phones={phones}
-            />
+            <AllProductsButton />
+            <BestPhones phones={phones} />
+
          </motion.div>
       </AnimatePresence>
    </>)

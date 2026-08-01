@@ -3,8 +3,6 @@ import { useState, ChangeEvent, MouseEvent, useMemo, useEffect } from "react";
 import { DevicePhoneMobileIcon, BookOpenIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 
-import PhoneProps from "../interfaces/PhoneProps"
-
 import Phone from "../components/Phone"
 import PageHeading from "../components/PageHeading";
 import FilterButton from "../components/FilterButton";
@@ -36,11 +34,11 @@ export default function PhoneGrid() {
          filterText = "Alle"
       }
       else if (filterBy == "default") {
-         filtered = (phones.filter((phone: PhoneProps) => phone.foldable == false))
+         filtered = (phones.filter((phone) => phone.foldable == false))
          filterText = "Standard"
       }
       else if (filterBy == "foldable") {
-         filtered = (phones.filter((phone: PhoneProps) => phone.foldable == true))
+         filtered = (phones.filter((phone) => phone.foldable == true))
          filterText = "Faltbar"
       }
 
