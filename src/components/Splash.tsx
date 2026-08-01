@@ -18,7 +18,7 @@ export default function Splash() {
             </div>
             <img
                className="top-4 absolute w-64 sm:w-96 md:w-[30rem] lg:w-[38rem] 2xl:w-[64rem] xl:w-[50rem] opacity-75"
-               src="/line4.svg">
+               src="/line.svg">
             </img>
             <img
                className="top-6 sm:top-12 md:top-12 lg:top-6 2xl:top-16 xl:top-10 right-7 sm:right-12 md:right-14 lg:right-12 2xl:right-20 xl:right-16 absolute w-8 sm:w-10 md:w-12 lg:w-16 2xl:w-28 xl:w-24 animate-spin"
