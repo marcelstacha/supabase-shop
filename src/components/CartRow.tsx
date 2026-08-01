@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import CartProps from "../interfaces/CartProps";
 import { clean } from "../utils/utils";
 import DeleteIcon from "./DeleteIcon";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { removeFromLocal } from "../utils/localStorageHelper";
 import { useAuthStore } from "../store/useAuthStore";
 import { useCartStore } from "../store/useCartStore";
 
@@ -10,8 +10,6 @@ export default function CartRow({ item, update }: { item: CartProps, update: (id
 
    const user = useAuthStore((state) => state.user)
    const removeFromCart = useCartStore((state) => state.removeFromCart)
-
-   const { removeFromLocal } = useLocalStorage()
 
    function handleDelete(id: number) {
       if (user) {
