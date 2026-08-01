@@ -67,7 +67,7 @@ export default function PhoneDetail() {
                      <div className="mx-6 sm:mx-8 md:mx-20 lg:mx-28 2xl:mx-60 pt-2 pb-6 sm:pb-8">
                         <div>
                            <hr className="m-auto h-[2px] bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
-                           <h2 className="my-1 sm:my-2 md:my-4 font-sans font-semibold text-lg md:text-xl lg:text-2xl text-center transition-all price">
+                           <h2 className="my-1 sm:my-2 md:my-4 font-sans font-semibold 2xl:text-[1.5rem] text-lg md:text-xl lg:text-2xl text-center transition-all price">
                               {formatPrice(phone.price)}
                            </h2>
                            <hr className="m-auto mb-4 h-[2px] bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
@@ -85,7 +85,7 @@ export default function PhoneDetail() {
                               className="sm:top-2 md:top-2 lg:top-3 right-4 sm:right-1 md:right-0 lg:-right-2 absolute w-6 sm:w-7 md:w-8 lg:w-9 h-6 sm:h-7 md:h-8 lg:h-9 text-gray-900 group-hover:text-gray-600 transition cursor-pointer"
                            />
                         </div>
-                        <p className="p-0 text-[0.82rem] sm:text-base xl:text-xl text-justify">
+                        <p className="p-0 text-[0.82rem] 2xl:text-[1.35rem] sm:text-base xl:text-xl text-justify 2xl:leading-7">
                            Das <b>{phone.brand} {phone.name}</b> ist ein {phone.foldable ? "faltbares" : ""} Smartphone mit einem {phone.screen}" großem Display. Es wird von dem {phone.soc} angetrieben
                            und verfügt über einen {phone.battery} mAh Akku. Das Gerät lässt sich kabelgebunden mit {phone.charging} W{phone.charging_wireless > 0 ?
                               " und kabellos mit " + phone.charging_wireless + " W" : ", aber nicht kabellos"} aufladen. {phone.fingerprint ? "Ein Fingerabdrucksensor ist integriert."
@@ -100,7 +100,7 @@ export default function PhoneDetail() {
                            id={phone.id}
                            big={true}
                         />
-                        <div className="table-container flex flex-col m-auto">
+                        <div className="table-container flex flex-col m-auto mt-2">
                            <PhoneDetailTable phone={phone} />
                         </div>
                      </div>

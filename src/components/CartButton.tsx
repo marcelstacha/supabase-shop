@@ -28,7 +28,7 @@ export default function CartButton({ handleAdd, id, big = false }: CartButtonPro
    return (
       <button
          onClick={(e) => handleAddAndFetchCart(id, e)}
-         className={`${big ? "px-4 py-3 text-xs my-7" : "mt-2"} ${isAnimating && "animate-fill-cart"} px-0 py-[0.625rem] sm:py-3 text-[0.75rem] sm:text-sm md:text-base xl:text-lg bg-accent md:bg-gray-50 md:hover:bg-accent hover:bg-accent border border-gray-900 transition rounded-[0.25rem] sm:rounded-lg`}
+         className={`${big ? "w-full px-4 py-3 text-xs my-3 sm:my-4 md:my-6" : "mt-2"} ${isAnimating && "animate-fill-cart"} px-0 sm:py-3 text-[0.855rem] sm:text-sm md:text-base xl:text-lg bg-accent md:bg-gray-50 md:hover:bg-accent hover:bg-accent border border-gray-900 transition rounded-[0.25rem] sm:rounded-lg`}
       >
          In den Warenkorb
       </button>
