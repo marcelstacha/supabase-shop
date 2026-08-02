@@ -18,6 +18,7 @@ import { useEffect } from "react";
 import { useAuthStore } from "./store/useAuthStore";
 import { syncDBCart } from "./utils/localStorageHelper";
 import { useCartStore } from "./store/useCartStore";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
 
@@ -53,22 +54,23 @@ function App() {
    }, [user])
 
    return (
-
-      <Router>
-         <Routes>
-            <Route path="/" element={<Layout />}>
-               <Route index element={<Home />} />
-               <Route path="phonegrid" element={<PhoneGrid />} />
-               <Route path="phonelist" element={<PhoneList />} />
-               <Route path="/phonedetail/:id" element={<PhoneDetail />} />
-               <Route path="checkout" element={<Checkout />} />
-               <Route path="favorites" element={<Favorites />} />
-               <Route path="cart" element={<Cart />} />
-               <Route path="confirmation" element={<Confirmation />} />
-               <Route path="user" element={<User />} />
-            </Route>
-         </Routes>
-      </Router>
+      <AnimatePresence mode="wait">
+         <Router>
+            <Routes>
+               <Route path="/" element={<Layout />}>
+                  <Route index element={<Home />} />
+                  <Route path="phonegrid" element={<PhoneGrid />} />
+                  <Route path="phonelist" element={<PhoneList />} />
+                  <Route path="/phonedetail/:id" element={<PhoneDetail />} />
+                  <Route path="checkout" element={<Checkout />} />
+                  <Route path="favorites" element={<Favorites />} />
+                  <Route path="cart" element={<Cart />} />
+                  <Route path="confirmation" element={<Confirmation />} />
+                  <Route path="user" element={<User />} />
+               </Route>
+            </Routes>
+         </Router>
+      </AnimatePresence>
    )
 }
 

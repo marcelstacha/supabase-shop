@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, useState } from "react"
 import useDebounce from "../hooks/useDebounce"
 import PhoneProps from "../interfaces/PhoneProps"
 import { NavLink } from "react-router-dom"
@@ -10,25 +10,18 @@ export default function SearchBar() {
 
    const [animateHide, setAnimateHide] = useState(false)
    const [query, setQuery] = useState("")
-   const [results, setResults] = useState<PhoneProps[]>([])
    const [canOpen, setCanOpen] = useState(false)
 
    const phones = useProductsStore((state) => state.phones)
 
    const debouncedQuery = useDebounce(query)
    const isSearching = debouncedQuery.length >= 2
-   const filterAttributes = ["name", "brand"]
 
-   useEffect(() => {
-      if (isSearching) {
-         setResults(phones.filter((item) =>
-            filterAttributes.some((attribute) =>
-               (item[attribute as keyof PhoneProps] as string).toLowerCase().includes(debouncedQuery)
-            )
-         ))
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [debouncedQuery])
+   const results = phones.filter((item) =>
+      String(item.name).toLowerCase().includes(debouncedQuery) ||
+      String(item.brand).toLowerCase().includes(debouncedQuery)
+   )
+
 
    function onChangeHandler(e: ChangeEvent<HTMLInputElement>) {
       const value = e.target.value
@@ -74,18 +67,17 @@ export default function SearchBar() {
                initial={{ opacity: 0 }}
                animate={{ opacity: animateHide ? 0 : 1 }}
                transition={{ duration: 0.15 }}
-               className="top-8 left-[50%] absolute flex flex-col p-1 md:p-4 lg:p-8 w-full bg-[rgb(255,255,255)] drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] rounded-b-lg transition-all -translate-x-1/2"
+               className="top-8 left-[50%] absolute flex flex-col p-1 md:p-4 lg:p-8 w-full bg-white drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] rounded-b-lg transition-all -translate-x-1/2"
             >
                {results.length > 0 ?
                   <>
                      <ul className="z-[80] border-t-2">
                         {results && results.map((result: PhoneProps) =>
                            <NavLink
-                              key={result.id}
                               to={`/phonedetail/${result.id}`}
+                              key={result.id}
                            >
                               <li className="py-1 border-b-2"
-                                 key={result.id}
                               >
                                  <span className="flex items-center m-auto text-base">
                                     <img className="hidden lg:block md:mr-3 md:size-16 object-contain" src={`${result.img}-1.jpg`} />
