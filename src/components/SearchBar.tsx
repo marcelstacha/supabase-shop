@@ -77,8 +77,7 @@ export default function SearchBar() {
                               to={`/phonedetail/${result.id}`}
                               key={result.id}
                            >
-                              <li className="py-1 border-b-2"
-                              >
+                              <li className="py-1 border-b-2">
                                  <span className="flex items-center m-auto text-base">
                                     <img className="hidden lg:block md:mr-3 md:size-16 object-contain" src={`${result.img}-1.jpg`} />
                                     <span className="font-bold text-xs md:text-sm lg:text-base">{result.brand}</span>

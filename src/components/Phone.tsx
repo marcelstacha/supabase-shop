@@ -40,12 +40,12 @@ export default function Phone({ id, img, name, brand, price }: PhoneProps) {
             </span>
             <img
                src={`${img}-${imageToggle ? "2" : "1"}.jpg`} alt={`${brand} ${name}`}
-               className="m-auto sm:mt-2 mb-3 sm:mb-2 px-1 h-[7.5rem] sm:h-56 object-contain transition mix-blend-darken" /* group-hover:brightness-110 */
+               className="m-auto sm:mt-2 mb-3 sm:mb-2 px-1 h-[7.5rem] sm:h-56 object-contain transition w mix-blend-darken" /* group-hover:brightness-110 */
             />
             <span className="md:my-2 mb-1 p-0">
                <span className="flex sm:flex-row flex-col justify-center items-center gap-0 sm:gap-1 p-0">
                   <h1 className="font-bold lg:text-[1.05rem] xl:text-[1.21rem] text-base leading-1 transition-all">{brand}</h1>
-                  <h1 className="-mt-1 sm:mt-0 overflow-hidden font-medium text-[0.85rem] lg:text-[1.05rem] xl:text-[1.21rem] sm:text-sm md:text-base truncate leading-1 whitespace-nowrap transition-all">{name}</h1>
+                  <h1 className="-mt-1 sm:mt-0 overflow-hidden font-medium text-[0.75rem] min-[400px]:text-[0.9rem] lg:text-[1.05rem] xl:text-[1.21rem] sm:text-base md:text-base truncate leading-1 whitespace-nowrap transition-all">{name}</h1>
                </span>
                <h2 className="mt-1 text-sm md:text-base xl:text-lg text-center transition-all price">{formatPrice(price)}</h2>
             </span>

@@ -4,7 +4,7 @@ import { clean, formatDate } from "../utils/utils";
 export default function PhoneDetailTable({ phone }: { phone: PhoneProps }) {
 
    return (<>
-      <table className="table-custom text-[0.5rem] sm:text-base xl:text-lg border border-collapse table-auto price">
+      <table className="table-custom text-[0.5rem] min-[350px]:text-[0.615rem] min-[440px]:text-xs sm:text-base xl:text-lg border border-collapse table-auto price">
          <tbody className="">
             <tr>
                <td>Bildschirm</td>

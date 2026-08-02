@@ -18,7 +18,6 @@ export default function BestPhoneItem({ category, item }: BestPhoneItemProps) {
    let unit: string
 
    const bestPhoneId = Math.floor(Math.random() * item.length)
-   console.log(bestPhoneId)
 
    switch (category) {
       case "battery":

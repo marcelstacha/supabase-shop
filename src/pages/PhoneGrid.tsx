@@ -92,7 +92,7 @@ export default function PhoneGrid() {
 
          <h2
             key={filteredSorted.length}
-            className="xl:-mb-12 text-sm sm:text-base md:text-lg transition-all"
+            className="mb-3 min-[1064px]:-mb-12 text-sm sm:text-base md:text-lg transition-all"
          >
             [{filterText} ({filteredSorted.length}) / {sortText}]
          </h2>
@@ -101,7 +101,7 @@ export default function PhoneGrid() {
             <span>{error}</span>
          </div>) : loadingProducts && phones.length == 0 ? (<span className="my-10 font-bold text-xl">Lade Produkte</span>)
             : <>
-               <div className="flex flex-row justify-between items-center lg:mx-auto my-4 w-full lg:w-[49rem] 2xl:w-[73.6rem] xl:w-[55rem] transition-all">
+               <div className="flex flex-row justify-between items-center lg:mx-auto my-1 sm:my-4 w-full transition-all">
 
                   <div className="flex items-center gap-1">
 
@@ -177,7 +177,7 @@ export default function PhoneGrid() {
                   </div>
                </div>
                <div className="min-h-40">
-                  <ul className="inline-grid gap-1 sm:gap-2 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 w-full sm:w-auto transition-all">
+                  <ul className="inline-grid gap-1 sm:gap-2 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 w-full transition-all">
                      <AnimatePresence >
                         {filteredSorted.map((phone) => (
                            <motion.li
@@ -186,7 +186,7 @@ export default function PhoneGrid() {
                               initial={{ opacity: 0 }}
                               animate={{ opacity: 1 }}
                               transition={{ type: "tween", duration: 0.17, ease: "easeInOut" }}
-                              className="group lg:w-64 xl:w-72 cursor-pointer"
+                              className="group cursor-pointer"
                            >
                               <NavLink to={`/phonedetail/${phone.id}`}>
                                  <Phone {...phone} />

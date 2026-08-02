@@ -81,7 +81,7 @@ export default function PhoneDetail() {
                            />
                         </div>
                      }
-                     <div className="group top-4 left-14 absolute" onClick={() => navigate(-1)}>
+                     <div className="group top-4 left-14 absolute" onClick={() => navigate("/phonegrid")}>
                         <ArrowUturnLeftIcon
                            className="sm:top-2 md:top-2 lg:top-3 right-4 sm:right-1 md:right-0 lg:-right-2 absolute w-6 sm:w-7 md:w-8 lg:w-9 h-6 sm:h-7 md:h-8 lg:h-9 text-gray-900 group-hover:text-gray-600 transition cursor-pointer"
                         />
