@@ -38,6 +38,8 @@ export default function Phone({ id, img, name, brand, price }: PhoneProps) {
                   <Heart id={id} />
                }
             </span>
+            <img src={`${img}-1.jpg`} className="hidden" />
+            <img src={`${img}-2.jpg`} className="hidden" />
             <img
                src={`${img}-${imageToggle ? "2" : "1"}.jpg`} alt={`${brand} ${name}`}
                className="m-auto sm:mt-2 mb-3 sm:mb-2 px-1 h-[7.5rem] sm:h-56 object-contain transition w mix-blend-darken" /* group-hover:brightness-110 */
