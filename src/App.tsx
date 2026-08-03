@@ -10,7 +10,6 @@ import PhoneGrid from "./pages/PhoneGrid";
 
 import Checkout from "./pages/Checkout";
 import Confirmation from "./pages/Confirmation";
-import PhoneList from "./pages/PhoneList";
 
 import { supabase } from "./supabaseClient";
 import { useEffect } from "react";
@@ -60,7 +59,6 @@ function App() {
                <Route path="/" element={<Layout />}>
                   <Route index element={<Home />} />
                   <Route path="phonegrid" element={<PhoneGrid />} />
-                  <Route path="phonelist" element={<PhoneList />} />
                   <Route path="/phonedetail/:id" element={<PhoneDetail />} />
                   <Route path="checkout" element={<Checkout />} />
                   <Route path="favorites" element={<Favorites />} />
