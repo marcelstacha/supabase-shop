@@ -58,5 +58,5 @@ export default function Phone({ id, img, name, brand, price }: PhoneProps) {
             />
          </div>
       </>
-   );
+   )
 }
