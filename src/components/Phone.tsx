@@ -1,10 +1,10 @@
 import { formatPrice } from "../utils/utils";
 import PhoneProps from "../interfaces/PhoneProps";
-import Heart from "./Heart";
-import CartButton from "./CartButton";
+import CartButton from "./ui/CartButton";
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useCartStore } from "../store/useCartStore";
+import HeartIcon from "./ui/HeartIcon";
 
 export default function Phone({ id, img, name, brand, price }: PhoneProps) {
 
@@ -29,13 +29,13 @@ export default function Phone({ id, img, name, brand, price }: PhoneProps) {
    return (
       <>
          <div
-            className="group flex flex-col px-1 sm:px-2 pt-3 sm:pt-4 pb-1 sm:pb-2 bg-white group-hover:shadow-[0_0px_14px_rgba(0,0,0,0.3)] hover:brightness-105 border border-gray-900 rounded-md sm:rounded-xl transition-all duration-300"
+            className="group flex flex-col px-1 sm:px-2 pt-4 sm:pt-4 pb-1 sm:pb-2 bg-white group-hover:shadow-[0_0px_14px_rgba(0,0,0,0.3)] hover:brightness-105 border border-gray-900 rounded-md sm:rounded-xl transition-all duration-300"
             onMouseEnter={() => setImageToggle(true)}
             onMouseLeave={() => setImageToggle(false)}
          >
             <span className="flex flex-row-reverse p-0">
                {user &&
-                  <Heart id={id} />
+                  <HeartIcon id={id} />
                }
             </span>
             <img src={`${img}-1.jpg`} className="hidden" />

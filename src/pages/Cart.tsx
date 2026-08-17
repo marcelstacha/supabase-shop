@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import PageHeading from "../components/PageHeading";
+import Heading from "../components/layout/Heading";
 import CartList from "../components/CartList";
-import QuantityDisplay from "../components/QuantityDisplay";
+import QuantityDisplay from "../components/ui/QuantityDisplay";
+
 import { formatPrice } from "../utils/utils";
 import { useAuthStore } from "../store/useAuthStore";
 import { useCartStore } from "../store/useCartStore";
@@ -22,26 +23,21 @@ export default function Cart() {
 
    useEffect(() => {
       fetchCart()
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [user])
+   }, [fetchCart, user])
 
    useEffect(() => {
       if (user) {
          setFiltered(cart)
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [cart]);
-
+   }, [cart, setFiltered, user]);
 
    function optimisticUpdate(id: number) {
       setFiltered(filtered.filter((item) => item.prod_id != id))
    }
 
-
    function cartSum() {
       return filtered.reduce((acc, row) => acc + row.price, 0)
    }
-
 
    function handleClick() {
       if (user) {
@@ -52,7 +48,7 @@ export default function Cart() {
    }
 
    return (<>
-      <PageHeading>Warenkorb</PageHeading>
+      <Heading>Warenkorb</Heading>
       <div className="flex flex-col justify-center items-center p-0 py-1 md:py-8 min-h-20 text-sm lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
          {isLoading && user && filtered.length == 0 ? <span className="flex justify-center text-wrap">Laden...</span>
             :
@@ -69,7 +65,7 @@ export default function Cart() {
                   />
 
                   <div className="flex flex-row justify-center gap-2 mt-4 md:mt-6 w-full text-base sm:text-base md:text-xl">
-                     <span>Summe:</span>
+                     <span>Zwischensumme:</span>
                      <span className="font-bold underline price">{formatPrice(cartSum())}</span>
                   </div>
                   <button

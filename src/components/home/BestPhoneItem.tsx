@@ -1,6 +1,5 @@
-
-import PhoneProps from "../interfaces/PhoneProps"
 import { NavLink } from "react-router-dom"
+import PhoneProps from "../../interfaces/PhoneProps"
 
 interface BestPhoneItemProps {
    item: PhoneProps[] | null | undefined

@@ -2,11 +2,12 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react"
 import CartProps from "../interfaces/CartProps";
-import PageHeading from "../components/PageHeading";
+import Heading from "../components/layout/Heading";
 import CheckoutRow from "../components/CheckoutRow";
 import { formatPrice } from "../utils/utils";
 import { useCartStore } from "../store/useCartStore";
 import { useOrdersStore } from "../store/useOrdersStore";
+import { SHIPPING_COST } from "../utils/constants";
 
 export default function Checkout() {
 
@@ -19,7 +20,7 @@ export default function Checkout() {
 
    const navigate = useNavigate()
 
-   const total = cart.reduce((sum, item) => sum + item.price, 4.99)
+   const total = cart.reduce((sum, item) => sum + item.price, SHIPPING_COST)
 
    useEffect(() => {
       fetchCart()
@@ -35,7 +36,7 @@ export default function Checkout() {
    }
 
    return (<>
-      <PageHeading>Kauf bestätigen</PageHeading>
+      <Heading>Kauf bestätigen</Heading>
 
       <div className="flex flex-col justify-center p-0 sm:px-10 md:px-16 lg:px-24 text-sm lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
          <AnimatePresence>
@@ -71,7 +72,7 @@ export default function Checkout() {
                         <div className="flex flex-col my-4 md:ml-auto px-1">
                            <div className="flex justify-between text-sm sm:text-base lg:text-lg">
                               <span>Versand:</span>
-                              <span className="font-bold price">+4,99 €</span>
+                              <span className="font-bold price">+{SHIPPING_COST} €</span>
                            </div>
                            <div className="flex justify-between text-sm sm:text-base lg:text-lg">
                               <span>Summe:</span>

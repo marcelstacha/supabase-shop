@@ -1,10 +1,10 @@
 import { MagnifyingGlassIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect, ChangeEvent, useRef } from "react";
-import useDebounce from "../hooks/useDebounce";
-import PhoneProps from "../interfaces/PhoneProps";
 import { motion } from "motion/react"
 import { NavLink, useLocation } from "react-router-dom";
-import { useProductsStore } from "../store/useProductsStore";
+import useDebounce from "../../hooks/useDebounce";
+import PhoneProps from "../../interfaces/PhoneProps";
+import { useProductsStore } from "../../store/useProductsStore";
 
 export default function SearchMobile() {
 
@@ -75,9 +75,10 @@ export default function SearchMobile() {
    return (<>
       <div ref={ref}
          onBlur={handleBlur}
+         className="lg:hidden"
       >
          <span
-            className="group sm:hidden flex items-center px-0 sm:px-2 cursor-pointer"
+            className="group flex items-center px-0 sm:px-2 cursor-pointer"
             onTouchEnd={handleOpen}
          >
             <MagnifyingGlassIcon

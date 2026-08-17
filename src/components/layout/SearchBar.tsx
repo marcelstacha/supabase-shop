@@ -1,10 +1,10 @@
 import { ChangeEvent, useState } from "react"
-import useDebounce from "../hooks/useDebounce"
-import PhoneProps from "../interfaces/PhoneProps"
 import { NavLink } from "react-router-dom"
 import { motion } from "motion/react"
 import { XCircleIcon } from "@heroicons/react/24/outline"
-import { useProductsStore } from "../store/useProductsStore"
+import useDebounce from "../../hooks/useDebounce"
+import PhoneProps from "../../interfaces/PhoneProps"
+import { useProductsStore } from "../../store/useProductsStore"
 
 export default function SearchBar() {
 
@@ -41,7 +41,7 @@ export default function SearchBar() {
    }
 
    return (<>
-      <div className="hidden sm:block relative content-center m-auto mx-6 md:mx-6 w-full">
+      <div className="relative content-center w-full">
          <div className="">
             <input
                name="search"

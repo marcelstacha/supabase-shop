@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
 import FavoritesProps from "../interfaces/FavoritesProps";
 import { clean } from "../utils/utils"
-import DeleteIcon from "./DeleteIcon";
-import CartIcon from "./CartIcon";
+import CartIcon from "./ui/CartIcon";
+import DeleteIcon from "./ui/DeleteIcon";
+
 import { useCartStore } from "../store/useCartStore";
 import { useFavoritesStore } from "../store/useFavoritesStore";
 

@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import PageHeading from "../components/PageHeading";
+import { useEffect, useState, useRef } from "react";
+import Heading from "../components/layout/Heading";
 import OrderList from "../components/OrderList";
 import { useAuthStore } from "../store/useAuthStore";
 import { useOrdersStore } from "../store/useOrdersStore";
@@ -20,8 +20,7 @@ export default function User() {
 
    useEffect(() => {
       fetchOrders()
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [user]);
+   }, [fetchOrders, user]);
 
    useEffect(() => {
       fetchCart()
@@ -29,8 +28,7 @@ export default function User() {
       if (user) {
          syncDBCart(user)
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [user])
+   }, [fetchCart, user])
 
    let orderNumberText = ""
 
@@ -50,9 +48,26 @@ export default function User() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
    };
 
+   const [borderColor, setBorderColor] = useState("border-gray-900");
+   const prevUser = useRef(user);
+
+   useEffect(() => {
+
+      if (prevUser.current === null && user !== null) {
+         setBorderColor("border-accent");
+         setTimeout(() => setBorderColor("border-gray-900"), 2500);
+      }
+      else if (prevUser.current !== null && user === null) {
+         setBorderColor("border-red-600");
+         setTimeout(() => setBorderColor("border-gray-900"), 2500);
+      }
+
+      prevUser.current = user;
+   }, [user]);
+
    return (<>
-      <PageHeading>Profil</PageHeading>
-      <div className="flex flex-col justify-center m-auto p-6 sm:p-8 lg:p-10 text-sm sm:text-base lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
+      <Heading>Profil</Heading>
+      <div className={`flex flex-col justify-center m-auto p-6 sm:p-8 lg:p-10 text-sm sm:text-base lg:text-lg text-nowrap bg-white border ${borderColor} rounded-lg transition-colors duration-1000`}>
          {!user && error && <div>Fehler</div>}
          {user ?
             <>

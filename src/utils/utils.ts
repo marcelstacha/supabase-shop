@@ -27,8 +27,3 @@ export function offsetID(id: number) {
 
    return newID
 }
-
-export function fill(num: number, digits: number) {
-   const number = num.toFixed(digits)
-   return number
-}

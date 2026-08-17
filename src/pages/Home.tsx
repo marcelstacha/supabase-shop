@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import PageHeading from "../components/PageHeading";
-import ShuffledGrid from "../components/ShuffledGrid";
-import BestPhones from "../components/BestPhones";
-import Splash from "../components/Splash";
+import Heading from "../components/layout/Heading";
+import BestPhones from "../components/home/BestPhones";
+import Splash from "../components/home/Splash";
 import { useProductsStore } from "../store/useProductsStore";
 import { AnimatePresence, motion } from "motion/react"
-import AllProductsButton from "../components/AllProductsButton";
+import AllProductsButton from "../components/ui/AllProductsButton";
+import ShuffledGrid from "../components/home/ShuffledGrid";
 
 export default function Home() {
 
@@ -14,14 +14,11 @@ export default function Home() {
    const fetchProducts = useProductsStore((state) => state.fetchProducts);
 
    useEffect(() => {
-
       fetchProducts()
-
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [])
+   }, [fetchProducts])
 
    return (<>
-      <PageHeading>Willkommen!</PageHeading>
+      <Heading>Willkommen!</Heading>
       <AnimatePresence>
          <motion.div
             initial={{ opacity: 0 }}

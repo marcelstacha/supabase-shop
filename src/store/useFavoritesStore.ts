@@ -7,6 +7,7 @@ interface FavoritesState {
    favorites: FavoritesProps[];
    isLoading: boolean;
    error: string;
+   loadedUserId: string | null;
    fetchFavorites: () => Promise<void>;
    toggleFavorite: (id: number) => Promise<void>,
    deleteFavorite: (id: number) => Promise<void>,
@@ -16,14 +17,15 @@ export const useFavoritesStore = create<FavoritesState>()(function (set, get) {
 
    return {
       favorites: [] as FavoritesProps[],
-      isLoading: false,
+      isLoading: true,
       error: "",
+      loadedUserId: null,
 
       async fetchFavorites() {
          const user = useAuthStore.getState().user
 
          if (!user) {
-            set({ favorites: [], isLoading: false })
+            set({ favorites: [], isLoading: false, loadedUserId: null })
             return;
          }
 
@@ -37,10 +39,10 @@ export const useFavoritesStore = create<FavoritesState>()(function (set, get) {
             .order("prod_name", { ascending: true })
 
          if (data) {
-            set({ favorites: data, isLoading: false })
+            set({ favorites: data, isLoading: false, loadedUserId: user.id })
          }
          if (error) {
-            set({ error: error.message, isLoading: false })
+            set({ error: error.message, isLoading: false, loadedUserId: user.id })
          }
       },
 

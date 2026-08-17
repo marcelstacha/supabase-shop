@@ -4,10 +4,11 @@ import { DevicePhoneMobileIcon, BookOpenIcon } from "@heroicons/react/24/outline
 import { NavLink } from "react-router-dom";
 
 import Phone from "../components/Phone"
-import PageHeading from "../components/PageHeading";
-import FilterButton from "../components/FilterButton";
+import Heading from "../components/layout/Heading";
+import FilterButton from "../components/ui/FilterButton";
 import { useProductsStore } from "../store/useProductsStore";
 import { useFavoritesStore } from "../store/useFavoritesStore";
+import { useAuthStore } from "../store/useAuthStore";
 
 export default function PhoneGrid() {
 
@@ -21,6 +22,7 @@ export default function PhoneGrid() {
    const fetchProducts = useProductsStore((state) => state.fetchProducts)
    const error = useProductsStore((state) => state.error)
    const loadingProducts = useProductsStore((state) => state.isLoading)
+   const user = useAuthStore((state) => state.user)
 
 
    const { filteredSorted, sortText, filterText } = useMemo(() => {
@@ -72,11 +74,12 @@ export default function PhoneGrid() {
    }, [phones, filterBy, sortBy])
 
    useEffect(() => {
-      fetchFavorites();
       fetchProducts();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, []);
+   }, [fetchProducts]);
 
+   useEffect(() => {
+      fetchFavorites();
+   }, [fetchFavorites, user]);
 
    function sortHandler(e: ChangeEvent<HTMLSelectElement>) {
       setSortBy(e.target.value)
@@ -88,7 +91,7 @@ export default function PhoneGrid() {
 
    return (
       <>
-         <PageHeading>Produkte</PageHeading>
+         <Heading>Produkte</Heading>
 
          <h2
             key={filteredSorted.length}

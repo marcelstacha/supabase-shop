@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom"
-import Header from "../components/Header"
-import Footer from "../components/Footer"
+import TopBanner from "../components/layout/TopBanner"
+import Footer from "../components/layout/Footer"
 
 export default function Layout() {
 
    return (<>
       <div className="flex flex-col px-2 md:px-4">
-         <Header />
+         <TopBanner />
          <main className="flex-grow">
             <Outlet />
          </main>

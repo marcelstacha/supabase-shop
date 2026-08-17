@@ -1,10 +1,10 @@
 import { motion } from "motion/react"
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import PhoneProps from "../interfaces/PhoneProps";
 
 import placeholder from "/placeholder.svg";
-import { useProductsStore } from "../store/useProductsStore";
+import PhoneProps from "../../interfaces/PhoneProps";
+import { useProductsStore } from "../../store/useProductsStore";
 
 export default function ShuffledGrid() {
 
@@ -51,7 +51,7 @@ export default function ShuffledGrid() {
                      transition={{ duration: 0.5 }}
                   >
                      <img
-                        className="sm:m-3 max-w-fit h-14 sm:h-16 md:h-20 lg:h-20 xl:h-28 object-contain"
+                        className="sm:m-3 max-w-fit h-14 sm:h-16 md:h-20 lg:h-20 xl:h-32 object-contain"
                         src={placeholder}
                      />
                   </motion.div>
@@ -65,7 +65,7 @@ export default function ShuffledGrid() {
                      transition={{ duration: 0.5 }}
                   >
                      <img
-                        className="sm:m-3 max-w-fit h-14 sm:h-16 md:h-20 lg:h-20 xl:h-28 object-contain"
+                        className="sm:m-3 max-w-fit h-14 sm:h-16 md:h-20 lg:h-20 xl:h-32 object-contain"
                         src={`${phone.img}-${phone.isFront ? 2 : 1}.jpg`}>
                      </img>
                   </motion.div>

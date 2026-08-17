@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "motion/react"
-import PageHeading from "../components/PageHeading";
+import Heading from "../components/layout/Heading";
 import { CheckBadgeIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 
@@ -14,7 +14,7 @@ export default function Confirmation() {
             transition={{ duration: 1.5 }}
          >
             <div className="mt-16 md:mt-36">
-               <PageHeading>Vielen Dank für Ihren Einkauf!</PageHeading>
+               <Heading>Vielen Dank für Ihren Einkauf!</Heading>
             </div>
             <CheckBadgeIcon
                className="m-auto my-8 md:my-16 w-24 stroke-green-500"

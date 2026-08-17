@@ -4,11 +4,13 @@ import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import { motion } from "motion/react"
 import { formatDate, formatPrice } from "../utils/utils";
 import useCurrentPhone from "../hooks/useCurrentPhone";
-import CartButton from "../components/CartButton";
-import Heart from "../components/Heart";
+import CartButton from "../components/ui/CartButton";
+import HeartIcon from "../components/ui/HeartIcon"
+
 import PhoneDetailTable from "../components/PhoneDetailTable";
 import { useCartStore } from "../store/useCartStore";
 import { useAuthStore } from "../store/useAuthStore";
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
 export default function PhoneDetail() {
 
@@ -21,10 +23,15 @@ export default function PhoneDetail() {
 
    const user = useAuthStore((state) => state.user)
    const addToCart = useCartStore((state) => state.addToCart)
+   const fetchFavorites = useFavoritesStore((state) => state.fetchFavorites)
 
    useEffect(() => {
       window.scrollTo(0, 0)
    }, [id])
+
+   useEffect(() => {
+      fetchFavorites();
+   }, [fetchFavorites, user]);
 
    function handleAdd(id: number) {
       if (!isAnimating) {
@@ -75,7 +82,7 @@ export default function PhoneDetail() {
                      </div>
                      {user &&
                         <div className="group top-4 right-4 absolute">
-                           <Heart
+                           <HeartIcon
                               isPreview={false}
                               id={Number(id)}
                            />

@@ -3,6 +3,7 @@ import OrderRow from "./OrderRow";
 import React from "react";
 import { formatPrice, offsetID } from "../utils/utils";
 import OrdersProps from "../interfaces/OrdersProps";
+import { SHIPPING_COST } from "../utils/constants";
 
 interface OrderSingleProps {
    item: OrdersProps[]
@@ -11,7 +12,7 @@ interface OrderSingleProps {
 export default function OrderSingle({ item }: OrderSingleProps) {
    const [isOpen, setIsOpen] = useState(false)
 
-   const sum = item.reduce((acc, order) => acc + order.price, 4.99)
+   const sum = item.reduce((acc, order) => acc + order.price, SHIPPING_COST)
 
    function handleOpen() {
       setIsOpen((prev) => !prev)
@@ -57,7 +58,7 @@ export default function OrderSingle({ item }: OrderSingleProps) {
                         {item.length - 1 == index && <>
                            <div className="flex flex-row justify-end gap-2 mt-2 text-[0.65rem] sm:text-base md:text-lg lg:text-lg">
                               <span>Versand:</span>
-                              <span className="font-bold price">+4,99 €</span>
+                              <span className="font-bold price">+{SHIPPING_COST} €</span>
                            </div>
                            <hr className="my-2 h-[2px] bg-gray-600 hover:bg-gray-900" />
                            <div className="flex flex-row justify-end gap-2 md:mt-4 mr-1 text-[0.65rem] sm:text-base md:text-lg lg:text-xl">

@@ -1,6 +1,8 @@
 import PhoneProps from "./PhoneProps";
 
-export default interface OrdersProps extends Pick<PhoneProps, "brand" | "name" | "price" | "img"> {
+export default interface OrdersProps extends Pick<PhoneProps,
+   "brand" | "name" | "price" | "img"
+> {
    id: number;
    order_id: number;
    prod_id: number;

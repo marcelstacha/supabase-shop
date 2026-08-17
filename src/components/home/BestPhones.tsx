@@ -1,4 +1,4 @@
-import PhoneProps from "../interfaces/PhoneProps"
+import PhoneProps from "../../interfaces/PhoneProps"
 import BestPhoneItem from "./BestPhoneItem"
 import { motion } from "motion/react"
 

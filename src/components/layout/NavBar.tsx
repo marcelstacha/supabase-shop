@@ -1,10 +1,10 @@
 import { UserCircleIcon, HeartIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
-import SearchMobile from "./SearchMobile";
-import ShoppingCart from "./ShoppingCart";
-import { useCartStore } from "../store/useCartStore";
 import { useEffect } from "react";
-import { useAuthStore } from "../store/useAuthStore";
+import { useAuthStore } from "../../store/useAuthStore";
+import { useCartStore } from "../../store/useCartStore";
+import ShoppingCart from "../ShoppingCart";
+import SearchMobile from "./SearchMobile";
 
 export default function NavBar() {
 
@@ -19,7 +19,7 @@ export default function NavBar() {
 
    return (<>
 
-      <div className="z-[70] flex sm:flex justify-between items-center gap-3 sm:gap-1 md:gap-4 md:mr-4 w-40 text-sm md:text-4xl">
+      <div className="z-[70] flex sm:flex justify-between items-center gap-2 sm:gap-0 min-[500px]:gap-3 md:gap-2 text-sm md:text-4xl">
 
          <SearchMobile />
          <NavLink

@@ -1,13 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/Layout";
-import './App.css';
 import Home from "./pages/Home";
 import User from "./pages/User";
 import Cart from "./pages/Cart";
 import Favorites from "./pages/Favorites";
 import PhoneDetail from "./pages/PhoneDetail";
 import PhoneGrid from "./pages/PhoneGrid";
-
 import Checkout from "./pages/Checkout";
 import Confirmation from "./pages/Confirmation";
 
@@ -49,8 +47,7 @@ function App() {
       } else {
          fetchCart()
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [user])
+   }, [user, fetchCart])
 
    return (
       <AnimatePresence mode="wait">

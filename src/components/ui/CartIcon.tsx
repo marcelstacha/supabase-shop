@@ -1,8 +1,8 @@
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
-import CartProps from "../interfaces/CartProps";
-import FavoritesProps from "../interfaces/FavoritesProps";
 import { motion } from "motion/react"
 import { useState } from "react";
+import CartProps from "../../interfaces/CartProps";
+import FavoritesProps from "../../interfaces/FavoritesProps";
 
 interface CartIconProps {
    item: CartProps | FavoritesProps;

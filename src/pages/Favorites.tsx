@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import FavoriteList from "../components/FavoriteList";
-import PageHeading from "../components/PageHeading";
-import QuantityDisplay from "../components/QuantityDisplay";
+import Heading from "../components/layout/Heading";
+import QuantityDisplay from "../components/ui/QuantityDisplay";
+
 import { useFavoritesStore } from "../store/useFavoritesStore";
 import { useAuthStore } from "../store/useAuthStore";
 
@@ -21,15 +22,14 @@ export default function Favorites() {
 
    useEffect(() => {
       fetchFavorites()
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [user])
+   }, [fetchFavorites, user])
 
    useEffect(() => {
       setFiltered(favorites)
    }, [favorites]);
 
    return (<>
-      <PageHeading>Favoriten</PageHeading>
+      <Heading>Favoriten</Heading>
 
       <div className="flex flex-col justify-center items-center p-0 py-1 md:py-8 min-h-20 text-sm lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
          {user && isLoading && filtered.length == 0 ? <span className="flex justify-center text-wrap">Laden...</span>

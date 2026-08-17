@@ -6,8 +6,8 @@ export default function CartList({ filtered, optimisticUpdate }: { filtered: Car
 
    return (<>
       <AnimatePresence>
-         <div className="m-auto w-[95%] xl:w-[1175px]">
-            <table className="mt-1 w-full text-xs sm:text-sm md:text-lg bg-white">
+         <div className="m-auto w-full min-[380px]:w-[95%] xl:w-[1175px]">
+            <table className="mt-1 w-full text-xs sm:text-sm md:text-lg bg-white border-separate border-spacing-[1px]">
                <thead className="text-xs sm:text-sm">
                   <tr>
                      <th>Bild</th>

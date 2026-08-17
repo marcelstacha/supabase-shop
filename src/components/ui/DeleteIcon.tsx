@@ -1,6 +1,6 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
-import FavoritesProps from "../interfaces/FavoritesProps";
-import CartProps from "../interfaces/CartProps";
+import CartProps from "../../interfaces/CartProps";
+import FavoritesProps from "../../interfaces/FavoritesProps";
 
 interface DeleteIconProps {
    item: CartProps | FavoritesProps;

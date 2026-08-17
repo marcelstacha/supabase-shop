@@ -4,6 +4,8 @@ import { supabase } from "../supabaseClient";
 import { clearLocalIDs } from "../utils/localStorageHelper";
 import { FormEvent } from "react";
 import { useCartStore } from "./useCartStore";
+import { useFavoritesStore } from "./useFavoritesStore";
+import { useOrdersStore } from "./useOrdersStore";
 
 type AuthState = {
    user: User | null;
@@ -43,11 +45,9 @@ export const useAuthStore = create<AuthState>()(function (set) {
                password,
             });
             if (error) {
-               console.error("Login fehlgeschlagen -", error);
                set({ error: error });
             } else if (data) {
                set({ error: undefined, user: data.user });
-               console.log(`%cLogin erfolgreich`, `color: #55FF00`)
             }
          } catch (e) {
             console.error(e as AuthError);
@@ -61,6 +61,8 @@ export const useAuthStore = create<AuthState>()(function (set) {
          set({ user: null });
          clearLocalIDs();
          useCartStore.setState({ cart: [], filtered: [] })
+         useFavoritesStore.setState({ favorites: [], isLoading: true, loadedUserId: null });
+         useOrdersStore.setState({ orders: [] });
       }
 
    }

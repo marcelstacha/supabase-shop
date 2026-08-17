@@ -1,7 +1,7 @@
 export default function Splash() {
    return (
       <>
-         <div className="relative flex justify-center h-32 sm:h-44 md:h-52 lg:h-[16rem] 2xl:h-[25.5rem] xl:h-[22rem] align-middle">
+         <div className="relative flex justify-center h-32 sm:h-40 md:h-52 lg:h-[15rem] 2xl:h-[24.5rem] xl:h-[20rem] align-middle">
             <img
                className="top-9 xl:top-16 left-4 sm:left-16 xl:left-36 absolute w-6 sm:w-8 xl:w-12 animate-spin"
                style={{ animationDuration: '7s' }}
@@ -17,7 +17,7 @@ export default function Splash() {
                <h6 className="pt-1 text-[0.7rem] sm:text-sm md:text-base leading-3">von Asus bis Xiaomi</h6>
             </div>
             <img
-               className="top-4 absolute w-64 sm:w-96 md:w-[30rem] lg:w-[38rem] 2xl:w-[64rem] xl:w-[50rem] opacity-75"
+               className="top-2 lg:-top-4 absolute w-64 sm:w-96 md:w-[30rem] lg:w-[38rem] 2xl:w-[64rem] xl:w-[50rem] opacity-75"
                src="/line.svg">
             </img>
             <img
