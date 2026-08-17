@@ -26,7 +26,7 @@ export default function CartRow({ item, update }: { item: CartProps, update: (id
 
    return (<>
       <tr key={id} className="group text-xs lg:text-base xl:hover:cursor-pointer !">
-         <td className="pr-0 pl-0 size-10 sm:size-16 md:size-20 xl:size-20 xl:group-hover:bg-accent/5 rounded-lg">
+         <td className="pr-0 pl-0 xl:w-20 xl:h-28 size-10 sm:size-16 md:size-20 xl:group-hover:bg-accent/5">
             <NavLink to={`/phonedetail/${id}`} className="">
                <img
                   className="m-auto min-[400px]:p-[2px] sm:py-2 h-full xl:h-24 object-contain xl:group-hover:brightness-105 transition"
@@ -46,7 +46,7 @@ export default function CartRow({ item, update }: { item: CartProps, update: (id
                </div>
             </NavLink>
          </td>
-         <td className="px-1 sm:px-8 w-[4.5rem] text-[0.7rem] sm:text-base md:text-lg xl:group-hover:bg-accent/5 price">
+         <td className="px-1 sm:px-3 w-[4.5rem] text-[0.7rem] sm:text-base md:text-lg xl:group-hover:bg-accent/5 price">
             <NavLink
                to={`/phonedetail/${id}`}
                className=""

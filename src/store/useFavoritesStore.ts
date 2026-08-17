@@ -80,6 +80,11 @@ export const useFavoritesStore = create<FavoritesState>()(function (set, get) {
          const user = useAuthStore.getState().user
 
          if (!user) return
+
+         set((state) => ({
+            favorites: state.favorites ? state.favorites.filter((item) => item.prod_id !== id) : []
+         }));
+
          const { error } = await supabase
             .from('favorites')
             .delete()

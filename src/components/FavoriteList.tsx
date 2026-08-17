@@ -2,12 +2,12 @@ import { AnimatePresence, motion } from "motion/react"
 import FavoriteRow from "./FavoriteRow";
 import FavoritesProps from "../interfaces/FavoritesProps";
 
-export default function FavoriteList({ filtered, optimisticUpdate }: { filtered: FavoritesProps[], optimisticUpdate: (id: number) => void }) {
+export default function FavoriteList({ filtered }: { filtered: FavoritesProps[] }) {
 
    return (<>
       <AnimatePresence>
-         <div>
-            <table className="mt-1 mb-2 lg:w-auto text-xs sm:text-sm md:text-lg bg-white">
+         <div className="w-[99%] sm:w-[95%]">
+            <table className="mt-1 mb-2 w-full text-xs sm:text-sm md:text-lg bg-white">
                <thead className="text-xs sm:text-sm">
                   <tr>
                      <th>Bild</th>
@@ -15,8 +15,8 @@ export default function FavoriteList({ filtered, optimisticUpdate }: { filtered:
                      <th className="hidden lg:table-cell px-2">Bildschirm</th>
                      <th className="hidden xl:table-cell">SOC</th>
                      <th className="hidden lg:table-cell w-28">Akku</th>
-                     <th className="hidden xl:table-cell">Laden</th>
-                     <th className="hidden xl:table-cell">Kabellos</th>
+                     <th className="hidden 2xl:table-cell">Laden</th>
+                     <th className="hidden 2xl:table-cell">Kabellos</th>
                      <th>Preis</th>
                      <th></th>
                   </tr>
@@ -31,7 +31,6 @@ export default function FavoriteList({ filtered, optimisticUpdate }: { filtered:
                      <FavoriteRow
                         key={item.prod_id}
                         item={item}
-                        update={optimisticUpdate}
                      />
                   ))}
 

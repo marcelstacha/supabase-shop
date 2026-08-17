@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import FavoriteList from "../components/FavoriteList";
 import Heading from "../components/layout/Heading";
 import QuantityDisplay from "../components/ui/QuantityDisplay";
@@ -14,36 +14,26 @@ export default function Favorites() {
    const fetchFavorites = useFavoritesStore((state) => state.fetchFavorites)
    const isLoading = useFavoritesStore((state) => state.isLoading)
 
-   const [filtered, setFiltered] = useState(favorites || [])
-
-   function optimisticUpdate(id: number) {
-      setFiltered((prev) => prev.filter((item) => (item.prod_id != id)))
-   }
 
    useEffect(() => {
       fetchFavorites()
    }, [fetchFavorites, user])
 
-   useEffect(() => {
-      setFiltered(favorites)
-   }, [favorites]);
-
    return (<>
       <Heading>Favoriten</Heading>
 
       <div className="flex flex-col justify-center items-center p-0 py-1 md:py-8 min-h-20 text-sm lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
-         {user && isLoading && filtered.length == 0 ? <span className="flex justify-center text-wrap">Laden...</span>
+         {user && isLoading && favorites.length == 0 ? <span className="flex justify-center text-wrap">Laden...</span>
             : (
-               user && filtered.length > 0 ? (
+               user && favorites.length > 0 ? (
                   <>
                      <QuantityDisplay
                         isCart={false}
-                        filtered={filtered}
+                        filtered={favorites}
                         user={user}
                      />
                      <FavoriteList
-                        filtered={filtered}
-                        optimisticUpdate={optimisticUpdate}
+                        filtered={favorites}
                      />
                   </>
                ) : (user
