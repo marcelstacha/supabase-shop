@@ -35,7 +35,7 @@ export default function CartRow({ item, update }: { item: CartProps, update: (id
                />
             </NavLink>
          </td>
-         <td className="p-0 w-28 sm:w-56 h-[1px] xl:group-hover:bg-accent/5 rounded-lg">
+         <td className="p-0 w-28 sm:w-56 h-[1px] xl:group-hover:bg-accent/5">
             <NavLink
                to={`/phonedetail/${id}`}
                className="flex flex-col justify-center px-1 lg:px-16 w-full h-full"
@@ -46,7 +46,7 @@ export default function CartRow({ item, update }: { item: CartProps, update: (id
                </div>
             </NavLink>
          </td>
-         <td className="px-1 sm:px-8 w-[4.5rem] text-[0.7rem] sm:text-base md:text-lg xl:group-hover:bg-accent/5 rounded-lg price">
+         <td className="px-1 sm:px-8 w-[4.5rem] text-[0.7rem] sm:text-base md:text-lg xl:group-hover:bg-accent/5 price">
             <NavLink
                to={`/phonedetail/${id}`}
                className=""
@@ -54,10 +54,10 @@ export default function CartRow({ item, update }: { item: CartProps, update: (id
                {clean(item.price)} €
             </NavLink>
          </td>
-         <td className="pr-0 pl-0 h-[1px] size-10 sm:size-16 md:size-20 xl:size-20 xl:group-hover:bg-red-100/30 rounded-lg" onClick={() => handleDelete(id)}>
+         <td className="group/delete pr-0 pl-0 h-[1px] size-10 sm:size-16 md:size-20 xl:size-20 xl:hover:bg-red-600/100" onClick={() => handleDelete(id)}>
             <div className="flex justify-center items-center w-full h-full">
                <DeleteIcon
-                  style={"md:w-7 md:h-7 w-4 h-4 sm:w-6 sm:h-6 p-0 lg:w-10 lg:h-10 "}
+                  style={"md:w-7 md:h-7 w-4 h-4 sm:w-6 sm:h-6 p-0 lg:w-10 lg:h-10 group-hover/delete:stroke-white"}
                   item={item}
                />
             </div>

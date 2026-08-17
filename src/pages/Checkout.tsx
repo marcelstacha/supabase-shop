@@ -24,8 +24,7 @@ export default function Checkout() {
 
    useEffect(() => {
       fetchCart()
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [])
+   }, [fetchCart])
 
 
    async function handleConfirm() {

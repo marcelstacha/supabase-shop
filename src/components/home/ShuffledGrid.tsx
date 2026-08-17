@@ -33,8 +33,7 @@ export default function ShuffledGrid() {
          }
          setShuffled(arr)
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [phones])
+   }, [indices, phones, shuffled.length])
 
    return (<>
       <NavLink

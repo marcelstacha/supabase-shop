@@ -25,14 +25,6 @@ export default function Splash() {
                style={{ animationDuration: '13s' }}
                src="/star.svg">
             </img>
-
-            {/*
-            <img
-               className="invisible xl:visible 2xl:top-80 xl:top-64 2xl:right-[21.5rem] xl:right-64 absolute w-4 sm:w-4 md:w-5 lg:w-6 2xl:w-8 xl:w-7 animate-spin"
-               style={{ animationDuration: '9s' }}
-               src="./star.svg">
-            </img>
-            */}
          </div>
       </>
    );

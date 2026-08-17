@@ -9,11 +9,9 @@ export default function ShoppingCart({ length }: ShoppingCartProps) {
    return (<>
       {(length > 0) &&
          <>
-            {/* z-10 cart length white border*/}
             <span className="top-1/3 left-1/2 z-10 absolute py-0 text-xs border-solid -translate-x-1/2 -translate-y-1/2 length price">
                {length}
             </span>
-            {/* z-20 cart length black number */}
             <span className="top-1/3 left-1/2 z-20 absolute py-0 font-bold text-gray-900 text-xs border-solid -translate-x-1/2 -translate-y-1/2 price">
                {length}
             </span>
