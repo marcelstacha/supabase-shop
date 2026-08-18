@@ -3,7 +3,7 @@ export default function Splash() {
       <>
          <div className="relative flex justify-center h-32 sm:h-40 md:h-52 lg:h-[15rem] 2xl:h-[24.5rem] xl:h-[20rem] align-middle">
             <img
-               className="top-9 xl:top-16 left-4 sm:left-16 xl:left-36 absolute w-6 sm:w-8 xl:w-12 animate-spin"
+               className="top-5 md:top-8 lg:top-6 xl:top-10 left-4 sm:left-16 xl:left-36 absolute w-6 sm:w-8 lg:w-10 2xl:w-14 xl:w-12 animate-spin"
                style={{ animationDuration: '7s' }}
                src="/star.svg">
             </img>
