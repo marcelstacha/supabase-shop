@@ -21,29 +21,3 @@ export default function RedirectButton({ clickPath, text }: { clickPath: string,
       </div>
    </>)
 }
-
-
-/*
-
-Nur angemeldete Nutzer können Favoriten hinzufügen.
-
-Anmelden
-navigate('/user')
-
-
-
-
- Keine gespeicherten Favoriten.
-
-Favoriten finden
-navigate('/phonegrid')
-
-
-
-
-Es befinden sich keine Produkte im Warenkorb.
-
-Produkte hinzufügen
-navigate('/phonegrid')
-
-*/
