@@ -95,7 +95,7 @@ export default function PhoneGrid() {
 
          <h2
             key={filteredSorted.length}
-            className="mb-3 2xl:-mb-14 xl:-mb-[3.25rem] text-sm sm:text-base md:text-lg"
+            className="mb-3 min-[1400px]:-mb-[3.25rem] 2xl:-mb-14 text-sm sm:text-base md:text-lg"
          >
             [{filterText} ({filteredSorted.length}) / {sortText}]
          </h2>
@@ -106,7 +106,7 @@ export default function PhoneGrid() {
             : <>
                <div className="flex flex-row justify-between items-center lg:mx-auto my-1 sm:my-4 sm:mb-2 w-full">
 
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 sm:gap-2">
 
                      <FilterButton
                         filterBy={filterBy}
