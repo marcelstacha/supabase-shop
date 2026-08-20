@@ -1,10 +1,10 @@
-import { formatPrice } from "../utils/utils";
-import PhoneProps from "../interfaces/PhoneProps";
-import CartButton from "./ui/CartButton";
 import { useState } from "react";
+import { formatPrice } from "../utils/utils";
+import CartButton from "./ui/CartButton";
+import HeartIcon from "./ui/HeartIcon";
 import { useAuthStore } from "../store/useAuthStore";
 import { useCartStore } from "../store/useCartStore";
-import HeartIcon from "./ui/HeartIcon";
+import PhoneProps from "../interfaces/PhoneProps";
 
 export default function Phone({ id, img, name, brand, price }: PhoneProps) {
 
@@ -22,7 +22,7 @@ export default function Phone({ id, img, name, brand, price }: PhoneProps) {
          addToCart(id)
          setTimeout(() => {
             setIsAnimating(false)
-         }, 1200)
+         }, 1000)
       }
    }
 

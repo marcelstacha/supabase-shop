@@ -1,7 +1,7 @@
 import { useState } from "react";
 import OrderRow from "./OrderRow";
 import React from "react";
-import { formatPrice, offsetID } from "../utils/utils";
+import { formatPrice } from "../utils/utils";
 import OrdersProps from "../interfaces/OrdersProps";
 import { SHIPPING_COST } from "../utils/constants";
 
@@ -33,14 +33,16 @@ export default function OrderSingle({ item }: OrderSingleProps) {
             });
 
             return (
-               <React.Fragment key={order.id}>
+               <React.Fragment
+                  key={order.id}
+               >
                   <div>
                      {index == 0
                         && <>
                            <div
                               className="flex justify-center gap-1 my-1"
                            >
-                              <span><b>#{offsetID(order.order_id)}</b></span>
+                              <span><b>#{order.order_id}</b></span>
                               <span>({dateString})</span>
                            </div>
                            {isOpen &&

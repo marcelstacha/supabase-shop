@@ -61,9 +61,7 @@ export default function HeartIcon({ id, isPreview = true }: HeartProps) {
    }
 
    let style = ""
-   if (isPreview) {
-      style = ""
-   } else {
+   if (!isPreview) {
       style = "top-0 right-0 sm:h-7 sm:w-7 sm:right-2 sm:top-2 md:h-8 md:w-8 lg:h-9 lg:w-9 lg:right-4 lg:top-3"
    }
 
@@ -78,9 +76,8 @@ export default function HeartIcon({ id, isPreview = true }: HeartProps) {
                >
                   <HIcon
                      onClick={(e) => handleHeart(e)}
-                     className={`h-6 w-6 -top-1 right-1 sm:top-0 sm:right-2 absolute cursor-pointer
-                        transition md:hover:fill-red-300 fill-white
-                        ${isLoadingNew ? "stroke-gray-600" : "stroke-black"}
+                     className={`h-6 w-6 -top-1 right-1 sm:top-0 sm:right-2 absolute cursor-pointer transition md:hover:fill-red-300 fill-white
+                        ${isLoadingNew ? "stroke-gray-600" : "stroke-gray-900"}
                         ${optimisticFav ? "!fill-red-500 md:hover:!fill-red-700" : ""}
                         ${style}
                      `}

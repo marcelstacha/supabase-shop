@@ -59,7 +59,7 @@ export default function BestPhoneItem({ category, item }: BestPhoneItemProps) {
    return <>
       <NavLink to={`/phonedetail/${item[bestPhoneId].id}`}>
          <div className="group relative py-2 sm:py-4 lg:py-5 xl:py-6 sm:pt-3 overflow-hidden md:hover:bg-accent/5 border border-gray-900 rounded-lg transition cursor-pointer">
-            <div className="flex lg:flex-row flex-col justify-center items-center m-auto lg:mb-6 p-6 py-1 lg:w-[19.5rem] sm:size-fit lg:text-white lg:bg-black rounded-full">
+            <div className="flex lg:flex-row flex-col justify-center items-center m-auto lg:mb-6 p-6 py-1 lg:w-[19.5rem] sm:size-fit lg:text-white lg:bg-gray-900 rounded-full">
                <div className="flex lg:flex-row flex-col items-center lg:gap-1 lg:mr-[3px] text-center gap">
                   <span className="p-0 w-auto font-bold text-xs sm:text-sm lg:text-base leading-1">
                      {text[0]}
@@ -71,7 +71,7 @@ export default function BestPhoneItem({ category, item }: BestPhoneItemProps) {
                      :
                   </span>
                </div>
-               <span className="flex flex-row lg:m-0 my-1 lg:mt-[1px] lg:ml-[3px] px-3 md:px-4 lg:px-0 py-0 lg:pb-[2px] font-normal text-accent text-md sm:text-base lg:text-lg bg-black lg:bg-transparent rounded-full price">
+               <span className="flex flex-row lg:m-0 my-1 lg:mt-[1px] lg:ml-[3px] px-3 md:px-4 lg:px-0 py-0 lg:pb-[2px] font-normal text-accent text-md sm:text-base lg:text-lg bg-gray-900 lg:bg-transparent rounded-full price">
                   {val}
                   <div className="pl-[0.125rem] tracking-wider">{unit}</div>
                </span>

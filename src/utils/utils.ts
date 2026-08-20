@@ -18,12 +18,3 @@ export function formatDate(date: string, short?: boolean) {
 
    return output
 }
-
-export function offsetID(id: number) {
-
-   const offset = 13
-   const multiplier = 31
-   const newID = (id * multiplier) + offset
-
-   return newID
-}

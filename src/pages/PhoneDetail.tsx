@@ -39,7 +39,7 @@ export default function PhoneDetail() {
          addToCart(id)
          setTimeout(() => {
             setIsAnimating(false)
-         }, 1200)
+         }, 1000)
       }
    }
 

@@ -11,7 +11,7 @@ export default function OrderList() {
    }
 
    return (
-      <div className="relative h-[24rem] sm:h-[32rem]">
+      <div className="relative flex flex-col justify-center m-auto w-full lg:w-[45rem] h-[24rem] sm:h-[32rem] lg:h-[45rem]">
          <div className="pb-14 h-full overflow-y-auto">
             {orders.length > 0 && (
                orders.slice().reverse().map((item) => (

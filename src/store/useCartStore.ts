@@ -12,7 +12,6 @@ interface CartState {
 
    setFiltered: (filtered: CartProps[]) => void;
    setCart: (cart: CartProps[]) => void
-
    addToCart: (id: number) => Promise<void>;
    removeFromCart: (id: number) => Promise<void>;
    fetchCart: () => Promise<void>;
@@ -84,10 +83,6 @@ export const useCartStore = create<CartState>()(function (set, get) {
 
 
       async addToCart(id: number) {
-
-         if (get().isLoading) {
-            return
-         }
 
          const user = useAuthStore.getState().user
          const cart = get().cart

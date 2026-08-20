@@ -16,13 +16,12 @@ export default function CartButton({ handleAdd, id, big = false }: CartButtonPro
       e.preventDefault()
 
       if (!isAnimating) {
-         handleAdd(id, e)
          setIsAnimating(true)
+         handleAdd(id, e)
          setTimeout(() => {
             setIsAnimating(false)
-         }, 1200)
+         }, 1000)
       }
-
    }
 
    return (

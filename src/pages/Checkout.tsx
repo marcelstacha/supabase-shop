@@ -8,6 +8,7 @@ import { formatPrice } from "../utils/utils";
 import { useCartStore } from "../store/useCartStore";
 import { useOrdersStore } from "../store/useOrdersStore";
 import { SHIPPING_COST } from "../utils/constants";
+import Loading from "../components/ui/Loading";
 
 export default function Checkout() {
 
@@ -15,7 +16,6 @@ export default function Checkout() {
    const isLoading = useCartStore((state) => state.isLoading)
    const fetchCart = useCartStore((state) => state.fetchCart)
    const clearCart = useCartStore((state) => state.clearCart)
-
    const confirmOrder = useOrdersStore((state) => state.confirmOrder)
 
    const navigate = useNavigate()
@@ -37,15 +37,16 @@ export default function Checkout() {
    return (<>
       <Heading>Kauf bestätigen</Heading>
 
-      <div className="flex flex-col justify-center p-0 sm:px-10 md:px-16 lg:px-24 text-sm lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
+      <div className="flex flex-col justify-center items-center p-1 sm:p-4 md:p-8 min-h-20 text-sm lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
+
          <AnimatePresence>
-            {isLoading ? <span>Laden...</span>
+            {isLoading ? <Loading />
                :
                cart.length > 0 ?
                   <>
-                     <div className="m-auto my-2 sm:my-6">
+                     <div className="flex flex-col justify-center m-auto w-full lg:w-[45rem]">
 
-                        <table className="w-full bg-white">
+                        <table className="bg-white">
                            <thead className="text-[0.7rem] sm:text-lg">
                               <tr>
                                  <th>Name</th>
@@ -67,20 +68,22 @@ export default function Checkout() {
                               }
                            </motion.tbody>
                         </table>
-
-                        <div className="flex flex-col my-4 md:ml-auto px-1">
-                           <div className="flex justify-between text-sm sm:text-base lg:text-lg">
+                        <hr className="mt-8 mb-2" />
+                        <div className="flex flex-col my-4 md:ml-auto">
+                           <div className="flex justify-between gap-1 px-4 py-1 text-sm sm:text-base lg:text-lg">
                               <span>Versand:</span>
-                              <span className="font-bold price">+{SHIPPING_COST} €</span>
+                              <span className="font-medium price">+{SHIPPING_COST} €</span>
                            </div>
-                           <div className="flex justify-between text-sm sm:text-base lg:text-lg">
+                           <div className="flex justify-between gap-1 px-4 py-1 text-white text-sm sm:text-base lg:text-lg bg-gray-900 rounded-lg">
                               <span>Summe:</span>
-                              <span className="font-bold underline price">{formatPrice(total)}</span>
+                              <span className="font-semibold text-accent underlineprice">
+                                 {formatPrice(total)}
+                              </span>
                            </div>
                         </div>
 
                         <button
-                           className="m-auto w-48 sm:w-64 h-12 sm:h-16 text-xs sm:text-lg hover:bg-[rgb(57,255,20)] rounded-md cursor-pointer big-button"
+                           className="m-auto w-full text-xs sm:text-lg hover:bg-[rgb(57,255,20)] rounded-md cursor-pointer big-button"
                            onClick={handleConfirm}
                         >
                            Kaufen
