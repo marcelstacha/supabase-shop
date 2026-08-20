@@ -5,15 +5,15 @@ import QuantityDisplay from "../components/ui/QuantityDisplay";
 
 import { useFavoritesStore } from "../store/useFavoritesStore";
 import { useAuthStore } from "../store/useAuthStore";
+import RedirectButton from "../components/ui/RedirectButton";
+import Loading from "../components/ui/Loading";
 
 export default function Favorites() {
 
    const user = useAuthStore((state) => state.user)
-
    const favorites = useFavoritesStore((state) => state.favorites)
    const fetchFavorites = useFavoritesStore((state) => state.fetchFavorites)
    const isLoading = useFavoritesStore((state) => state.isLoading)
-
 
    useEffect(() => {
       fetchFavorites()
@@ -23,7 +23,8 @@ export default function Favorites() {
       <Heading>Favoriten</Heading>
 
       <div className="flex flex-col justify-center items-center p-0 py-1 md:py-8 min-h-20 text-sm lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
-         {user && isLoading && favorites.length == 0 ? <span className="flex justify-center text-wrap">Laden...</span>
+         {user && isLoading && favorites.length == 0 ?
+            <Loading />
             : (
                user && favorites.length > 0 ? (
                   <>
@@ -37,12 +38,16 @@ export default function Favorites() {
                      />
                   </>
                ) : (user
-                  ? <span className="flex justify-center px-3 text-wrap">
-                     Keine gespeicherten Favoriten.
-                  </span>
-                  : <span className="flex justify-center px-3 text-wrap">
-                     Nur angemeldete Nutzer können Favoriten hinzufügen.
-                  </span>
+                  ?
+                  <RedirectButton
+                     clickPath={"phonegrid"}
+                     text={["Keine gespeicherten Favoriten.", "Favoriten finden"]}
+                  />
+                  :
+                  <RedirectButton
+                     clickPath={"user"}
+                     text={["Nur angemeldete Nutzer können Favoriten hinzufügen.", "Anmelden"]}
+                  />
                ))}
       </div>
    </>)

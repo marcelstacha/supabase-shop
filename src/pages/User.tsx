@@ -126,7 +126,7 @@ export default function User() {
                         placeholder="Passwort"
                      />
                      <button
-                        className="hover:bg-[rgb(57,255,20)] border border-gray-900 big-button"
+                        className="big-button"
                         type="submit"
                      >
                         Login

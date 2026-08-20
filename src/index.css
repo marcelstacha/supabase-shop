@@ -76,7 +76,7 @@
    }
 
    .big-button{
-     @apply mt-2 m-auto text-xs w-48 h-12 sm:w-64 sm:text-lg sm:h-16 border-gray-900 border cursor-pointer;
+     @apply mt-2 m-auto text-xs w-48 h-12 sm:w-64 sm:text-lg sm:h-16 border-gray-900 border cursor-pointer hover:bg-[rgb(57,255,20)];
    }
 }
 

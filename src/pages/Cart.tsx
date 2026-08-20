@@ -8,6 +8,8 @@ import QuantityDisplay from "../components/ui/QuantityDisplay";
 import { formatPrice } from "../utils/utils";
 import { useAuthStore } from "../store/useAuthStore";
 import { useCartStore } from "../store/useCartStore";
+import RedirectButton from "../components/ui/RedirectButton";
+import Loading from "../components/ui/Loading";
 
 export default function Cart() {
 
@@ -16,7 +18,6 @@ export default function Cart() {
    const fetchCart = useCartStore((state) => state.fetchCart)
    const filtered = useCartStore((state) => state.filtered)
    const setFiltered = useCartStore((state) => state.setFiltered)
-
    const user = useAuthStore((state) => state.user)
 
    const navigate = useNavigate()
@@ -50,7 +51,8 @@ export default function Cart() {
    return (<>
       <Heading>Warenkorb</Heading>
       <div className="flex flex-col justify-center items-center p-0 py-1 md:py-8 min-h-20 text-sm lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
-         {isLoading && user && filtered.length == 0 ? <span className="flex justify-center text-wrap">Laden...</span>
+         {isLoading && user && filtered.length == 0 ?
+            <Loading />
             :
             filtered.length > 0 ?
                <>
@@ -68,6 +70,7 @@ export default function Cart() {
                      <span>Zwischensumme:</span>
                      <span className="font-bold underline price">{formatPrice(cartSum())}</span>
                   </div>
+
                   <button
                      onClick={handleClick}
                      className="mt-3 md:mt-6 mb-2 hover:bg-accent big-button"
@@ -76,9 +79,10 @@ export default function Cart() {
                   </button>
                </>
                :
-               <span className="flex justify-center px-3 text-wrap">
-                  Es befinden sich keine Produkte im Warenkorb.
-               </span>
+               <RedirectButton
+                  clickPath={"phonegrid"}
+                  text={["Es befinden sich keine Produkte im Warenkorb.", "Produkte finden"]}
+               />
          }
       </div>
    </>)
