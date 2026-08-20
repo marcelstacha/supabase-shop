@@ -2,25 +2,20 @@ import { ReactNode, MouseEventHandler } from 'react';
 
 interface FilterButtonProps {
    children: ReactNode,
-   isMobile?: boolean,
    value: string,
    filterBy: string,
    filterHandler: MouseEventHandler<HTMLButtonElement>
 }
 
-export default function FilterButton({ children, isMobile = false, value, filterBy, filterHandler }: FilterButtonProps) {
+export default function FilterButton({ children, value, filterBy, filterHandler }: FilterButtonProps) {
 
    function getStyle() {
       const isActive = filterBy === value;
-      const mobileStyle = "md:hidden block m-auto";
-      const desktopStyle = "hidden md:block m-0 ";
-      const baseStyle = "border border-gray-900 text-gray-900 text-xs sm:text-base p-2 min-[400px]:px-4 transition";
+      const baseStyle = `border border-gray-900 px-[0.45rem] 2xl:py-3
+       ${isActive ? "bg-accent md:hover:bg-gray-700 md:hover:text-white" : "md:hover:bg-gray-200 bg-white"} 
+       text-gray-900 text-xs sm:text-base min-[400px]:px-4`
 
-      if (isMobile) {
-         return `${baseStyle} ${mobileStyle} ${isActive ? "bg-accent" : "bg-white"}`;
-      } else {
-         return `${baseStyle} ${desktopStyle} ${isActive ? "bg-accent hover:bg-gray-700 hover:text-white" : "bg-white hover:bg-gray-200"}`;
-      }
+      return baseStyle
    }
 
    const style = getStyle()
@@ -30,10 +25,9 @@ export default function FilterButton({ children, isMobile = false, value, filter
          title={`filter-${value}`}
          className={style}
          onClick={(e) => filterHandler(e)}
-         value={value}>
-
+         value={value}
+      >
          {children}
-
       </button>
    </>)
 }

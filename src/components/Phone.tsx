@@ -42,7 +42,7 @@ export default function Phone({ id, img, name, brand, price }: PhoneProps) {
             <img src={`${img}-2.jpg`} className="hidden" />
             <img
                src={`${img}-${imageToggle ? "2" : "1"}.jpg`} alt={`${brand} ${name}`}
-               className="m-auto sm:mt-2 mb-3 sm:mb-2 px-1 h-[7.5rem] sm:h-56 object-contain transition w mix-blend-darken"
+               className="m-auto sm:mt-2 mb-3 sm:mb-2 px-1 h-[7.5rem] 2xl:h-56 xl:h-36 object-contain transition w mix-blend-darken"
             />
             <span className="md:my-2 mb-1 p-0">
                <span className="flex sm:flex-row flex-col justify-center items-center gap-0 sm:gap-1 p-0">

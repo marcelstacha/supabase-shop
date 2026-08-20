@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "motion/react"
 import { useState, ChangeEvent, MouseEvent, useMemo, useEffect } from "react";
-import { DevicePhoneMobileIcon, BookOpenIcon } from "@heroicons/react/24/outline";
+import { DevicePhoneMobileIcon, BookOpenIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 
 import Phone from "../components/Phone"
@@ -86,7 +86,7 @@ export default function PhoneGrid() {
    }
 
    function filterHandler(e: MouseEvent<HTMLButtonElement>) {
-      setFilterBy((e.target as HTMLButtonElement).value);
+      setFilterBy((e.currentTarget as HTMLButtonElement).value);
    }
 
    return (
@@ -95,7 +95,7 @@ export default function PhoneGrid() {
 
          <h2
             key={filteredSorted.length}
-            className="mb-3 min-[1064px]:-mb-12 text-sm sm:text-base md:text-lg transition-all"
+            className="mb-3 2xl:-mb-14 xl:-mb-[3.25rem] text-sm sm:text-base md:text-lg"
          >
             [{filterText} ({filteredSorted.length}) / {sortText}]
          </h2>
@@ -104,7 +104,7 @@ export default function PhoneGrid() {
             <span>{error}</span>
          </div>) : loadingProducts && phones.length == 0 ? (<span className="my-10 font-bold text-xl">Lade Produkte</span>)
             : <>
-               <div className="flex flex-row justify-between items-center lg:mx-auto my-1 sm:my-4 w-full transition-all">
+               <div className="flex flex-row justify-between items-center lg:mx-auto my-1 sm:my-4 sm:mb-2 w-full">
 
                   <div className="flex items-center gap-1">
 
@@ -113,62 +113,45 @@ export default function PhoneGrid() {
                         filterHandler={filterHandler}
                         value="all"
                      >
-                        Alle
+                        <span className="flex flex-row">
+                           <span className="p-0 w-fit sm:w-8 h-4 sm:h-6 md:h-fit">Alle</span>
+                        </span>
                      </FilterButton>
+
                      <FilterButton
                         filterBy={filterBy}
                         filterHandler={filterHandler}
                         value="default"
                      >
-                        Standard
+                        <span className="flex flex-row justify-around items-center md:w-28">
+                           <DevicePhoneMobileIcon
+                              className="w-4 sm:w-8 h-4 sm:h-6"
+                           />
+                           <span className="hidden md:block p-0">Standard</span>
+                        </span>
                      </FilterButton>
+
                      <FilterButton
                         filterBy={filterBy}
                         filterHandler={filterHandler}
                         value="foldable"
                      >
-                        Faltbar
-                     </FilterButton>
-
-                     <FilterButton
-                        isMobile={true}
-                        filterBy={filterBy}
-                        filterHandler={filterHandler}
-                        value="all"
-                     >
-                        <span className="m-0 p-0 w-4 sm:w-6 h-4 sm:h-6 pointer-events-none">Alle</span>
-                     </FilterButton>
-
-                     <FilterButton
-                        isMobile={true}
-                        filterBy={filterBy}
-                        filterHandler={filterHandler}
-                        value="default"
-                     >
-                        <DevicePhoneMobileIcon
-                           className="w-4 sm:w-6 h-4 sm:h-6 pointer-events-none"
-                        />
-                     </FilterButton>
-
-                     <FilterButton
-                        isMobile={true}
-                        filterBy={filterBy}
-                        filterHandler={filterHandler}
-                        value="foldable"
-                     >
-                        <BookOpenIcon
-                           className="w-4 sm:w-6 h-4 sm:h-6 pointer-events-none"
-                        />
+                        <span className="flex flex-row justify-around items-center md:w-28">
+                           <BookOpenIcon
+                              className="w-4 sm:w-8 h-4 sm:h-6"
+                           />
+                           <span className="hidden md:block p-0">Faltbar</span>
+                        </span>
                      </FilterButton>
 
                   </div>
 
-                  <div className="ml-1">
+                  <div className="relative">
                      <select
                         title="sort-select"
                         defaultValue={defaultSort}
                         onChange={(e) => sortHandler(e)}
-                        className="sm:p-[0.63rem] md:px-6 py-2 pl-2 w-full lg:w-auto text-[0.72rem] text-gray-900 sm:text-base bg-white hover:bg-gray-200 border border-gray-900 rounded-md"
+                        className="py-2 pr-8 sm:pr-12 pl-2 sm:pl-6 w-full lg:w-auto h-[50px] sm:h-[60px] 2xl:h-[70px] text-[0.72rem] text-gray-900 sm:text-base bg-white hover:bg-gray-200 border border-gray-900 rounded-lg appearance-none"
                      >
                         <option value="name1">Name A-Z</option>
                         <option value="name2">Name Z-A</option>
@@ -177,10 +160,13 @@ export default function PhoneGrid() {
                         <option value="price1">Preis aufsteigend</option>
                         <option value="price2">Preis absteigend</option>
                      </select>
+                     <ChevronDownIcon
+                        className="top-5 sm:top-6 2xl:top-7 right-3 absolute w-3 sm:w-4 h-3 sm:h-4 text-gray-900 stroke-2 -translate-y-1/2 pointer-events-none"
+                     />
                   </div>
                </div>
                <div className="min-h-40">
-                  <ul className="inline-grid gap-1 sm:gap-2 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 w-full transition-all">
+                  <ul className="inline-grid gap-1 sm:gap-2 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 w-full">
                      <AnimatePresence >
                         {filteredSorted.map((phone) => (
                            <motion.li
