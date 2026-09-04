@@ -9,7 +9,7 @@ export default function RedirectButton({ clickPath, text }: { clickPath: string,
    }
 
    return (<>
-      <div className="flex flex-col justify-center gap-3 px-4 pb-3">
+      <div className="flex flex-col justify-center gap-3 px-4">
          <span className="text-wrap">
             {text[0]}
          </span>

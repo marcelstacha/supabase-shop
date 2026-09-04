@@ -22,7 +22,7 @@ export default function Favorites() {
    return (<>
       <Heading>Favoriten</Heading>
 
-      <div className="flex flex-col justify-center items-center p-0 py-1 md:py-8 min-h-20 text-sm lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
+      <div className="flex flex-col justify-center items-center p-0 py-4 sm:py-6 md:py-8 min-h-20 text-sm lg:text-lg text-nowrap bg-white border border-gray-900 rounded-lg">
          {user && isLoading && favorites.length == 0 ?
             <Loading />
             : (
