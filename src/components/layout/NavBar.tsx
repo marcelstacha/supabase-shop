@@ -19,7 +19,7 @@ export default function NavBar() {
 
    return (<>
 
-      <div className="z-[70] flex sm:flex justify-between items-center gap-2 sm:gap-0 min-[500px]:gap-3 md:gap-2 text-sm md:text-4xl">
+      <div className="z-[70] flex sm:flex justify-between items-center gap-2 sm:gap-0 min-[400px]:gap-3 md:gap-2 text-sm md:text-4xl">
 
          <SearchMobile />
          <NavLink
