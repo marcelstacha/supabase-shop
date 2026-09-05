@@ -86,7 +86,7 @@ export default function SearchMobile() {
       >
          <span
             className="group flex items-center px-0 sm:px-2 cursor-pointer"
-            onTouchEnd={handleOpen}
+            onClick={handleOpen}
          >
             <MagnifyingGlassIcon
                className="w-5 sm:w-6 h-5 sm:h-6 text-gray-900 group-hover:text-yellow-600"
