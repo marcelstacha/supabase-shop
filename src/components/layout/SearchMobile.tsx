@@ -57,6 +57,7 @@ export default function SearchMobile() {
       setCanOpen(true)
 
       if (inputRef.current) {
+         inputRef.current.style.opacity = "1";
          inputRef.current.focus()
       }
    }
@@ -112,7 +113,7 @@ export default function SearchMobile() {
                ref={inputRef}
                autoComplete="off"
                initial={{ opacity: 0 }}
-               animate={{ opacity: animateHide ? 0 : 1 }}
+               animate={{ opacity: (canOpen && !animateHide) ? 1 : 0 }}
                transition={{ duration: 0.15 }}
                className={`sm:hidden left-1/2 z-[60] absolute px-4 w-full border border-gray-900 -translate-x-1/2 transform ${(canOpen && !animateHide) ? 'pointer-events-auto' : 'pointer-events-none'}`}
                name="search"
