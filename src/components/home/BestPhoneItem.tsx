@@ -81,8 +81,8 @@ export default function BestPhoneItem({ category, item }: BestPhoneItemProps) {
             />
             <hr className="sm:hidden block m-1 mb-2 h-[2px] bg-gray-900" />
             <span className="flex flex-col justify-center p-0">
-               <h1 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl transition-all">{item[bestPhoneId].brand}</h1>
-               <h1 className="font-medium md:text-md text-sm sm:text-base lg:text-lg transition-all">{item[bestPhoneId].name}</h1>
+               <h1 className="font-bold text-sm min-[500px]:text-base md:text-lg lg:text-xl truncate transition-all">{item[bestPhoneId].brand}</h1>
+               <h1 className="px-1 font-medium text-[0.75rem] md:text-md min-[500px]:text-base lg:text-lg truncate transition-all">{item[bestPhoneId].name}</h1>
             </span>
             <div className="bottom-0 left-0 absolute w-full h-[3px] bg-accent"></div>
          </div>
