@@ -5,7 +5,7 @@ import NavBar from './NavBar';
 export default function TopBanner() {
 
    return (<>
-      <nav className="z-[70] relative flex flex-row justify-between items-center px-2 md:px-3 lg:px-0 py-6 sm:py-7 w-full h-10 bg-white lg:bg-transparent border border-black lg:border-none rounded-lg">
+      <nav className="z-[70] relative flex flex-row justify-between items-center px-2 md:px-3 lg:px-0 py-6 sm:py-7 lg:py-0 w-full h-10 bg-white lg:bg-transparent border border-black lg:border-none rounded-lg">
 
          <div className="flex-none pr-2">
             <NavLink to="/" className="z-[100] flex flex-row">

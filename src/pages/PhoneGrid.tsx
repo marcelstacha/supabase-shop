@@ -91,20 +91,15 @@ export default function PhoneGrid() {
 
    return (
       <>
+
          <Heading>Produkte</Heading>
 
-         <h2
-            key={filteredSorted.length}
-            className="mb-3 min-[1400px]:-mb-[3.25rem] 2xl:-mb-14 text-sm sm:text-base md:text-lg"
-         >
-            [{filterText} ({filteredSorted.length}) / {sortText}]
-         </h2>
          {error ? (<div className="flex flex-col">
             <span className="my-10 font-bold text-xl">Fehler beim Abrufen der Produkte</span>
             <span>{error}</span>
          </div>) : loadingProducts && phones.length == 0 ? (<span className="my-10 font-bold text-xl">Lade Produkte</span>)
             : <>
-               <div className="flex flex-row justify-between items-center lg:mx-auto my-1 sm:my-4 sm:mb-2 w-full">
+               <div className="flex flex-row justify-between items-center lg:mx-auto mb-1 sm:mb-2 w-full">
 
                   <div className="flex items-center gap-1 sm:gap-2">
 
@@ -185,6 +180,17 @@ export default function PhoneGrid() {
                      </AnimatePresence>
                   </ul>
                </div>
+               <h2
+                  key={filteredSorted.length}
+                  className="self-center my-6 text-sm sm:text-base md:text-lg"
+               >
+                  ( {filterText} ({filteredSorted.length}) | {sortText} )
+               </h2>
+               <hr className="border border-black" />
             </>}
       </>)
 }
+
+/*
+[{filterText} ({filteredSorted.length}) / {sortText}]
+*/

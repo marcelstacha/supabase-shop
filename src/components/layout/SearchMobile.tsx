@@ -20,7 +20,8 @@ export default function SearchMobile() {
    const isSearching = debouncedQuery.length >= 2
    const filterAttributes = ["name", "brand"]
 
-   const ref = useRef<HTMLDivElement>(null)
+   const wrapperRef = useRef<HTMLDivElement>(null)
+   const inputRef = useRef<HTMLInputElement>(null)
 
    useEffect(() => {
       if (isSearching) {
@@ -39,8 +40,14 @@ export default function SearchMobile() {
       handleClose()
    }, [location])
 
+   useEffect(() => {
+      if (canOpen && inputRef.current) {
+         inputRef.current.focus();
+      }
+   }, [canOpen]);
+
    function handleBlur(e: React.FocusEvent<HTMLDivElement>) {
-      if (!ref.current || (e.relatedTarget && ref.current.contains(e.relatedTarget))) {
+      if (!wrapperRef.current || (e.relatedTarget && wrapperRef.current.contains(e.relatedTarget))) {
          handleClose();
       }
    }
@@ -73,7 +80,7 @@ export default function SearchMobile() {
    }
 
    return (<>
-      <div ref={ref}
+      <div ref={wrapperRef}
          onBlur={handleBlur}
          className="lg:hidden"
       >
@@ -101,6 +108,7 @@ export default function SearchMobile() {
                      className="sm:hidden top-0 left-0 z-20 fixed inset-0 w-screen h-44"
                   />
                   <motion.input
+                     ref={inputRef}
                      autoComplete="off"
                      initial={{ opacity: 0 }}
                      animate={{ opacity: animateHide ? 0 : 1 }}
@@ -138,7 +146,7 @@ export default function SearchMobile() {
                               >
                                  <span className="flex items-center m-auto p-0 py-1 w-64 text-sm">
                                     <img className="mr-2 size-9 object-contain" src={`${result.img}-1.jpg`} />
-                                    <span className="font-bold">{result.brand}</span>
+                                    <span className="p-0 font-bold">{result.brand}</span>
                                     <span className="font-medium">{result.name}</span>
                                  </span>
                               </li>

@@ -64,15 +64,15 @@ export default function PhoneDetail() {
                   >
                      <img src={`${phone.img}-${imageToggle ? "2" : "1"}.jpg`} className="m-auto h-[13rem] sm:h-[20rem] md:h-[25rem] object-contain aspect-square"></img>
                   </div>
-                  <div className="p-4">
-                     <div className="font-bold text-3xl md:text-5xl">
+                  <div className="flex flex-col md:gap-2 py-2 md:py-4 lg:py-6 sm:pt-4">
+                     <div className="font-bold text-3xl sm:text-4xl md:text-5xl">
                         {phone.brand}
                      </div>
-                     <div className="text-lg md:text-3xl">
+                     <div className="text-lg sm:text-2xl md:text-3xl">
                         {phone.name}
                      </div>
                   </div>
-                  <div className="mx-6 sm:mx-8 md:mx-20 lg:mx-28 2xl:mx-60 pt-2 pb-6 sm:pb-8">
+                  <div className="mx-6 sm:mx-8 md:mx-20 lg:mx-28 2xl:mx-60 sm:pt-2 pb-6 sm:pb-8">
                      <div>
                         <hr className="m-auto h-[2px] bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
                         <h2 className="my-1 sm:my-2 md:my-4 font-sans font-semibold 2xl:text-[1.5rem] text-lg md:text-2xl text-center transition-all price">
