@@ -123,7 +123,7 @@ export default function SearchMobile() {
                onFocus={handleOpen}
             >
             </motion.input>
-            {query.length > 0 &&
+            {canOpen && !animateHide && query.length > 0 &&
                <XCircleIcon
                   className="sm:hidden block top-1 right-[8px] z-[70] absolute w-7 h-7 text-gray-900 hover:text-red-600 transition-all cursor-pointer"
                   onTouchStart={e => handleDeleteIcon(e)}
