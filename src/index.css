@@ -71,12 +71,20 @@
       @apply mix-blend-darken
    }
 
-   td{
-      @apply  border border-gray-900 px-2 py-0 transition-all
+   td {
+      @apply border border-gray-900 px-2 py-0 transition-all;
+   }
+
+   td:first-child {
+      @apply border-l-0 min-[380px]:border-l;
+   }
+
+   td:last-child {
+      @apply border-r-0 min-[380px]:border-r;
    }
 
    .big-button{
-     @apply mt-2 m-auto text-xs w-48 h-12 sm:w-64 sm:text-lg sm:h-16 border-gray-900 border cursor-pointer hover:bg-[rgb(57,255,20)];
+      @apply mt-2 m-auto text-xs w-48 h-12 sm:w-64 sm:text-lg sm:h-16 border-gray-900 border cursor-pointer hover:bg-[rgb(57,255,20)];
    }
 }
 

@@ -94,7 +94,7 @@ export default function SearchMobile() {
          </span>
 
          <div
-            className="top-11 left-0 -z-10 absolute mx-[2.5%] w-[95%]"
+            className="top-12 left-0 -z-10 absolute mx-[2.5%] w-[95%]"
          >
             {canOpen &&
                <>

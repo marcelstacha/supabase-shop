@@ -29,7 +29,7 @@ export default function CartRow({ item, update }: { item: CartProps, update: (id
          <td className="pr-0 pl-0 xl:w-20 xl:h-28 size-10 sm:size-16 md:size-20 xl:group-hover:bg-accent/5">
             <NavLink to={`/phonedetail/${id}`} className="">
                <img
-                  className="m-auto min-[400px]:p-[2px] sm:py-2 h-full xl:h-24 object-contain xl:group-hover:brightness-105 transition"
+                  className="m-auto p-[2px] sm:py-2 h-full xl:h-24 object-contain xl:group-hover:brightness-105 transition"
                   src={`${item.img}-1.jpg`}
                   alt={`${item.name}`}
                />
