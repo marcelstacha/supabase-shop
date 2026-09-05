@@ -40,11 +40,6 @@ export default function SearchMobile() {
       handleClose()
    }, [location])
 
-   useEffect(() => {
-      if (canOpen && inputRef.current) {
-         inputRef.current.focus();
-      }
-   }, [canOpen]);
 
    function handleBlur(e: React.FocusEvent<HTMLDivElement>) {
       if (!wrapperRef.current || (e.relatedTarget && wrapperRef.current.contains(e.relatedTarget))) {
@@ -60,6 +55,10 @@ export default function SearchMobile() {
    function handleOpen() {
       setAnimateHide(false)
       setCanOpen(true)
+
+      if (inputRef.current) {
+         inputRef.current.focus()
+      }
    }
 
    function handleClose() {
@@ -107,28 +106,30 @@ export default function SearchMobile() {
                      onTouchStart={handleClose}
                      className="sm:hidden top-0 left-0 z-20 fixed inset-0 w-screen h-44"
                   />
-                  <motion.input
-                     ref={inputRef}
-                     autoComplete="off"
-                     initial={{ opacity: 0 }}
-                     animate={{ opacity: animateHide ? 0 : 1 }}
-                     transition={{ duration: 0.15 }}
-                     className="sm:hidden left-1/2 z-[60] absolute px-4 w-full border border-gray-900 -translate-x-1/2 transform"
-                     name="search"
-                     placeholder="Suche"
-                     value={query}
-                     onChange={(e) => onChangeHandler(e)}
-                     onFocus={handleOpen}
-                  >
-                  </motion.input>
-                  {query.length > 0 &&
-                     <XCircleIcon
-                        className="sm:hidden block top-1 right-[8px] z-[70] absolute w-7 h-7 text-gray-900 hover:text-red-600 transition-all cursor-pointer"
-                        onTouchStart={e => handleDeleteIcon(e)}
-                     />
-                  }
-               </>
+               </>}
+
+            <motion.input
+               ref={inputRef}
+               autoComplete="off"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: animateHide ? 0 : 1 }}
+               transition={{ duration: 0.15 }}
+               className={`sm:hidden left-1/2 z-[60] absolute px-4 w-full border border-gray-900 -translate-x-1/2 transform ${(canOpen && !animateHide) ? 'pointer-events-auto' : 'pointer-events-none'}`}
+               name="search"
+               placeholder="Suche"
+               value={query}
+               onChange={(e) => onChangeHandler(e)}
+               onFocus={handleOpen}
+            >
+            </motion.input>
+            {query.length > 0 &&
+               <XCircleIcon
+                  className="sm:hidden block top-1 right-[8px] z-[70] absolute w-7 h-7 text-gray-900 hover:text-red-600 transition-all cursor-pointer"
+                  onTouchStart={e => handleDeleteIcon(e)}
+               />
             }
+
+
             {isSearching && canOpen &&
                <motion.div
                   initial={{ opacity: 0 }}
