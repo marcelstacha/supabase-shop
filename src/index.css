@@ -72,7 +72,7 @@
    }
 
    td {
-      @apply border border-gray-900 px-2 py-0 transition-all;
+      @apply border border-gray-900 px-2 py-0 transition-transform;
    }
 
    td:first-child {

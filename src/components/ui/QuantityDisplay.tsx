@@ -14,7 +14,7 @@ export default function QuantityDisplay({ filtered, user, isCart }: QuantityDisp
 
    //isCart ### true => cart , false => favorites
    return (<>
-      <div className={`my-4 sm:my-6 md:mt-0 md:mb-8 py-1 sm:py-2 xl:py-[0.6rem] ${style} text-white text-xs sm:text-sm md:text-base bg-gray-900 rounded-full`}>
+      <div className={`my-1 mb-4 sm:mb-6 md:mt-0 md:mb-8 py-1 sm:py-2 xl:py-[0.6rem] ${style} text-white text-xs sm:text-sm md:text-base bg-gray-900 rounded-full`}>
          <span className="p-0 text-accent price">{filtered.length}</span> Artikel {isCart ? "im" : "in"} {!user && <span className="px-1 text-accent">lokalen</span>} {isCart ? "Warenkorb" : "Favoriten"}
       </div>
    </>)
