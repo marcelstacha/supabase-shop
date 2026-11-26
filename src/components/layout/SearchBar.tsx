@@ -1,96 +1,96 @@
-import { ChangeEvent, useState } from "react"
-import { NavLink } from "react-router-dom"
-import { motion } from "motion/react"
-import { XCircleIcon } from "@heroicons/react/24/outline"
-import useDebounce from "../../hooks/useDebounce"
-import PhoneProps from "../../interfaces/PhoneProps"
-import { useProductsStore } from "../../store/useProductsStore"
+import { XCircleIcon } from "@heroicons/react/24/outline";
+import { motion } from "motion/react";
+import { ChangeEvent, useState } from "react";
+import { NavLink } from "react-router-dom";
+import useDebounce from "../../hooks/useDebounce";
+import PhoneProps from "../../interfaces/PhoneProps";
+import { useProductsStore } from "../../store/useProductsStore";
 
 export default function SearchBar() {
+   const [animateHide, setAnimateHide] = useState(false);
+   const [query, setQuery] = useState("");
+   const [canOpen, setCanOpen] = useState(false);
 
-   const [animateHide, setAnimateHide] = useState(false)
-   const [query, setQuery] = useState("")
-   const [canOpen, setCanOpen] = useState(false)
+   const phones = useProductsStore((state) => state.phones);
 
-   const phones = useProductsStore((state) => state.phones)
+   const debouncedQuery = useDebounce(query);
+   const isSearching = debouncedQuery.length >= 2;
 
-   const debouncedQuery = useDebounce(query)
-   const isSearching = debouncedQuery.length >= 2
-
-   const results = phones.filter((item) =>
-      String(item.name).toLowerCase().includes(debouncedQuery) ||
-      String(item.brand).toLowerCase().includes(debouncedQuery)
-   )
-
+   const results = phones.filter(
+      (item) => String(item.name).toLowerCase().includes(debouncedQuery) || String(item.brand).toLowerCase().includes(debouncedQuery)
+   );
 
    function onChangeHandler(e: ChangeEvent<HTMLInputElement>) {
-      const value = e.target.value
-      setQuery(value.toLowerCase())
+      const value = e.target.value;
+      setQuery(value.toLowerCase());
    }
 
    function handleOpen() {
-      setAnimateHide(false)
-      setCanOpen(true)
+      setAnimateHide(false);
+      setCanOpen(true);
    }
 
    function handleClose() {
-      setAnimateHide(true)
+      setAnimateHide(true);
       setTimeout(() => {
-         setCanOpen(false)
-      }, 200)
+         setCanOpen(false);
+      }, 200);
    }
 
-   return (<>
-      <div className="relative content-center w-full">
-         <div className="">
-            <input
-               name="search"
-               placeholder="Suche"
-               value={query}
-               onChange={(e) => onChangeHandler(e)}
-               className="hidden z-50 relative sm:flex w-full sm:margin-auto"
-               onFocus={handleOpen}
-               onBlur={handleClose}
-            >
-            </input>
-            {debouncedQuery.length > 0 &&
-               <XCircleIcon
-                  className="top-1 right-1 z-50 absolute w-7 h-7 text-gray-900 hover:text-red-600 transition-all cursor-pointer"
-                  onClick={() => setQuery("")}
-               />
-            }
-         </div>
+   return (
+      <>
+         <div className="relative content-center w-full">
+            <div className="">
+               <input
+                  name="search"
+                  placeholder="Suche"
+                  value={query}
+                  onChange={(e) => onChangeHandler(e)}
+                  className="hidden z-50 relative sm:flex w-full sm:margin-auto"
+                  onFocus={handleOpen}
+                  onBlur={handleClose}
+               ></input>
+               {debouncedQuery.length > 0 && (
+                  <XCircleIcon
+                     className="top-1 right-1 z-50 absolute w-7 h-7 text-gray-900 hover:text-red-600 transition-all cursor-pointer"
+                     onClick={() => setQuery("")}
+                  />
+               )}
+            </div>
 
-         {isSearching && canOpen && <>
-            <div className="top-0 left-0 fixed w-screen h-screen bg-[rgba(255,255,255,0.9)]"></div>
-            <motion.div
-               initial={{ opacity: 0 }}
-               animate={{ opacity: animateHide ? 0 : 1 }}
-               transition={{ duration: 0.15 }}
-               className="top-8 left-[50%] absolute flex flex-col p-1 md:p-4 lg:p-8 w-full bg-white drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] rounded-b-lg transition-all -translate-x-1/2"
-            >
-               {results.length > 0 ?
-                  <>
-                     <ul className="z-[80] border-t-2">
-                        {results && results.map((result: PhoneProps) =>
-                           <NavLink
-                              to={`/phonedetail/${result.id}`}
-                              key={result.id}
-                           >
-                              <li className="py-1 border-b-2">
-                                 <span className="flex items-center m-auto text-base">
-                                    <img className="hidden lg:block md:mr-3 md:size-16 object-contain" src={`${result.img}-1.jpg`} />
-                                    <span className="font-bold text-xs md:text-sm lg:text-base">{result.brand}</span>
-                                    <span className="font-medium text-xs md:text-sm lg:text-base">{result.name}</span>
-                                 </span>
-                              </li>
-                           </NavLink>
-                        )}
-                     </ul>
-                  </>
-                  : <span>Keine Suchergebnisse</span>}
-            </motion.div></>
-         }
-      </div>
-   </>)
+            {isSearching && canOpen && (
+               <>
+                  <div className="top-0 left-0 fixed bg-[rgba(255,255,255,0.925)] w-screen h-screen"></div>
+                  <motion.div
+                     initial={{ opacity: 0 }}
+                     animate={{ opacity: animateHide ? 0 : 1 }}
+                     transition={{ duration: 0.15 }}
+                     className="top-8 left-[50%] absolute flex flex-col bg-white drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] p-1 md:p-4 lg:p-8 rounded-b-lg w-full transition-all -translate-x-1/2"
+                  >
+                     {results.length > 0 ? (
+                        <>
+                           <ul className="z-[80] border-t-2">
+                              {results &&
+                                 results.map((result: PhoneProps) => (
+                                    <NavLink to={`/phonedetail/${result.id}`} key={result.id}>
+                                       <li className="hover:bg-gray-100 py-1 border-b-2 transition duration-75">
+                                          <span className="flex items-center m-auto text-base">
+                                             <img className="hidden lg:block md:mr-3 md:size-16 object-contain" src={`${result.img}-1.jpg`} />
+                                             <span className="font-bold text-xs md:text-sm lg:text-base">{result.brand}</span>
+                                             <span className="font-medium text-xs md:text-sm lg:text-base">{result.name}</span>
+                                          </span>
+                                       </li>
+                                    </NavLink>
+                                 ))}
+                           </ul>
+                        </>
+                     ) : (
+                        <span>Keine Suchergebnisse</span>
+                     )}
+                  </motion.div>
+               </>
+            )}
+         </div>
+      </>
+   );
 }

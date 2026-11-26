@@ -1,6 +1,5 @@
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
-import { motion } from "motion/react"
-import { useState } from "react";
+import { useAnimate } from "motion/react";
 import CartProps from "../../interfaces/CartProps";
 import FavoritesProps from "../../interfaces/FavoritesProps";
 
@@ -11,27 +10,21 @@ interface CartIconProps {
 }
 
 export default function CartIcon({ addToCart, item, style }: CartIconProps) {
-
-   const [isAnimating, setIsAnimating] = useState(false)
+   const [scope, animate] = useAnimate();
 
    function clickHandler(id: number) {
-      setIsAnimating(true)
-      addToCart(id)
-      setTimeout(() => setIsAnimating(false), 500)
+      animate(scope.current, { scale: [1, 1.15, 1] }, { duration: 0.35, ease: "circInOut" });
+      addToCart(id);
    }
 
-   return (<>
-      <motion.div
-         animate={{
-            scale: isAnimating ? [1, 1.3, 1] : 1,
-         }}
-         transition={{ duration: 0.5, ease: "easeInOut" }}
-      >
-         <ShoppingCartIcon
-            onClick={() => clickHandler(item.prod_id)}
-            className={`lg:pt-2 lg:pb-1  stroke-gray-900 hover:stroke-gray-600 cursor-pointer transition stroke-2 ${style}`}
-         />
-      </motion.div>
-   </>)
-
+   return (
+      <>
+         <div ref={scope}>
+            <ShoppingCartIcon
+               onClick={() => clickHandler(item.prod_id)}
+               className={`lg:pt-2 lg:pb-1 stroke-gray-700 will-change-transform hover:stroke-gray-950 hover:scale-110 cursor-pointer transition stroke-2 ${style}`}
+            />
+         </div>
+      </>
+   );
 }

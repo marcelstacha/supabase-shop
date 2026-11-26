@@ -9,14 +9,14 @@ interface DeleteIconProps {
 }
 
 export default function DeleteIcon({ handleDelete, item, style }: DeleteIconProps) {
+   const id = item.prod_id;
 
-   const id = item.prod_id
-
-   return (<>
-      <TrashIcon
-         onClick={() => handleDelete?.(id)}
-         className={`p-0 lg:pb-2 lg:pt-1 stroke-red-600 hover:stroke-red-900 cursor-pointer transition  ${style}`}
-      />
-   </>)
+   return (
+      <>
+         <TrashIcon
+            onClick={() => handleDelete?.(id)}
+            className={`p-0 lg:pb-2 lg:pt-1 stroke-red-400 will-change-transform group-hover/delete:stroke-red-700 group-hover/delete:scale-110 cursor-pointer transition  ${style}`}
+         />
+      </>
+   );
 }
-
