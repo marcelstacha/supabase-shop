@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import CartButton from "../components/ui/CartButton";
 import HeartIcon from "../components/ui/HeartIcon";
 import useCurrentPhone from "../hooks/useCurrentPhone";
-import { formatDate, formatPrice } from "../utils/utils";
+import { clean, formatDate, formatNumber, formatPrice } from "../utils/utils";
 
 import PhoneDetailTable from "../components/PhoneDetailTable";
 import { useAuthStore } from "../store/useAuthStore";
@@ -43,6 +43,26 @@ export default function PhoneDetail() {
       addToCart(id);
    }
 
+   if (!phone) {
+      return;
+   }
+
+   const specs = {
+      screen: clean(phone.screen),
+      soc: phone.soc,
+      battery: formatNumber(phone.battery),
+      charging: phone.charging,
+      charging_wireless: phone.charging_wireless,
+      fingerprint: phone.fingerprint,
+      foldable: phone.foldable,
+      weight: phone.weight,
+      height: clean(phone.dimensions.height),
+      width: clean(phone.dimensions.width),
+      depth: clean(phone.dimensions.depth),
+      release: formatDate(phone.release),
+      price: formatPrice(phone.price),
+   };
+
    return (
       <>
          {phone == null && isLoading == false ? (
@@ -59,8 +79,9 @@ export default function PhoneDetail() {
                >
                   <div className="flex justify-self-center mt-8 xl:mt-12 cursor-pointer" onClick={() => setImageToggle((pre) => !pre)}>
                      <img
+                        alt={`${phone.brand} ${phone.name}, ${imageToggle ? "Vorderseite" : "Rückseite"}`}
                         src={`${phone.img}-${imageToggle ? "2" : "1"}.jpg`}
-                        className="m-auto h-[13rem] sm:h-[20rem] md:h-[25rem] object-contain aspect-square"
+                        className="m-auto max-[400px]:pt-[1.2rem] h-[13rem] sm:h-[20rem] md:h-[25rem] object-contain aspect-square"
                      ></img>
                   </div>
                   <div className="flex flex-col md:gap-2 py-2 md:py-4 lg:py-6 sm:pt-4">
@@ -71,7 +92,7 @@ export default function PhoneDetail() {
                      <div>
                         <hr className="bg-gradient-to-r from-transparent via-gray-600 to-transparent m-auto h-[2px]" />
                         <h2 className="my-1 sm:my-2 md:my-4 font-sans font-semibold 2xl:text-[1.5rem] text-lg md:text-2xl text-center transition-all price">
-                           {formatPrice(phone.price)}
+                           {specs.price}
                         </h2>
                         <hr className="bg-gradient-to-r from-transparent via-gray-600 to-transparent m-auto mb-4 h-[2px]" />
                      </div>
@@ -88,21 +109,21 @@ export default function PhoneDetail() {
                         <b>
                            {phone.brand} {phone.name}
                         </b>{" "}
-                        ist ein {phone.foldable ? "faltbares" : ""} Smartphone mit einem {phone.screen}" großem Display. Es wird von dem{" "}
-                        {phone.soc} angetrieben und verfügt über einen {phone.battery} mAh Akku. Das Gerät lässt sich kabelgebunden mit{" "}
-                        {phone.charging} W
-                        {phone.charging_wireless > 0 ? " und kabellos mit " + phone.charging_wireless + " W" : ", aber nicht kabellos"} aufladen.{" "}
-                        {phone.fingerprint ? "Ein Fingerabdrucksensor ist integriert." : "Ein Fingerabdrucksensor ist nicht vorhanden."} Die
-                        Abmessungen des Geräts betragen {phone.dimensions.height} x {phone.dimensions.width} x {phone.dimensions.depth} mm - bei
-                        einem Gewicht von {phone.weight} g. Das{" "}
+                        ist ein {specs.foldable ? "faltbares" : ""} Smartphone mit einem {specs.screen}" großem Display. Es wird von dem{" "}
+                        {specs.soc} angetrieben und verfügt über einen {specs.battery} mAh Akku. Das Gerät lässt sich kabelgebunden mit{" "}
+                        {specs.charging} W
+                        {specs.charging_wireless > 0 ? " und kabellos mit " + specs.charging_wireless + " W" : ", aber nicht kabellos"} aufladen.{" "}
+                        {specs.fingerprint ? "Ein Fingerabdrucksensor ist integriert." : "Ein Fingerabdrucksensor ist nicht vorhanden."} Die
+                        Abmessungen des Geräts betragen {specs.height} x {specs.width} x {specs.depth} mm - bei einem Gewicht von {specs.weight}{" "}
+                        g. Das{" "}
                         <b>
                            {phone.brand} {phone.name}
                         </b>{" "}
-                        wurde am {formatDate(phone.release)} vorgestellt.
+                        wurde am {specs.release} vorgestellt.
                      </p>
                      <CartButton handleAdd={handleAdd} id={phone.id} big={true} />
                      <div className="table-container flex flex-col m-auto mt-2">
-                        <PhoneDetailTable phone={phone} />
+                        <PhoneDetailTable specs={specs} />
                      </div>
                   </div>
                </motion.div>

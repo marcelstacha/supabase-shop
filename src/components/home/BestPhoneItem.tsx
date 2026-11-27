@@ -76,6 +76,7 @@ export default function BestPhoneItem({ category, item }: BestPhoneItemProps) {
                   </span>
                </div>
                <img
+                  alt={`${item[bestPhoneId].brand} ${item[bestPhoneId].name}`}
                   src={`${item[bestPhoneId].img}-1.jpg`}
                   className="hidden sm:block m-auto my-4 xl:my-5 max-h-20 lg:max-h-40 xl:max-h-52 object-contain"
                />

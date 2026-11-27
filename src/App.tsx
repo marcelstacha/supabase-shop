@@ -1,24 +1,23 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Layout from "./layouts/Layout";
-import Home from "./pages/Home";
-import User from "./pages/User";
 import Cart from "./pages/Cart";
-import Favorites from "./pages/Favorites";
-import PhoneDetail from "./pages/PhoneDetail";
-import PhoneGrid from "./pages/PhoneGrid";
 import Checkout from "./pages/Checkout";
 import Confirmation from "./pages/Confirmation";
+import Favorites from "./pages/Favorites";
+import Home from "./pages/Home";
+import PhoneDetail from "./pages/PhoneDetail";
+import PhoneGrid from "./pages/PhoneGrid";
+import User from "./pages/User";
 
-import { supabase } from "./supabaseClient";
 import { useEffect } from "react";
+import { supabase } from "./supabaseClient";
 
+import NotFound from "./pages/NotFound";
 import { useAuthStore } from "./store/useAuthStore";
-import { syncDBCart } from "./utils/localStorageHelper";
 import { useCartStore } from "./store/useCartStore";
-import { AnimatePresence } from "framer-motion";
+import { syncDBCart } from "./utils/localStorageHelper";
 
 function App() {
-
    const fetchUser = useAuthStore((state) => state.fetchUser);
    const user = useAuthStore((state) => state.user);
 
@@ -27,7 +26,9 @@ function App() {
    useEffect(() => {
       fetchUser();
 
-      const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      const {
+         data: { subscription },
+      } = supabase.auth.onAuthStateChange((event, session) => {
          if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
             useAuthStore.setState({ user: session?.user || null });
          } else if (event === "SIGNED_OUT") {
@@ -39,34 +40,32 @@ function App() {
    }, [fetchUser]);
 
    useEffect(() => {
-
       if (user) {
          syncDBCart(user).then(() => {
-            fetchCart()
-         })
+            fetchCart();
+         });
       } else {
-         fetchCart()
+         fetchCart();
       }
-   }, [user, fetchCart])
+   }, [user, fetchCart]);
 
    return (
-      <AnimatePresence mode="wait">
-         <Router>
-            <Routes>
-               <Route path="/" element={<Layout />}>
-                  <Route index element={<Home />} />
-                  <Route path="phonegrid" element={<PhoneGrid />} />
-                  <Route path="/phonedetail/:id" element={<PhoneDetail />} />
-                  <Route path="checkout" element={<Checkout />} />
-                  <Route path="favorites" element={<Favorites />} />
-                  <Route path="cart" element={<Cart />} />
-                  <Route path="confirmation" element={<Confirmation />} />
-                  <Route path="user" element={<User />} />
-               </Route>
-            </Routes>
-         </Router>
-      </AnimatePresence>
-   )
+      <Router>
+         <Routes>
+            <Route path="/" element={<Layout />}>
+               <Route index element={<Home />} />
+               <Route path="phonegrid" element={<PhoneGrid />} />
+               <Route path="/phonedetail/:id" element={<PhoneDetail />} />
+               <Route path="checkout" element={<Checkout />} />
+               <Route path="favorites" element={<Favorites />} />
+               <Route path="cart" element={<Cart />} />
+               <Route path="confirmation" element={<Confirmation />} />
+               <Route path="user" element={<User />} />
+               <Route path="*" element={<NotFound />} />
+            </Route>
+         </Routes>
+      </Router>
+   );
 }
 
-export default App
+export default App;

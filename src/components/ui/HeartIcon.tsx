@@ -1,5 +1,5 @@
 import { HeartIcon as HIcon } from "@heroicons/react/24/outline";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import React, { useEffect, useMemo, useState } from "react";
 import { useAuthStore } from "../../store/useAuthStore";
 import { useFavoritesStore } from "../../store/useFavoritesStore";
@@ -69,7 +69,7 @@ export default function HeartIcon({ id, isPreview = true }: HeartProps) {
       <>
          <div className="group z-10 relative">
             {user && (
-               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.175, ease: "easeIn" }}>
+               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, ease: "easeIn" }}>
                   <button
                      type="button"
                      onClick={handleHeart}
@@ -78,7 +78,7 @@ export default function HeartIcon({ id, isPreview = true }: HeartProps) {
                      <HIcon
                         className={`w-full h-full transition md:hover:fill-red-300 fill-white
                            ${isLoadingNew ? "stroke-gray-600" : "stroke-gray-900"}
-                           ${optimisticFav ? "!fill-red-500 md:hover:!fill-red-700" : ""}
+                           ${optimisticFav ? "!fill-red-500 md:hover:!fill-red-800" : ""}
                         `}
                      />
                   </button>

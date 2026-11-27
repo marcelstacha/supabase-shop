@@ -31,7 +31,7 @@ export default function CartRow({ item, update }: { item: CartProps; update: (id
                   <img
                      className="xl:group-hover:brightness-105 m-auto p-[2px] sm:py-2 h-full xl:h-24 object-contain transition"
                      src={`${item.img}-1.jpg`}
-                     alt={`${item.name}`}
+                     alt={`${item.brand} ${item.name}`}
                   />
                </NavLink>
             </td>

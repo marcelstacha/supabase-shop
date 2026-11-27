@@ -25,7 +25,7 @@ export default function FavoriteRow({ item }: { item: FavoritesProps }) {
                   <img
                      className="xl:group-hover:brightness-105 m-auto p-[2px] sm:py-2 size-full xl:size-24 object-contain transition"
                      src={`${item.img}-1.jpg`}
-                     alt={`${item.prod_name}`}
+                     alt={`${item.brand} ${item.prod_name}`}
                   />
                </NavLink>
             </td>

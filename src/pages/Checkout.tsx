@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import CheckoutRow from "../components/CheckoutRow";
 import Heading from "../components/layout/Heading";
 import Loading from "../components/ui/Loading";
-import CartProps from "../interfaces/CartProps";
 import { useAuthStore } from "../store/useAuthStore";
 import { useCartStore } from "../store/useCartStore";
 import { useOrdersStore } from "../store/useOrdersStore";
@@ -23,7 +22,8 @@ export default function Checkout() {
 
    const [isSubmitting, setIsSubmitting] = useState(false);
 
-   const total = cart.reduce((sum, item) => sum + item.price, SHIPPING_COST);
+   const total = cart.reduce((sum, item) => sum + item.price, 0);
+   const totalWithShipping = cart.reduce((sum, item) => sum + item.price, SHIPPING_COST);
 
    useEffect(() => {
       fetchCart();
@@ -61,29 +61,34 @@ export default function Checkout() {
                   <Loading />
                ) : cart.length > 0 ? (
                   <>
-                     <div className="flex flex-col justify-center m-auto w-full lg:w-[45rem]">
+                     <div className="flex flex-col justify-center m-auto w-full lg:w-[42rem]">
                         <table className="bg-white">
                            <thead className="text-[0.7rem] sm:text-lg">
                               <tr>
+                                 <th className="hidden min-[400px]:table-cell">#</th>
                                  <th>Name</th>
                                  <th>Preis</th>
                               </tr>
                            </thead>
                            <motion.tbody initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-                              {cart.map((item: CartProps) => (
-                                 <CheckoutRow key={item.prod_id} item={item} />
+                              {cart.map((item, index) => (
+                                 <CheckoutRow key={item.prod_id} index={index} item={item} />
                               ))}
                            </motion.tbody>
                         </table>
-                        <hr className="my-8" />
-                        <div className="flex flex-col gap-2 mb-4 md:ml-auto">
+                        {/*<hr className="my-2" />*/}
+                        <div className="flex flex-col gap-2 mt-3 mb-4 md:ml-auto">
+                           <div className="flex justify-between gap-1 px-4 pr-5 text-sm sm:text-base lg:text-lg">
+                              <span className="p-0">Summe:</span>
+                              <span className="p-0 font-medium price">{formatPrice(total)}</span>
+                           </div>
                            <div className="flex justify-between gap-1 px-4 pr-5 text-sm sm:text-base lg:text-lg">
                               <span className="p-0">Versand:</span>
                               <span className="p-0 font-medium price">+ {formatPrice(SHIPPING_COST)}</span>
                            </div>
                            <div className="flex justify-between gap-1 bg-gray-900 px-4 py-1 rounded-lg text-white text-sm sm:text-base lg:text-lg">
-                              <span>Summe:</span>
-                              <span className="font-semibold text-accent underlineprice price">{formatPrice(total)}</span>
+                              <span>Gesamt:</span>
+                              <span className="font-semibold text-accent underlineprice price">{formatPrice(totalWithShipping)}</span>
                            </div>
                         </div>
 

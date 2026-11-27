@@ -47,7 +47,11 @@ export default function ShuffledGrid() {
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.5 }}
                        >
-                          <img className="sm:m-3 max-w-fit h-14 sm:h-16 md:h-20 lg:h-20 xl:h-32 object-contain" src={placeholder} />
+                          <img
+                             className="sm:m-3 max-w-fit h-14 sm:h-16 md:h-20 lg:h-20 xl:h-32 object-contain"
+                             src={placeholder}
+                             alt="Platzhalter"
+                          />
                        </motion.div>
                     ))
                   : shuffled.map((phone) => (
@@ -59,6 +63,7 @@ export default function ShuffledGrid() {
                           transition={{ duration: 0.5 }}
                        >
                           <img
+                             alt={`${phone.brand} ${phone.name}`}
                              className="sm:m-3 max-w-fit h-14 sm:h-16 md:h-20 lg:h-20 xl:h-32 object-contain"
                              src={`${phone.img}-${phone.isFront ? 2 : 1}.jpg`}
                           ></img>

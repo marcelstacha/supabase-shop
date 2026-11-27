@@ -3,11 +3,6 @@
 @tailwind utilities;
 
 @font-face {
-   font-family: Playfair;
-   src: url("/Playfair.ttf");
-}
-
-@font-face {
    font-family: Archivo;
    src: url("/Archivo.ttf");
 }
@@ -28,10 +23,6 @@
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
 
-   -webkit-user-select: none; /* Safari */
-   -moz-user-select: none; /* Firefox */
-   -ms-user-select: none; /* Internet Explorer/Edge */
-   user-select: none; /* Standard */
    margin: auto;
    max-width: 1600px;
 
@@ -81,10 +72,6 @@
    }
 }
 
-/*
-font-family: Playfair, Avenir, Helvetica, Arial, sans-serif;
-*/
-
 ul {
    list-style-type: none;
    padding-left: 0px;
@@ -106,25 +93,8 @@ p {
    padding: 1rem 0;
 }
 
-html,
-body {
-   -ms-overflow-style: none;
-   scrollbar-width: none;
-   overflow-y: scroll;
-}
-
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-   display: none;
-   width: 0px;
-   background: transparent;
-}
-
-.selectable {
-   -webkit-user-select: text;
-   -moz-user-select: text;
-   -ms-user-select: text;
-   user-select: text;
+html {
+   scrollbar-gutter: stable;
 }
 
 .price {
@@ -169,12 +139,6 @@ table > tbody > tr > td:nth-child(1) {
 
    .table-custom td:nth-child(2) {
       border-right: 0px;
-   }
-}
-
-@media (max-width: 400px) {
-   #root > div > main > div > div.flex.justify-self-center.mt-8.xl\:mt-16 > img {
-      padding-top: 1.2rem;
    }
 }
 
